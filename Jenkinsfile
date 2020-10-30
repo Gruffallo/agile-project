@@ -1,13 +1,17 @@
-properties([pipelineTriggers([githubPush()])])
+// properties([pipelineTriggers([githubPush()])])
 
 pipeline {
     agent any
     stages {
         stage('Clean') {
-            sh 'git clean -xdff'
+            steps {
+                sh 'git clean -xdff'
+            }
         }
         stage('Test') {
-            sh 'mvn test'
+            steps {
+                sh 'mvn test'
+            }
         }
     }
 }
