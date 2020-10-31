@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="common/header :: common-header"
+	xmlns:th="http://www.w3.org/1000/xhtml" />
+<meta charset="UTF-8">
+<title>Home Page</title>
+</head>
+<body>
+	
+
+	<div class="row"  >
+		<div class="col-md-4"></div>
+		<div class="col-md-4" style="border:2px solid black;">
+	<h1 style="text-align:center;">HSE Login</h1>
+			<form method="post" th:action="@{/hseLogin}">
+				<div class="form-group">
+					<label for="username">* Hse Username: </label> <input
+						class="form-control" id="hseusername" name="hseusername" required="required"
+						type="text" />
+					<p style="color: #828282">Enter your Hse username here.</p>
+					<!-- <span th:if="${invalidHseUsername}" class="alert alert-danger">Invalid Username</span> -->
+				</div>
+
+				<div class="form-group">
+					<label for="password">* Password: </label> <input
+						class="form-control" id="hsepassword" name="hsepassword"
+						required="required" type="password" />
+						<!-- <span th:if="${invalidHsePassword}" class="alert alert-danger">Invalid Password</span> -->
+					<p style="color: #828282">Enter the password that accompanies
+						your username</p>
+				</div>
+				
+
+				<button class="btn btn-primary" type="submit">Log in</button>
+				<span class="alert alert-danger" th:if="${invalidDetails}">Invalid Details</span>
+			</form>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	 <hr style="background-color:black; height: 1px;"/> 
+	
+	
+	
+	
+		<div class="row" style="margin-top:20px;">
+		<div class="col-md-4"></div>
+		<div class="col-md-4" style="border:2px solid black;">
+		<h1>GP LOGIN</h1>
+		
+
+			<form method="post" th:action="@{/gpLogin}">
+				<div class="form-group">
+					<label for="username">* GP Username: </label> <input
+						class="form-control" id="gpusername" name="gpusername" required="required"
+						type="text" />
+					<p style="color: #828282">Enter your GP username here.</p>
+					<!-- <span th:if="${invalidHseUsername}" class="alert alert-danger">Invalid Username</span> -->
+				</div>
+
+				<div class="form-group">
+					<label for="password">* Password: </label> <input
+						class="form-control" id="gppassword" name="gppassword"
+						required="required" type="password" />
+						<!-- <span th:if="${invalidHsePassword}" class="alert alert-danger">Invalid Password</span> -->
+					<p style="color: #828282">Enter the password that accompanies
+						your username</p>
+				</div>
+				
+
+				<button style="color:teal;" type="submit">Log in</button>
+				<span class="alert alert-danger" th:if="${invalidGpDetails}">Invalid Details</span>
+			</form>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	
+	
+
+
+
+	<div th:replace="common/header::body-bottom-scripts" />
+</body>
+</html>

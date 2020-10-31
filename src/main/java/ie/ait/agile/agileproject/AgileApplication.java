@@ -20,17 +20,6 @@ public class AgileApplication {
     SpringApplication.run(AgileApplication.class, args);
   }
 
-  @Bean
-  @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-  public Logger logger(final InjectionPoint ip) {
-    return LoggerFactory.getLogger(
-        ofNullable(ip.getField())
-            .<Class<?>>map(Field::getDeclaringClass)
-            .orElseGet(
-                () ->
-                    ofNullable(ip.getMethodParameter())
-                        .map(MethodParameter::getContainingClass)
-                        .orElseThrow(IllegalArgumentException::new)));
-  }
+
 
 }
