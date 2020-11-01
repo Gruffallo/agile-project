@@ -1,16 +1,19 @@
 enum CommitState {
-    ERROR, FAILURE, PENDING, SUCCESS
-    public CommitState() {}
+    ERROR("Build $build.displayName errored in ${build.durationString.minus(' and counting')}"),
+    FAILURE("Build $build.displayName failed in ${build.durationString.minus(' and counting')}"),
+    PENDING("Build $build.displayName in progress"),
+    SUCCESS("$build.displayName succeeded in ${build.durationString.minus(' and counting')}")
+    CommitState(String message) {}
 }
 
 static String buildStatusMessage(build, CommitState state) {
     switch (state) {
         case CommitState.ERROR:
-            return "Build $build.displayName errored in $build.durationString"
+            return "Build $build.displayName errored in ${build.durationString.minus(' and counting')}"
         case CommitState.FAILURE:
-            return "Build $build.displayName failed in $build.durationString"
+            return "Build $build.displayName failed in ${build.durationString.minus(' and counting')}"
         case CommitState.SUCCESS:
-            return "$build.displayName succeeded in $build.durationString"
+            return "$build.displayName succeeded in ${build.durationString.minus(' and counting')}"
         default:
             return "Build $build.displayName in progress"
     }
@@ -26,13 +29,6 @@ void githubStatus(build, CommitState state) {
                     $class: 'ConditionalStatusResultSource',
                     results: [[$class: 'AnyBuildResult', message: message, state: state.name()]]
             ]
-    ])
-}
-
-void setCommitStatus(String repoUrl) {
-    step([
-            $class: 'GitHubCommitStatusSetter',
-            reposSource: [$class: 'ManuallyEnteredRepositorySource', url: repoUrl]
     ])
 }
 
