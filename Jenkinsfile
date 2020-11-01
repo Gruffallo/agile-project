@@ -10,11 +10,18 @@ void setBuildStatus(String message, String state) {
     ])
 }
 
+void setCommitStatus(String repoUrl) {
+    step([
+            $class: 'GitHubCommitStatusSetter',
+            reposSource: [$class: 'ManuallyEnteredRepositorySource', url: repoUrl]
+    ])
+}
+
 pipeline {
     agent any
 
     options {
-        timestamp()
+        timestamps()
     }
 
     triggers {
@@ -31,7 +38,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                setBuildStatus 'Build in progress', 'PENDING'
+//                setBuildStatus 'Build in progress', 'PENDING'
                 sh 'mvn test'
             }
         }
@@ -39,13 +46,14 @@ pipeline {
 
     post {
         always {
+            setCommitStatus scm.userRemoteConfigs[0].url
             cleanWs()
         }
-        success {
-            setBuildStatus 'Build succeeded', 'SUCCESS'
-        }
-        unsuccessful {
-            setBuildStatus 'Build failed', 'FAILURE'
-        }
+//        success {
+//            setBuildStatus 'Build succeeded', 'SUCCESS'
+//        }
+//        unsuccessful {
+//            setBuildStatus 'Build failed', 'FAILURE'
+//        }
     }
 }
