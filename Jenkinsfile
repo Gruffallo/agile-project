@@ -21,6 +21,7 @@ pipeline {
     stages {
         stage('Clean') {
             steps {
+                println "display name: $currentBuild.diplayName"
                 sh 'git clean -xdff'
             }
         }
