@@ -31,7 +31,9 @@ void githubStatus(CommitState state) {
 
 pipeline {
     agent any
+
     options { timestamps() }
+
     triggers { githubPush() }
 
     stages {
