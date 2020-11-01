@@ -21,7 +21,7 @@ pipeline {
     stages {
         stage('Clean') {
             steps {
-                println "display name: $currentBuild.changeSets.msg"
+                println "display name: $currentBuild.changeSets[0].items.msg"
                 sh 'git clean -xdff'
             }
         }
