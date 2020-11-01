@@ -3,7 +3,6 @@ void setBuildStatus(String message, String state) {
     step([
             $class: 'GitHubCommitStatusSetter',
             reposSource: [$class: 'ManuallyEnteredRepositorySource', url: repoUrl],
-            errorHandlers: [[$class: 'ChangingBuildStatusErrorHandler', result: 'UNSTABLE']],
             statusResultSource: [
                     $class: 'ConditionalStatusResultSource',
                     results: [[$class: 'AnyBuildResult', message: message, state: state]]
@@ -14,6 +13,10 @@ void setBuildStatus(String message, String state) {
 pipeline {
     agent any
 
+    options {
+        timestamp()
+    }
+
     triggers {
         githubPush()
     }
@@ -21,8 +24,8 @@ pipeline {
     stages {
         stage('Clean') {
             steps {
-                println "Set kind: ${currentBuild.changeSets[0].kind}"
-                println "Commit message: ${currentBuild.changeSets[0].items[0].msg}"
+                println "Kind: ${currentBuild.changeSets[0].kind}"
+                println "Message: ${currentBuild.changeSets[0].items[0].msg}"
                 sh 'git clean -xdff'
             }
         }
