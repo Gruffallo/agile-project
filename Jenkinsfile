@@ -1,5 +1,23 @@
-void setBuildStatus(String message, String state) {
+enum CommitState {
+    ERROR, FAILURE, PENDING, SUCCESS
+}
+
+static String buildStatusMessage(build, CommitState state) {
+    switch (state) {
+        case CommitState.ERROR:
+            return "Build $build.displayName errored in $build.durationString"
+        case CommitState.FAILURE:
+            return "Build $build.displayName failed in $build.durationString"
+        case CommitState.SUCCESS:
+            return "$build.displayName succeeded in $build.durationString"
+        default:
+            return "Build $build.displayName in progress"
+    }
+}
+
+void githubStatus(build, CommitState state) {
     def repoUrl = scm.userRemoteConfigs[0].url
+    def message = buildStatusMessage(build, state)
     step([
             $class: 'GitHubCommitStatusSetter',
             reposSource: [$class: 'ManuallyEnteredRepositorySource', url: repoUrl],
@@ -19,19 +37,12 @@ void setCommitStatus(String repoUrl) {
 
 pipeline {
     agent any
-
-    options {
-        timestamps()
-    }
-
-    triggers {
-        githubPush()
-    }
+    options { timestamps() }
+    triggers { githubPush() }
 
     stages {
         stage('Clean') {
             steps {
-                println "Build description: $currentBuild.description"
                 println "Kind: ${currentBuild.changeSets[0].kind}"
                 println "Message: ${currentBuild.changeSets[0].items[0].msg}"
                 sh 'git clean -xdff'
@@ -39,22 +50,15 @@ pipeline {
         }
         stage('Test') {
             steps {
-                setBuildStatus 'Build in progress', 'PENDING'
+                setBuildStatus currentBuild, CommitState.PENDING
                 sh 'mvn test'
             }
         }
     }
 
     post {
-        always {
-//            setCommitStatus scm.userRemoteConfigs[0].url
-            cleanWs()
-        }
-        success {
-            setBuildStatus 'Build succeeded', 'SUCCESS'
-        }
-        unsuccessful {
-            setBuildStatus 'Build failed', 'FAILURE'
-        }
+        always { cleanWs() }
+        success { githubStatus currentBuild, CommitState.SUCCESS }
+        unsuccessful { githubStatus currentBuild, CommitState.FAILURE }
     }
 }
