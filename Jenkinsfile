@@ -1,7 +1,9 @@
 void setBuildStatus(String message, String state) {
+    def repoUrl = scm.userRemoteConfigs[0].url
+    sh 'echo $GIT_URL'
     step([
             $class: "GitHubCommitStatusSetter",
-            reposSource: [$class: "ManuallyEnteredRepositorySource", url: $GIT_URL],
+            reposSource: [$class: "ManuallyEnteredRepositorySource", url: repoUrl],
             errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
             statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
     ])
@@ -22,6 +24,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'echo $GIT_URL'
                 setBuildStatus "Build in progress", "PENDING"
                 sh 'mvn test'
             }
