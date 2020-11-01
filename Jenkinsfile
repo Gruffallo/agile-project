@@ -38,7 +38,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-//                setBuildStatus 'Build in progress', 'PENDING'
+                setBuildStatus 'Build in progress', 'PENDING'
                 sh 'mvn test'
             }
         }
@@ -46,14 +46,14 @@ pipeline {
 
     post {
         always {
-            setCommitStatus scm.userRemoteConfigs[0].url
+//            setCommitStatus scm.userRemoteConfigs[0].url
             cleanWs()
         }
-//        success {
-//            setBuildStatus 'Build succeeded', 'SUCCESS'
-//        }
-//        unsuccessful {
-//            setBuildStatus 'Build failed', 'FAILURE'
-//        }
+        success {
+            setBuildStatus 'Build succeeded', 'SUCCESS'
+        }
+        unsuccessful {
+            setBuildStatus 'Build failed', 'FAILURE'
+        }
     }
 }
