@@ -1,5 +1,4 @@
 void setBuildStatus(String message, String state) {
-    def repoUrl = scm.userRemoteConfigs[0].url
     step([
             $class: "GitHubCommitStatusSetter",
             reposSource: [$class: "ManuallyEnteredRepositorySource", url: ${GIT_URL}],
