@@ -1,21 +1,20 @@
 package ie.ait.agile.agileproject.service.impl;
 
-import ie.ait.agile.agileproject.entity.Hse;
-import ie.ait.agile.agileproject.exception.ExceptionHandler;
-import ie.ait.agile.agileproject.service.HseService;
-import ie.ait.agile.agileproject.repository.HseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+import ie.ait.agile.agileproject.entity.Hse;
+import ie.ait.agile.agileproject.exception.ExceptionHandler;
+import ie.ait.agile.agileproject.repository.HseRepository;
+import ie.ait.agile.agileproject.service.HseService;
 
 @Service
 public class HseServiceImpl implements HseService {
-
+	@Autowired
 	private HseRepository hseRepository;
 
 	@Override
-	public Object hseDetails()  {
+	public Hse hseDetails()  {
 		// TODO Auto-generated method stub
 
 
@@ -27,16 +26,16 @@ public class HseServiceImpl implements HseService {
 			}
 
 			else if (admin.getUsername().length() < 5) {
-				return admin.usernameLessThan5();
+				throw new ExceptionHandler("username less than 5");
 			}
 			else if (admin.getPassword().length() < 5) {
-				return admin.passwordLessThan5();
+				throw new ExceptionHandler("password less than 5");
 			}
 			else if (admin.getUsername().length() > 15) {
-				return admin.usernameGreaterThan15();
+				throw new ExceptionHandler("username greater than 15");
 			}
 			else if (admin.getPassword().length() > 15) {
-				return admin.passwordGreaterThan15();
+				throw new ExceptionHandler("password greater than 5");
 			}
 
 		}
@@ -46,10 +45,5 @@ public class HseServiceImpl implements HseService {
 		
 		return hseRepository.findById(1).orElse(null);
 	}
-//	public List<Hse> getHseList(){
-//		List<Hse> hse= (List<Hse>) hseRepository.findAll();
-//		return hse;
-//
-//	}
 
 }
