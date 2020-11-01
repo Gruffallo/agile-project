@@ -24,7 +24,7 @@ void githubStatus(build, CommitState state) {
             reposSource: [$class: 'ManuallyEnteredRepositorySource', url: repoUrl],
             statusResultSource: [
                     $class: 'ConditionalStatusResultSource',
-                    results: [[$class: 'AnyBuildResult', message: message, state: state]]
+                    results: [[$class: 'AnyBuildResult', message: message, state: state.name()]]
             ]
     ])
 }
