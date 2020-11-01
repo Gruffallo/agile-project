@@ -1,5 +1,6 @@
-static enum CommitState {
+enum CommitState {
     ERROR, FAILURE, PENDING, SUCCESS
+    public CommitState() {}
 }
 
 static String buildStatusMessage(build, CommitState state) {
