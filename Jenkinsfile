@@ -1,7 +1,7 @@
 void setBuildStatus(String message, String state) {
     step([
             $class: "GitHubCommitStatusSetter",
-            reposSource: [$class: "ManuallyEnteredRepositorySource", url: ${GIT_URL}],
+            reposSource: [$class: "ManuallyEnteredRepositorySource", url: $GIT_URL],
             errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
             statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
     ])
