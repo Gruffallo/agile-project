@@ -1,4 +1,4 @@
-enum CommitState {
+static enum CommitState {
     ERROR, FAILURE, PENDING, SUCCESS
 }
 
