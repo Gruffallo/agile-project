@@ -2,7 +2,7 @@ void setBuildStatus(String message, String state) {
     def repoUrl = scm.userRemoteConfigs[0].url
     step([
             $class: "GitHubCommitStatusSetter",
-            reposSource: [$class: "ManuallyEnteredRepositorySource", url: repoUrl],
+            reposSource: [$class: "ManuallyEnteredRepositorySource", url: ${GIT_URL}],
             errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
             statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
     ])
