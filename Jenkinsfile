@@ -12,9 +12,6 @@ pipeline {
     triggers {
         githubPush()
     }
-    environment {
-        REPO_URL = getRepoURL()
-    }
     stages {
         stage('Clean') {
             steps {
