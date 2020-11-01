@@ -22,7 +22,7 @@ pipeline {
         stage('Clean') {
             steps {
                 println "Set kind: ${currentBuild.changeSets[0].kind}"
-                println "Commit message: ${currentBuild.changeSets[0].items[0]}"
+                println "Commit message: ${currentBuild.changeSets[0].items[0].msg}"
                 sh 'git clean -xdff'
             }
         }
