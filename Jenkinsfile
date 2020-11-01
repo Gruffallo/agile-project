@@ -1,9 +1,6 @@
 enum CommitState {
-    ERROR("Build $build.displayName errored in ${build.durationString.minus(' and counting')}"),
-    FAILURE("Build $build.displayName failed in ${build.durationString.minus(' and counting')}"),
-    PENDING("Build $build.displayName in progress"),
-    SUCCESS("$build.displayName succeeded in ${build.durationString.minus(' and counting')}")
-    CommitState(String message) {}
+    ERROR, FAILURE, PENDING, SUCCESS
+    CommitState() {}
 }
 
 static String buildStatusMessage(build, CommitState state) {
@@ -19,9 +16,9 @@ static String buildStatusMessage(build, CommitState state) {
     }
 }
 
-void githubStatus(build, CommitState state) {
+void githubStatus(CommitState state) {
     def repoUrl = scm.userRemoteConfigs[0].url
-    def message = buildStatusMessage(build, state)
+    def message = buildStatusMessage(currentBuild, state)
     step([
             $class: 'GitHubCommitStatusSetter',
             reposSource: [$class: 'ManuallyEnteredRepositorySource', url: repoUrl],
@@ -47,7 +44,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                githubStatus currentBuild, CommitState.PENDING
+                githubStatus CommitState.PENDING
                 sh 'mvn test'
             }
         }
@@ -55,7 +52,7 @@ pipeline {
 
     post {
         always { cleanWs() }
-        success { githubStatus currentBuild, CommitState.SUCCESS }
-        unsuccessful { githubStatus currentBuild, CommitState.FAILURE }
+        success { githubStatus CommitState.SUCCESS }
+        unsuccessful { githubStatus CommitState.FAILURE }
     }
 }
