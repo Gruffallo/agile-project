@@ -35,8 +35,19 @@ public class practise {
 	@RequestMapping(value = "/hseLogin", method = RequestMethod.POST)
 	public String hseLogin(@ModelAttribute("hsepassword") String password,
 			@ModelAttribute("hseusername") String username, Model model) throws Exception {
-		Hse hse = hseService.hseDetails();
+		Hse hse = (Hse) hseService.hseDetails();
+		System.out.println(username + " from html " + password);
 
+		System.out.println(hse.getUsername() + " " + hse.getPassword());
+
+//		if(hse.getUsername()!=username) {
+//			model.addAttribute("invalidHseUsername", true);
+//			return "index";
+//		}
+//		else if(hse.getPassword()!=password) {
+//			model.addAttribute("invalidHsePassword", true);
+//			return "index";
+		// }
 
 		if (hse.getUsername().equals(username.toString()) && hse.getPassword().equals(password.toString())) {
 			model.addAttribute("hseLoginComplete", true);
