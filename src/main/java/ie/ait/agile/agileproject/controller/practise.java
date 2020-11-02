@@ -1,13 +1,9 @@
 package ie.ait.agile.agileproject.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
-
 import ie.ait.agile.agileproject.entity.Gp;
 import ie.ait.agile.agileproject.entity.Hse;
 import ie.ait.agile.agileproject.service.GpService;
 import ie.ait.agile.agileproject.service.HseService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
