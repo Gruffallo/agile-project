@@ -62,7 +62,7 @@ class HseTest {
 
         given(hseRepository.findById(1)).willReturn(Optional.of(hse));
 
-        thenThrownBy(() -> hseService.hseDetails()).isExactlyInstanceOf(ExceptionHandler.class);
+        thenThrownBy(hseService::hseDetails).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
 
