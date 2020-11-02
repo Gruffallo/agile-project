@@ -3,7 +3,7 @@ enum CommitState {
     CommitState() {}
 }
 
-static String buildStatusMessage(RunWrapperBinder build, CommitState state) {
+static String buildStatusMessage(Object build, CommitState state) {
     switch (state) {
         case CommitState.ERROR:
             return "Build $build.displayName errored in ${build.durationString.minus(' and counting')}"
