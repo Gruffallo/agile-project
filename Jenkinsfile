@@ -3,7 +3,7 @@ enum CommitState {
     CommitState() {}
 }
 
-static String buildStatusMessage(build, CommitState state) {
+static String buildStatusMessage(RunWrapperBinder build, CommitState state) {
     switch (state) {
         case CommitState.ERROR:
             return "Build $build.displayName errored in ${build.durationString.minus(' and counting')}"
@@ -20,11 +20,11 @@ void githubStatus(CommitState state) {
     def repoUrl = scm.userRemoteConfigs[0].url
     def message = buildStatusMessage(currentBuild, state)
     step([
-            $class: 'GitHubCommitStatusSetter',
-            reposSource: [$class: 'ManuallyEnteredRepositorySource', url: repoUrl],
+            $class: "GitHubCommitStatusSetter",
+            reposSource: [$class: "ManuallyEnteredRepositorySource", url: repoUrl],
             statusResultSource: [
-                    $class: 'ConditionalStatusResultSource',
-                    results: [[$class: 'AnyBuildResult', message: message, state: state.name()]]
+                    $class: "ConditionalStatusResultSource",
+                    results: [[$class: "AnyBuildResult", message: message, state: state.name()]]
             ]
     ])
 }
