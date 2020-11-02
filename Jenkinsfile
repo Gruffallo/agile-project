@@ -47,7 +47,7 @@ pipeline {
         stage('Test') {
             steps {
                 githubStatus CommitState.PENDING
-                sh 'mvn test'
+                //sh 'mvn test'
             }
         }
     }
