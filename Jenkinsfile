@@ -53,7 +53,7 @@ pipeline {
     }
 
     post {
-        // always { cleanWs() }
+        always { cleanWs() }
         success { githubStatus CommitState.SUCCESS }
         unsuccessful { githubStatus CommitState.FAILURE }
     }
