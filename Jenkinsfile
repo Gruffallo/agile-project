@@ -10,7 +10,7 @@ static String buildStatusMessage(build, CommitState state) {
         case CommitState.FAILURE:
             return "Build $build.displayName failed in ${build.durationString.minus(' and counting')}"
         case CommitState.SUCCESS:
-            return "$build.displayName succeeded in ${build.durationString.minus(' and counting')}"
+            return "Build $build.displayName succeeded in ${build.durationString.minus(' and counting')}"
         default:
             return "Build $build.displayName in progress"
     }
