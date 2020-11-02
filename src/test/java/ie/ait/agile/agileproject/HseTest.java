@@ -1,12 +1,16 @@
 package ie.ait.agile.agileproject;
 
+import static org.assertj.core.api.BDDAssertions.thenThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
+import org.assertj.core.api.BDDAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -15,23 +19,20 @@ import ie.ait.agile.agileproject.entity.Hse;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.repository.HseRepository;
 import ie.ait.agile.agileproject.service.impl.HseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-
+@SpringJUnitConfig(HseServiceImpl.class)
 class HseTest {
 
-
-    @InjectMocks
+    @Autowired
     private HseServiceImpl hseService;
-    @Mock
+
+    @MockBean
     private HseRepository hseRepository;
-    
-
-
-
-    @BeforeEach
-    void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
         /*
@@ -61,17 +62,16 @@ class HseTest {
          * Input:"Hse Object(1,"Dani,"password")
          * Expected Output = The username shouldn't be less than 5
          */
-    void hseLogin02() throws ExceptionHandler {
+    void hseLogin02() {
         Hse hse = new Hse();
         hse.setId(1);
         hse.setUsername("Dani");
         hse.setPassword("password");
 
 
-        when(hseRepository.findById(1))
-                .thenReturn(Optional.of(hse));
-        assertEquals("username less than 5", hseService.hseDetails());
+        given(hseRepository.findById(1)).willReturn(Optional.of(hse));
 
+        thenThrownBy(() -> hseService.hseDetails()).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
 

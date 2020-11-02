@@ -10,8 +10,12 @@ import ie.ait.agile.agileproject.service.HseService;
 
 @Service
 public class HseServiceImpl implements HseService {
-	@Autowired
-	private HseRepository hseRepository;
+
+	private final HseRepository hseRepository;
+
+	public HseServiceImpl(HseRepository hseRepository) {
+		this.hseRepository = hseRepository;
+	}
 
 	@Override
 	public Hse hseDetails()  {
@@ -20,11 +24,9 @@ public class HseServiceImpl implements HseService {
 
 		Hse admin = hseRepository.findById(1).orElse(null);
 
-		try {
 			if (admin.equals(null)) {
 				throw new ExceptionHandler("No admin has been created");
 			}
-
 			else if (admin.getUsername().length() < 5) {
 				throw new ExceptionHandler("username less than 5");
 			}
@@ -38,10 +40,6 @@ public class HseServiceImpl implements HseService {
 				throw new ExceptionHandler("password greater than 5");
 			}
 
-		}
-		catch (ExceptionHandler e){
-			e.getMessage();
-		}
 		
 		return hseRepository.findById(1).orElse(null);
 	}

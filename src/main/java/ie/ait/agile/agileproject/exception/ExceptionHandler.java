@@ -1,6 +1,6 @@
 package ie.ait.agile.agileproject.exception;
 
-public class ExceptionHandler extends Exception {
+public class ExceptionHandler extends RuntimeException {
 	String message;
 
 	public ExceptionHandler(String Message) {

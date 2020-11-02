@@ -13,17 +13,15 @@ import javax.persistence.Id;
 
 
 @Entity
-
-
 public class Hse {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int id;
+	private int id;
 
-	public String username;
+	private String username;
 
-	public String password;
+	private String password;
 
 
 //public Hse(int i, String username, String p){
