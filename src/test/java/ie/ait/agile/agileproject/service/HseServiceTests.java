@@ -1,4 +1,4 @@
-package ie.ait.agile.agileproject;
+package ie.ait.agile.agileproject.service.impl;
 
 import ie.ait.agile.agileproject.entity.Hse;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
@@ -17,7 +17,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
 @SpringJUnitConfig(HseServiceImpl.class)
-class HseTest {
+class HseServiceTests {
 
     @Autowired
     private HseServiceImpl hseService;
