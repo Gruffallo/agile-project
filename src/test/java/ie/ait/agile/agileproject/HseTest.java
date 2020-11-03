@@ -41,6 +41,7 @@ class HseTest {
 
         when(hseRepository.findById(1))
                 .thenReturn(Optional.of(hse));
+        
         assertEquals(hse, hseService.hseDetails());
 
 
@@ -63,6 +64,7 @@ class HseTest {
         given(hseRepository.findById(1)).willReturn(Optional.of(hse));
 
         thenThrownBy(hseService::hseDetails).isExactlyInstanceOf(ExceptionHandler.class);
+        
     }
 
 
@@ -82,13 +84,13 @@ class HseTest {
 
         when(hseRepository.findById(1))
                 .thenReturn(Optional.of(hse));
-        assertEquals("username greater than 15", hseService.hseDetails());
+        thenThrownBy(hseService::hseDetails).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
     @Test
         /*
          * Test Number 4
-         * Test Objective: Test username length greater than 5 for login details
+         * Test Objective: Test password length greater than 15 for login details
          * Input:"Hse Object(1,"Daniel","passworddddddddd")
          * Expected Output = password greater than 15
          */
@@ -101,13 +103,13 @@ class HseTest {
 
         when(hseRepository.findById(1))
                 .thenReturn(Optional.of(hse));
-        assertEquals("password greater than 15", hseService.hseDetails());
+        thenThrownBy(hseService::hseDetails).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
     @Test
         /*
          * Test Number 5
-         * Test Objective: Test username length greater than 5 for login details
+         * Test Objective: Test password length less than 5 for login details
          * Input:"Hse Object(1,"Daniel","pass)
          * Expected Output = password less than 5
          */
@@ -120,7 +122,7 @@ class HseTest {
 
         when(hseRepository.findById(1))
                 .thenReturn(Optional.of(hse));
-        assertEquals("password less than 5", hseService.hseDetails());
+        thenThrownBy(hseService::hseDetails).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
 

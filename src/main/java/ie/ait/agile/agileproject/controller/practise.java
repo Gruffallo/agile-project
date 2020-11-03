@@ -44,6 +44,7 @@ public class practise {
 //			model.addAttribute("invalidHsePassword", true);
 //			return "index";
 		// }
+		
 
 		if (hse.getUsername().equals(username.toString()) && hse.getPassword().equals(password.toString())) {
 			model.addAttribute("hseLoginComplete", true);
@@ -74,7 +75,7 @@ public class practise {
 		// }
 
 		if (gp.getUsername().equals(username) && gp.getPassword().equals(password)) {
-			model.addAttribute("hseLoginComplete", true);
+			model.addAttribute("gpLoginComplete", true);
 			model.addAttribute("gpName", gp.getUsername());
 
 			return "gpPage";

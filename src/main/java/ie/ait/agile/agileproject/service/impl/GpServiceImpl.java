@@ -17,7 +17,9 @@ public class GpServiceImpl implements GpService {
 
 	public Gp details() {
 		Gp gp = gpRepository.findById(1).orElse(null);
+		
 
+		
 		return gp;
 	}
 

@@ -15,6 +15,13 @@ public class Gp {
 	private String username;
 	
 	private String password;
+	
+	private String gpName;
+	
+	private String gpEmail;
+	
+	private String gpBadgeNo;
+	
 
 	public int getId() {
 		return id;
