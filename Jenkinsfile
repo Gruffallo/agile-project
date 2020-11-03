@@ -45,6 +45,11 @@ pipeline {
                 sh 'git clean -xdff'
             }
         }
+        stage('Test Docker') {
+            steps {
+                sh 'docker pull mysql:latest'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'git log -1 --pretty=%s'
