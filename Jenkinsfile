@@ -47,8 +47,8 @@ pipeline {
         stage('Test') {
             steps {
                 githubStatus CommitState.PENDING
-                sh 'mvn test'
                 sh 'echo Last commit subject: $(git log -1 --pretty=%s)'
+                sh 'mvn test'
             }
         }
     }
