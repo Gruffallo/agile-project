@@ -45,10 +45,15 @@ pipeline {
                 sh 'git clean -xdff'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
                 sh 'git log -1 --pretty=%s'
-                sh 'mvn test'
+                sh 'mvn test-compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn surefire:test'
             }
         }
     }
