@@ -39,15 +39,21 @@ pipeline {
     stages {
         stage('Clean') {
             steps {
+                githubStatus CommitState.PENDING
                 println "Kind: ${currentBuild.changeSets[0].kind}"
                 println "Message: ${currentBuild.changeSets[0].items[0].msg}"
                 sh 'git clean -xdff'
             }
         }
+        stage('Build') {
+            steps {
+                sh 'git log -1 --pretty=%s'
+                sh 'mvn test-compile'
+            }
+        }
         stage('Test') {
             steps {
-                githubStatus CommitState.PENDING
-                sh 'mvn test'
+                sh 'mvn surefire:test'
             }
         }
     }
