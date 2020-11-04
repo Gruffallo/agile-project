@@ -19,19 +19,19 @@ public class GpServiceImpl implements GpService {
 	public Gp details() {
 		Gp gp = gpRepository.findById(1).orElse(null);
 		
-		if (admin.equals(null)) {
+		if (gp.equals(null)) {
 			throw new ExceptionHandler("No admin has been created");
 		}
-		else if (admin.getUsername().length() < 5) {
+		else if (gp.getUsername().length() < 5) {
 			throw new ExceptionHandler("username less than 5");
 		}
-		else if (admin.getPassword().length() < 5) {
+		else if (gp.getPassword().length() < 5) {
 			throw new ExceptionHandler("password less than 5");
 		}
-		else if (admin.getUsername().length() > 15) {
+		else if (gp.getUsername().length() > 15) {
 			throw new ExceptionHandler("username greater than 15");
 		}
-		else if (admin.getPassword().length() > 15) {
+		else if (gp.getPassword().length() > 15) {
 			throw new ExceptionHandler("password greater than 5");
 		}
 

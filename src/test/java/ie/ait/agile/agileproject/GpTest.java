@@ -1,5 +1,6 @@
 package ie.ait.agile.agileproject;
 
+import ie.ait.agile.agileproject.entity.Gp;
 import ie.ait.agile.agileproject.entity.Hse;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.repository.GpRepository;
@@ -42,7 +43,7 @@ class GpTest {
         when(gpRepository.findById(1))
                 .thenReturn(Optional.of(gp));
         
-        assertEquals(gp, gpService.gpDetails());
+        assertEquals(gp, gpService.details());
 
 
     }
@@ -63,7 +64,7 @@ class GpTest {
 
         given(gpRepository.findById(1)).willReturn(Optional.of(gp));
 
-        thenThrownBy(gpService::gpDetails).isExactlyInstanceOf(ExceptionHandler.class);
+        thenThrownBy(gpService::details).isExactlyInstanceOf(ExceptionHandler.class);
         
     }
 
@@ -84,7 +85,7 @@ class GpTest {
 
         when(gpRepository.findById(1))
                 .thenReturn(Optional.of(gp));
-        thenThrownBy(gpService::hseDetails).isExactlyInstanceOf(ExceptionHandler.class);
+        thenThrownBy(gpService::details).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
     @Test
@@ -94,7 +95,7 @@ class GpTest {
          * Input:"Gp Object(1,"Daniel","passworddddddddd")
          * Expected Output = password greater than 15
          */
-    void hseLogin04() throws ExceptionHandler {
+    void gpLogin04() throws ExceptionHandler {
         Gp gp = new Gp();
         gp.setId(1);
         gp.setUsername("Daniel");
@@ -103,7 +104,7 @@ class GpTest {
 
         when(gpRepository.findById(1))
                 .thenReturn(Optional.of(gp));
-        thenThrownBy(gpService::gpDetails).isExactlyInstanceOf(ExceptionHandler.class);
+        thenThrownBy(gpService::details).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
     @Test
@@ -122,7 +123,7 @@ class GpTest {
 
         when(gpRepository.findById(1))
                 .thenReturn(Optional.of(gp));
-        thenThrownBy(gpService::gpDetails).isExactlyInstanceOf(ExceptionHandler.class);
+        thenThrownBy(gpService::details).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
 
