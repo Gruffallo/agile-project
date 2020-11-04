@@ -1,14 +1,14 @@
 package ie.ait.agile.agileproject.exception;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public class ExceptionHandler extends RuntimeException {
-	String message;
 
-	public ExceptionHandler(String Message) {
-		message = Message;
-	}
+    private final String message;
 
-	public String getMessage() {
-		return message;
-	}
+    public String getMessage() {
+        return message;
+    }
 
 }
