@@ -1,41 +1,41 @@
 package ie.ait.agile.agileproject.controller;
 
+import ie.ait.agile.agileproject.domain.LoginForm;
 import ie.ait.agile.agileproject.entity.Gp;
 import ie.ait.agile.agileproject.entity.Hse;
 import ie.ait.agile.agileproject.service.GpService;
 import ie.ait.agile.agileproject.service.HseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class practise {
+
     private final HseService hseService;
     private final GpService gpService;
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String hello() {
         return "index";
     }
 
-    @RequestMapping(value = "/hseLogin", method = RequestMethod.POST)
-    public String hseLogin(@ModelAttribute("hsepassword") String password,
-                           @ModelAttribute("hseusername") String username, Model model) throws Exception {
-        Hse hse = (Hse) hseService.hseDetails();
+    @PostMapping("/hseLogin")
+    public String hseLogin(LoginForm login, Model model) {
+        String username = login.getUsername();
+        String password = login.getPassword();
+        Hse hse = hseService.hseDetails();
+
         System.out.println(username + " from html " + password);
-
         System.out.println(hse.getUsername() + " " + hse.getPassword());
+        boolean isUsernamesEqual = hse.getUsername().equals(username);
+        boolean isPasswordsEqual = hse.getPassword().equals(password);
 
-        if (hse.getUsername().equals(username.toString()) && hse.getPassword().equals(password.toString())) {
+        if (isUsernamesEqual && isPasswordsEqual) {
             model.addAttribute("hseLoginComplete", true);
-
             return "hsePage";
         } else {
             model.addAttribute("invalidDetails", true);
@@ -44,12 +44,14 @@ public class practise {
 
     }
 
-    @RequestMapping(value = "/gpLogin", method = RequestMethod.POST)
-    public String gpLogin(@ModelAttribute("gppassword") String password, @ModelAttribute("gpusername") String username,
-                          Model model) throws Exception {
+    @PostMapping("/gpLogin")
+    public String gpLogin(LoginForm login, Model model) {
         Gp gp = gpService.details();
+        boolean isUsernamesEqual = gp.getUsername().equals(login.getUsername());
+        boolean isPasswordsEqual = gp.getPassword().equals(login.getPassword());
 
-        if (gp.getUsername().equals(username) && gp.getPassword().equals(password)) {
+
+        if (isUsernamesEqual && isPasswordsEqual) {
             model.addAttribute("gpLoginComplete", true);
             model.addAttribute("gpName", gp.getUsername());
 
@@ -58,8 +60,5 @@ public class practise {
             model.addAttribute("invalidGpDetails", true);
             return "index";
         }
-
     }
-
-
 }

@@ -18,7 +18,9 @@ public class HseServiceImpl implements HseService {
         Hse admin = hseRepository.findById(1)
                 .orElseThrow(() -> new ExceptionHandler("No admin has been created"));
 
-        if (admin.getPassword().length() < 5) {
+        if (admin.getUsername().length() < 5) {
+            throw new ExceptionHandler("username less than 5");
+        } else if (admin.getPassword().length() < 5) {
             throw new ExceptionHandler("password less than 5");
         } else if (admin.getUsername().length() > 15) {
             throw new ExceptionHandler("username greater than 15");
