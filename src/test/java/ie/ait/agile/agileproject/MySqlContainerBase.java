@@ -7,11 +7,11 @@ import org.testcontainers.containers.MySQLContainer;
 public abstract class MySqlContainerBase {
 
     static final String IMAGE_TAG = "mysql:8.0.22";
-    static final MySQLContainer<?> MYSQL_CONTAINER;
 
     static {
-        MYSQL_CONTAINER = new MySQLContainer<>(IMAGE_TAG).withReuse(true);
-        MYSQL_CONTAINER.start();
+        new MySQLContainer<>(IMAGE_TAG)
+                .withReuse(true)
+                .start();
     }
 
     @DynamicPropertySource
