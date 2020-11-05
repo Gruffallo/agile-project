@@ -1,64 +1,93 @@
 package ie.ait.agile.agileproject.controller;
 
-import ie.ait.agile.agileproject.domain.LoginForm;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import ie.ait.agile.agileproject.entity.Gp;
 import ie.ait.agile.agileproject.entity.Hse;
 import ie.ait.agile.agileproject.service.GpService;
 import ie.ait.agile.agileproject.service.HseService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequiredArgsConstructor
+
+
+@Controller
 public class practise {
+	@Autowired
+	private HseService hseService;
+	
 
-    private final HseService hseService;
-    private final GpService gpService;
+	@Autowired
+	private GpService gpService;
 
-    @GetMapping("/")
-    public String hello() {
-        return "index";
-    }
+	@RequestMapping("/")
+	public String hello() {
 
-    @PostMapping("/hseLogin")
-    public String hseLogin(LoginForm login, Model model) {
-        String username = login.getUsername();
-        String password = login.getPassword();
-        Hse hse = hseService.hseDetails();
+		return "index";
+	}
 
-        System.out.println(username + " from html " + password);
-        System.out.println(hse.getUsername() + " " + hse.getPassword());
-        boolean isUsernamesEqual = hse.getUsername().equals(username);
-        boolean isPasswordsEqual = hse.getPassword().equals(password);
+	@RequestMapping(value = "/hseLogin", method = RequestMethod.POST)
+	public String hseLogin(@ModelAttribute("hsepassword") String password,
+			@ModelAttribute("hseusername") String username, Model model) throws Exception {
+		Hse hse = hseService.hseDetails();
+		System.out.println(username + " from html " + password);
 
-        if (isUsernamesEqual && isPasswordsEqual) {
-            model.addAttribute("hseLoginComplete", true);
-            return "hsePage";
-        } else {
-            model.addAttribute("invalidDetails", true);
-            return "index";
-        }
+		System.out.println(hse.getUsername() + " " + hse.getPassword());
 
-    }
+//		if(hse.getUsername()!=username) {
+//			model.addAttribute("invalidHseUsername", true);
+//			return "index";
+//		}
+//		else if(hse.getPassword()!=password) {
+//			model.addAttribute("invalidHsePassword", true);
+//			return "index";
+		// }
 
-    @PostMapping("/gpLogin")
-    public String gpLogin(LoginForm login, Model model) {
-        Gp gp = gpService.details();
-        boolean isUsernamesEqual = gp.getUsername().equals(login.getUsername());
-        boolean isPasswordsEqual = gp.getPassword().equals(login.getPassword());
+		if (hse.getUsername().equals(username.toString()) && hse.getPassword().equals(password.toString())) {
+			model.addAttribute("hseLoginComplete", true);
 
+			return "hsePage";
+		} else {
+			model.addAttribute("invalidDetails", true);
+			return "index";
+		}
 
-        if (isUsernamesEqual && isPasswordsEqual) {
-            model.addAttribute("gpLoginComplete", true);
-            model.addAttribute("gpName", gp.getUsername());
+	}
 
-            return "gpPage";
-        } else {
-            model.addAttribute("invalidGpDetails", true);
-            return "index";
-        }
-    }
+	@RequestMapping(value = "/gpLogin", method = RequestMethod.POST)
+	public String gpLogin(@ModelAttribute("gppassword") String password, @ModelAttribute("gpusername") String username,
+			Model model) throws Exception {
+		Gp gp = gpService.details();
+//		System.out.println(username+" from html "+password);
+//		
+//		System.out.println(hse.getUsername()+" "+hse.getPassword());
+
+//		if(hse.getUsername()!=username) {
+//			model.addAttribute("invalidHseUsername", true);
+//			return "index";
+//		}
+//		else if(hse.getPassword()!=password) {
+//			model.addAttribute("invalidHsePassword", true);
+//			return "index";
+		// }
+
+		if (gp.getUsername().equals(username) && gp.getPassword().equals(password)) {
+			model.addAttribute("hseLoginComplete", true);
+			model.addAttribute("gpName", gp.getUsername());
+
+			return "gpPage";
+		} else {
+			model.addAttribute("invalidGpDetails", true);
+			return "index";
+		}
+
+	}
+	
+	
+
 }

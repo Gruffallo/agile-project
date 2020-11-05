@@ -4,14 +4,14 @@ import ie.ait.agile.agileproject.entity.Gp;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.repository.GpRepository;
 import ie.ait.agile.agileproject.service.GpService;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+
 public class GpServiceImpl implements GpService {
 
-    private final GpRepository gpRepository;
+    private  GpRepository gpRepository;
 
     public Gp details() {
         Gp gp = gpRepository.findById(1)

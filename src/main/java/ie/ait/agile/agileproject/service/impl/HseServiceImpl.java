@@ -4,14 +4,14 @@ import ie.ait.agile.agileproject.entity.Hse;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.repository.HseRepository;
 import ie.ait.agile.agileproject.service.HseService;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+
 public class HseServiceImpl implements HseService {
 
-    private final HseRepository hseRepository;
+    private HseRepository hseRepository;
 
     @Override
     public Hse hseDetails() {

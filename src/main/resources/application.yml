@@ -3,10 +3,10 @@ server:
 
 spring:
   thymeleaf:
-    cache: off
+    cache: false
   jpa:
     #show or not log for each query
-    show-sql: on
+    show-sql: true
     hibernate:
       ddl-auto: update
     properties:
