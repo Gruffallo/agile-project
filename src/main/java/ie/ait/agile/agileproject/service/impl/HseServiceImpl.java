@@ -5,12 +5,13 @@ import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.repository.HseRepository;
 import ie.ait.agile.agileproject.service.HseService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 
 public class HseServiceImpl implements HseService {
-
+@Autowired
     private HseRepository hseRepository;
 
     @Override
