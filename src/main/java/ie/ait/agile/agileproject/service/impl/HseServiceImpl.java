@@ -1,17 +1,17 @@
 package ie.ait.agile.agileproject.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import ie.ait.agile.agileproject.entity.Hse;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.repository.HseRepository;
 import ie.ait.agile.agileproject.service.HseService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 @Service
 
 public class HseServiceImpl implements HseService {
-@Autowired
+	@Autowired
     private HseRepository hseRepository;
 
     @Override
