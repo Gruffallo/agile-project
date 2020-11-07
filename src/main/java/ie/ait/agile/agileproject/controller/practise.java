@@ -1,7 +1,5 @@
 package ie.ait.agile.agileproject.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import ie.ait.agile.agileproject.entity.Gp;
 import ie.ait.agile.agileproject.entity.Hse;
+import ie.ait.agile.agileproject.entity.Patient;
 import ie.ait.agile.agileproject.service.GpService;
 import ie.ait.agile.agileproject.service.HseService;
+import ie.ait.agile.agileproject.service.PatientService;
 
 
 
@@ -20,6 +20,9 @@ import ie.ait.agile.agileproject.service.HseService;
 public class practise {
 	@Autowired
 	private HseService hseService;
+	
+	@Autowired
+	private PatientService patientService;
 	
 
 	@Autowired
@@ -83,6 +86,33 @@ public class practise {
 			return "gpPage";
 		} else {
 			model.addAttribute("invalidGpDetails", true);
+			return "index";
+		}
+
+	}
+	@RequestMapping(value = "/patientLogin", method = RequestMethod.POST)
+	public String patientLogin(@ModelAttribute("patientpassword") String password,
+			@ModelAttribute("patientusername") String username, Model model) throws Exception {
+		Patient patient = patientService.details();
+		System.out.println(username + " from html " + password);
+
+		System.out.println(patient.getUsername() + " " + patient.getPassword());
+
+//		if(hse.getUsername()!=username) {
+//			model.addAttribute("invalidHseUsername", true);
+//			return "index";
+//		}
+//		else if(hse.getPassword()!=password) {
+//			model.addAttribute("invalidHsePassword", true);
+//			return "index";
+		// }
+
+		if (patient.getUsername().equals(username.toString()) && patient.getPassword().equals(password.toString())) {
+			model.addAttribute("patient0LoginComplete", true);
+
+			return "patientPage";
+		} else {
+			model.addAttribute("invalidPatientDetails", true);
 			return "index";
 		}
 

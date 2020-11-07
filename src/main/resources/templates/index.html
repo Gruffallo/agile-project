@@ -52,7 +52,7 @@
 				<form method="post" th:action="@{/gpLogin}">
 				<h3 class="mb-4"><i aria-hidden="true" class="fa fa-fw fa-user-md"></i>General Practioners(GP)</h3>
 				<div class="form-group mb-2">
-					<label for="gpEmailAddress">Username:</label>
+					<label for="gpusername">Username:</label>
 					<input class="form-control" id="gpusername" name="gpusername" type="text" />
 				</div>
 				<div class="form-group mb-2">
@@ -71,8 +71,8 @@
 				<h3 class="mb-4"><i aria-hidden="true" class="fa fa-fw fa-medkit"></i>Pharamcist</h3>
 				
 				<div class="form-group mb-2">
-					<label for="pharmaEmailAddress">Email Address:</label>
-					<input class="form-control" id="pharmaEmailAddress" name="" type="text" value="">
+					<label for="pharmausername">Username:</label>
+					<input class="form-control" id="pharmausername" name="" type="text" value="">
 				</div>
 				<div class="form-group mb-2">
 					<label for="pharmaPassword">Password:</label>
@@ -92,11 +92,11 @@
 			<div class="col-sm-6">
 				<h3 class="mb-4"><i aria-hidden="true" class="fa fa-fw fa-users"></i>Staff Members</h3>
 				<div class="form-group mb-2">
-					<label for="staffEmailAddress">Email Address:</label>
-					<input class="form-control" id="staffEmailAddress" name="" type="text" value="">
+					<label for="staffusername">Username:</label>
+					<input class="form-control" id="staffusername" name="" type="text" value="">
 				</div>
 				<div class="form-group mb-2">
-					<label for="staffPassword">Password:</label>
+					<label for="staffpassword">Password:</label>
 					<input class="form-control" id="staffPassword" name="" type="Password" value="">
 				</div>
 				<button class="btn btn-info" type="submit"><i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Login</button>
@@ -105,16 +105,18 @@
 			<!-- Patient -->
 
 			<div class="col-sm-6">
+			<form method="post" th:action="@{/patientLogin}">
 				<h3 class="mb-4"><i aria-hidden="true" class="fa fa-fw fa-user"></i>Patient</h3>
 				<div class="form-group mb-2">
-					<label for="patientEmailAddress">Email Address:</label>
-					<input class="form-control" id="patientEmailAddress" name="" type="text" value="">
+					<label for="patientusername">Username:</label>
+					<input class="form-control" id="patientusername" name="patientusername" type="text" value="">
 				</div>
 				<div class="form-group mb-2">
-					<label for="patientPassword">Password:</label>
-					<input class="form-control" id="patientPassword" name="" type="Password" value="">
+					<label for="patientpassword">Password:</label>
+					<input class="form-control" id="patientpassword" name="patientpassword" type="Password" value="">
 				</div>
 				<button class="btn btn-warning" type="submit"><i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Login</button>
+			</form>
 			</div>
 		</div>
 	</div>
