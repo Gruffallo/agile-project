@@ -6,7 +6,7 @@ import org.testcontainers.containers.MySQLContainer;
 
 public abstract class MySqlContainerBase {
 
-    static final String IMAGE_TAG = "mysql:8.0.22";
+    static final String IMAGE_TAG = "mysql:8.0.12";
 
     static {
         new MySQLContainer<>(IMAGE_TAG)

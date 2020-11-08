@@ -1,123 +1,103 @@
 package ie.ait.agile.agileproject.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+import ie.ait.agile.agileproject.domain.Credentials;
 import ie.ait.agile.agileproject.entity.Gp;
 import ie.ait.agile.agileproject.entity.Hse;
 import ie.ait.agile.agileproject.entity.Patient;
 import ie.ait.agile.agileproject.service.GpService;
 import ie.ait.agile.agileproject.service.HseService;
 import ie.ait.agile.agileproject.service.PatientService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 
 
 @Controller
 public class practise {
-	@Autowired
-	private HseService hseService;
-	
-	@Autowired
-	private PatientService patientService;
-	
 
-	@Autowired
-	private GpService gpService;
+    private final HseService hseService;
+    private final PatientService patientService;
+    private final GpService gpService;
 
-	@RequestMapping("/")
-	public String hello() {
+    practise(HseService hseService, PatientService patientService, GpService gpService) {
+        this.hseService = hseService;
+        this.patientService = patientService;
+        this.gpService = gpService;
+    }
 
-		return "index";
-	}
 
-	@RequestMapping(value = "/hseLogin", method = RequestMethod.POST)
-	public String hseLogin(@ModelAttribute("hsepassword") String password,
-			@ModelAttribute("hseusername") String username, Model model) throws Exception {
-		Hse hse = hseService.hseDetails();
-		System.out.println(username + " from html " + password);
+    @GetMapping("/")
+    public String hello(Model model) {
+        model.addAttribute("credentials", new Credentials());
+        return "index";
+    }
 
-		System.out.println(hse.getUsername() + " " + hse.getPassword());
+    @PostMapping("/hseLogin")
+    public String hseLogin(@Valid Credentials credentials, Model model) {
+        var loginUser = credentials.getUsername();
+        var loginPwd = credentials.getPassword();
 
-//		if(hse.getUsername()!=username) {
-//			model.addAttribute("invalidHseUsername", true);
-//			return "index";
-//		}
-//		else if(hse.getPassword()!=password) {
-//			model.addAttribute("invalidHsePassword", true);
-//			return "index";
-		// }
+        Hse hse = hseService.hseDetails();
+        var hseUser = hse.getUsername();
+        var hsePwd = hse.getPassword();
 
-		if (hse.getUsername().equals(username.toString()) && hse.getPassword().equals(password.toString())) {
-			model.addAttribute("hseLoginComplete", true);
+        System.out.println(loginUser + " from HTML " + loginPwd);
+        System.out.println(hseUser + " from DB " + hsePwd);
 
-			return "hsePage";
-		} else {
-			model.addAttribute("invalidDetails", true);
-			return "index";
-		}
+        if (hseUser.equals(loginUser) && hsePwd.equals(loginPwd)) {
+            model.addAttribute("hseLoginComplete", true);
+            model.addAttribute("credentials", credentials);
+            return "hsePage";
+        } else {
+            model.addAttribute("invalidDetails", true);
+            return "index";
+        }
 
-	}
+    }
 
-	@RequestMapping(value = "/gpLogin", method = RequestMethod.POST)
-	public String gpLogin(@ModelAttribute("gppassword") String password, @ModelAttribute("gpusername") String username,
-			Model model) throws Exception {
-		Gp gp = gpService.details();
-//		System.out.println(username+" from html "+password);
-//		
-//		System.out.println(hse.getUsername()+" "+hse.getPassword());
+    @PostMapping("/gpLogin")
+    public String gpLogin(@Valid Credentials credentials, Model model) {
+        var loginUser = credentials.getUsername();
+        var loginPwd = credentials.getPassword();
 
-//		if(hse.getUsername()!=username) {
-//			model.addAttribute("invalidHseUsername", true);
-//			return "index";
-//		}
-//		else if(hse.getPassword()!=password) {
-//			model.addAttribute("invalidHsePassword", true);
-//			return "index";
-		// }
+        Gp gp = gpService.details();
+        var gpUser = gp.getUsername();
+        var gpPwd = gp.getPassword();
 
-		if (gp.getUsername().equals(username) && gp.getPassword().equals(password)) {
-			model.addAttribute("hseLoginComplete", true);
-			model.addAttribute("gpName", gp.getUsername());
+        if (gpUser.equals(loginUser) && gpPwd.equals(loginPwd)) {
+            model.addAttribute("hseLoginComplete", true);
+            model.addAttribute("credentials", credentials);
+            return "gpPage";
+        } else {
+            model.addAttribute("invalidGpDetails", true);
+            return "index";
+        }
 
-			return "gpPage";
-		} else {
-			model.addAttribute("invalidGpDetails", true);
-			return "index";
-		}
+    }
 
-	}
-	@RequestMapping(value = "/patientLogin", method = RequestMethod.POST)
-	public String patientLogin(@ModelAttribute("patientpassword") String password,
-			@ModelAttribute("patientusername") String username, Model model) throws Exception {
-		Patient patient = patientService.details();
-		System.out.println(username + " from html " + password);
+    @PostMapping("/patientLogin")
+    public String patientLogin(@Valid Credentials credentials, Model model) {
+        var loginUser = credentials.getUsername();
+        var loginPwd = credentials.getPassword();
 
-		System.out.println(patient.getUsername() + " " + patient.getPassword());
+        Patient patient = patientService.details();
+        var patientUser = patient.getUsername();
+        var patientPwd = patient.getPassword();
 
-//		if(hse.getUsername()!=username) {
-//			model.addAttribute("invalidHseUsername", true);
-//			return "index";
-//		}
-//		else if(hse.getPassword()!=password) {
-//			model.addAttribute("invalidHsePassword", true);
-//			return "index";
-		// }
+        System.out.println(loginUser + " from HTML " + loginPwd);
+        System.out.println(patientUser + " from DB " + patientPwd);
 
-		if (patient.getUsername().equals(username.toString()) && patient.getPassword().equals(password.toString())) {
-			model.addAttribute("patient0LoginComplete", true);
-
-			return "patientPage";
-		} else {
-			model.addAttribute("invalidPatientDetails", true);
-			return "index";
-		}
-
-	}
-	
-	
+        if (patientUser.equals(loginUser) && patientPwd.equals(loginPwd)) {
+            model.addAttribute("patient0LoginComplete", true);
+            model.addAttribute("credentials", credentials);
+            return "patientPage";
+        } else {
+            model.addAttribute("invalidPatientDetails", true);
+            return "index";
+        }
+    }
 
 }

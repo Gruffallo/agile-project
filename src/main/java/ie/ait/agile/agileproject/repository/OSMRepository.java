@@ -1,10 +1,8 @@
 package ie.ait.agile.agileproject.repository;
 
-import org.springframework.data.repository.CrudRepository;
-
-import ie.ait.agile.agileproject.entity.Hse;
 import ie.ait.agile.agileproject.entity.OSM;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OSMRepository extends CrudRepository<OSM,Integer> {
+public interface OSMRepository extends JpaRepository<OSM,Integer> {
 	OSM findByUsername(String username);
 }
