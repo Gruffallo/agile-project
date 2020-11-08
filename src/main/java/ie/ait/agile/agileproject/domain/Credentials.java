@@ -1,15 +1,16 @@
 package ie.ait.agile.agileproject.domain;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class Credentials {
 
     @NotNull
-    //@Size(min = 5, max = 15)
+    @Size(min = 5, max = 15)
     private String username;
 
     @NotNull
-    //@Size(min = 5, max = 15)
+    @Size(min = 5, max = 15)
     private String password;
 
     public String getUsername() {
