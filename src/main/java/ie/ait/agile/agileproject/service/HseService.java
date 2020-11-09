@@ -7,12 +7,12 @@ import ie.ait.agile.agileproject.entity.Pharmacist;
 
 public interface HseService {
     Hse hseDetails();
-    
+
     Hse createHse(Hse hse);
-    
+
     Gp createGp(Gp gp);
-    
+
     Pharmacist createPharmacist(Pharmacist pharma);
-    
+
     OSM createOsm(OSM osm);
 }

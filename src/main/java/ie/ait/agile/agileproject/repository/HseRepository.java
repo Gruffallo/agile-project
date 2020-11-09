@@ -4,9 +4,8 @@ import ie.ait.agile.agileproject.entity.Hse;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-
 public interface HseRepository extends JpaRepository<Hse, Integer> {
-	
-	Hse findByUsername(String username);
+
+    Hse findByUsername(String username);
 
 }

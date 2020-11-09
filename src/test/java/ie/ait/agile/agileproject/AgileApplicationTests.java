@@ -12,12 +12,12 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 class AgileApplicationTests extends MySqlContainerBase {
 
-  @Autowired
-  private HseRepository hseRepository;
+    @Autowired
+    private HseRepository hseRepository;
 
-  @Test
-  void shouldContextLoads() {
-    then(hseRepository).isNotNull();
-  }
+    @Test
+    void shouldContextLoads() {
+        then(hseRepository).isNotNull();
+    }
 
 }

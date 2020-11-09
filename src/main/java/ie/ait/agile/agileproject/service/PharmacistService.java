@@ -1,9 +1,8 @@
 package ie.ait.agile.agileproject.service;
 
 
-import ie.ait.agile.agileproject.entity.Gp;
+import ie.ait.agile.agileproject.entity.Pharmacist;
 
 public interface PharmacistService {
-    Phar details();
-    Patient details();
+    Pharmacist details();
 }

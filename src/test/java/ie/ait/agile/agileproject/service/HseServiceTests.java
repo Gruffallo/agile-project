@@ -41,7 +41,7 @@ class HseServiceTests {
 
         when(hseRepository.findById(1))
                 .thenReturn(Optional.of(hse));
-        
+
         assertEquals(hse, hseService.hseDetails());
 
 
@@ -64,7 +64,7 @@ class HseServiceTests {
         given(hseRepository.findById(1)).willReturn(Optional.of(hse));
 
         thenThrownBy(hseService::hseDetails).isExactlyInstanceOf(ExceptionHandler.class);
-        
+
     }
 
 

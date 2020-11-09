@@ -34,7 +34,7 @@ class GpServiceTests {
          */
     void gpLogin01() throws ExceptionHandler {
 //	String name="er";
-         Gp gp = new Gp();
+        Gp gp = new Gp();
         gp.setId(1);
         gp.setUsername("Daniel");
         gp.setPassword("password");
@@ -62,7 +62,7 @@ class GpServiceTests {
         given(gpRepository.findById(1)).willReturn(Optional.of(gp));
 
         thenThrownBy(gpService::details).isExactlyInstanceOf(ExceptionHandler.class);
-        
+
     }
 
 

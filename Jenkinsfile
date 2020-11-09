@@ -1,5 +1,6 @@
 enum CommitState {
     ERROR, FAILURE, PENDING, SUCCESS
+
     CommitState() {}
 }
 
@@ -20,10 +21,10 @@ void githubStatus(CommitState state) {
     def repoUrl = scm.userRemoteConfigs[0].url
     def message = buildStatusMessage(currentBuild, state)
     step([
-            $class: "GitHubCommitStatusSetter",
-            reposSource: [$class: "ManuallyEnteredRepositorySource", url: repoUrl],
+            $class            : "GitHubCommitStatusSetter",
+            reposSource       : [$class: "ManuallyEnteredRepositorySource", url: repoUrl],
             statusResultSource: [
-                    $class: "ConditionalStatusResultSource",
+                    $class : "ConditionalStatusResultSource",
                     results: [[$class: "AnyBuildResult", message: message, state: state.name()]]
             ]
     ])

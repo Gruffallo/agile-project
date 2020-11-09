@@ -4,5 +4,5 @@ import ie.ait.agile.agileproject.entity.Patient;
 
 public interface PatientService {
 
-	Patient details();
+    Patient details();
 }
