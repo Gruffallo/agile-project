@@ -97,6 +97,7 @@ public class practise {
         if (patientUser.equals(loginUser) && patientPwd.equals(loginPwd)) {
             model.addAttribute("patientLoginComplete", true);
             model.addAttribute("login", login);
+            model.addAttribute("patient", patient);
             return "patientPage";
         } else {
             model.addAttribute("invalidPatientDetails", true);
