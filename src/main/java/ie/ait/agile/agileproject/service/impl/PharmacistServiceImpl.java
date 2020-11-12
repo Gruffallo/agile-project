@@ -16,10 +16,27 @@ public class PharmacistServiceImpl implements PharmacistService {
     }
 
     @Override
-    public Pharmacist details() {
-        return pharmacistRepository
-                .findById(1)
-                .orElseThrow(() -> new ExceptionHandler("No pharmacist has been created"));
+    public Pharmacist details(String username) {
+        if (pharmacistRepository.findByUsername(username) == null) {
+            throw new ExceptionHandler("Pharmacist does not exist");
+        } else {
+            return pharmacistRepository.findByUsername(username);
+        }
+
     }
 
+    @Override
+    public Pharmacist findByUsername(String username) {
+        return pharmacistRepository.findByUsername(username);
+    }
+
+    @Override
+    public Pharmacist findByEmail(String email) {
+        return pharmacistRepository.findByEmail(email);
+    }
+
+    @Override
+    public Pharmacist findByBadgeNo(String badgeNo) {
+        return pharmacistRepository.findByBadgeNo(badgeNo);
+    }
 }

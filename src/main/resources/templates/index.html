@@ -26,7 +26,7 @@
         <!-- HSE Login ----------------------------------------------------------------------------------------------------------->
         <div class="row mb-4">
             <div class="col-sm-12">
-                <form action="#" method="post" th:action="@{/hseLogin}" th:object="${credentials}">
+                <form action="#" method="post" th:action="@{/hseLogin}" th:object="${login}">
                     <h3 class="mb-4"><i aria-hidden="true" class="fa fa-fw fa-hospital-o"></i>HSE</h3>
                     <div class="form-group mb-2">
                         <label for="hseUsername">Username:</label>
@@ -50,7 +50,7 @@
         <!-- General Practioner (GP) & Pharmacist Login-------------------------------------------------------------------------------->
         <div class="row mb-5">
             <div class="col-sm-6">
-                <form action="#" method="post" th:action="@{/gpLogin}" th:object="${credentials}">
+                <form action="#" method="post" th:action="@{/gpLogin}" th:object="${login}">
                     <h3 class="mb-4"><i aria-hidden="true" class="fa fa-fw fa-user-md"></i>General Practioners(GP)</h3>
                     <div class="form-group mb-2">
                         <label for="gpusername">Username:</label>
@@ -69,7 +69,7 @@
 
             <!-- Pharmacist Login -->
             <div class="col-sm-6">
-                <form action="#" method="post" th:action="@{/pharmacistLogin}" th:object="${credentials}">
+                <form action="#" method="post" th:action="@{/pharmacistLogin}" th:object="${login}">
                     <h3 class="mb-4"><i aria-hidden="true" class="fa fa-fw fa-medkit">Pharamcist</i></h3>
                     <div class="form-group mb-2">
                         <label for="pharmausername">Username:</label>
@@ -93,22 +93,25 @@
         <div class="row mb-5">
             <div class="col-sm-6">
                 <h3 class="mb-4"><i aria-hidden="true" class="fa fa-fw fa-users"></i>Staff Members</h3>
-                <div class="form-group mb-2">
-                    <label for="staffusername">Username:</label>
-                    <input class="form-control" id="staffusername" name="" type="text" value="">
-                </div>
-                <div class="form-group mb-2">
-                    <label for="staffpassword">Password:</label>
-                    <input class="form-control" id="staffPassword" name="" type="Password" value="">
-                </div>
-                <button class="btn btn-info" type="submit"><i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Login
-                </button>
+                <form action="#" method="post" th:action="@{/osmLogin}" th:object="${login}">
+
+                    <div class="form-group mb-2">
+                        <label for="pharmausername">Username:</label>
+                        <input type="text" class="form-control" id="osmusername" th:field="*{username}"/>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="pharmaPassword">Password:</label>
+                        <input type="Password" class="form-control" id="osmPassword" th:field="*{password}"/>
+                    </div>
+                    <button class="btn btn-success" type="submit"><i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Login
+                    </button>
+                </form>
             </div>
 
             <!-- Patient -->
 
             <div class="col-sm-6">
-                <form action="#" method="post" th:action="@{/patientLogin}" th:object="${credentials}">
+                <form action="#" method="post" th:action="@{/patientLogin}" th:object="${login}">
                     <h3 class="mb-4"><i aria-hidden="true" class="fa fa-fw fa-user"></i>Patient</h3>
                     <div class="form-group mb-2">
                         <label for="patientusername">Username:</label>

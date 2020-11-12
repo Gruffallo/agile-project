@@ -15,9 +15,10 @@ public class Gp {
     private int id;
     private String username;
     private String password;
-    private String gpName;
-    private String gpEmail;
-    private String gpBadgeNo;
+    private String name;
+    private String email;
+    private String badgeNo;
+    private boolean active;
 
     public int getId() {
         return id;
@@ -43,30 +44,37 @@ public class Gp {
         this.password = password;
     }
 
-    public String getGpName() {
-        return gpName;
+    public String getName() {
+        return name;
     }
 
-    public void setGpName(String gpName) {
-        this.gpName = gpName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getGpEmail() {
-        return gpEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setGpEmail(String gpEmail) {
-        this.gpEmail = gpEmail;
+    public String getBadgeNo() {
+        return badgeNo;
     }
 
-    public String getGpBadgeNo() {
-        return gpBadgeNo;
+    public void setBadgeNo(String badgeNo) {
+        this.badgeNo = badgeNo;
     }
 
-    public void setGpBadgeNo(String gpBadgeNo) {
-        this.gpBadgeNo = gpBadgeNo;
+    public boolean isActive() {
+        return active;
     }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 //    private boolean active;
 
 

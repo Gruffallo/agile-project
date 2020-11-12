@@ -32,66 +32,122 @@ public class HseServiceImpl implements HseService {
     }
 
     @Override
-    public Hse hseDetails() {
-        return hseRepository
-                .findById(1)
-                .orElseThrow(() -> new ExceptionHandler("No admin has been created"));
+    public Hse hseDetails(String username) {
+        if(hseRepository.findByUsername(username)==null){
+            throw new ExceptionHandler("Admin does not exist");
+        }
+        else{
+            return hseRepository.findByUsername(username);
+        }
     }
 
     @Override
     public Hse createHse(Hse hse) {
 
-        Hse admin = hseRepository.findByUsername(hse.getUsername());
 
-        if (admin != null) {
+
+        if ( hseRepository.findByUsername(hse.getUsername()) != null) {
             throw new ExceptionHandler("Admin Already exist");
-        } else {
-            admin = hseRepository.save(hse);
+        }
+        else if(hseRepository.findByEmail(hse.getEmail())!=null){
+            throw new ExceptionHandler("Email Already exist");
+        }
+
+        else if(hseRepository.findByBadgeNo(hse.getBadgeNo())!=null){
+            throw new ExceptionHandler("Badge Number Already exist");
+        }
+        else {
+            return hseRepository.save(hse);
         }
         // TODO Auto-generated method stub
-        return admin;
+
     }
 
     @Override
     public Gp createGp(Gp gp) {
         // TODO Auto-generated method stub
-        Gp doctor = gpRepository.findByUsername(gp.getUsername());
 
-        if (doctor != null) {
-            throw new ExceptionHandler("Admin already exist");
-        } else {
-            doctor = gpRepository.save(doctor);
+
+        if (gpRepository.findByUsername(gp.getUsername()) != null) {
+            throw new ExceptionHandler("Gp already exist");
+        }
+        else if(gpRepository.findByEmail(gp.getEmail())!=null){
+            throw new ExceptionHandler("Email already exist");
+        }
+        else if(gpRepository.findByBadgeNo(gp.getBadgeNo())!=null){
+            throw new ExceptionHandler("Badge Number already exist");
+        }
+
+        else {
+             return gpRepository.save(gp);
         }
         // TODO Auto-generated method stub
-        return doctor;
+
     }
 
     @Override
     public Pharmacist createPharmacist(Pharmacist pharma) {
         // TODO Auto-generated method stub
-        Pharmacist pharmacist = pharmaRepository.findByUsername(pharma.getUsername());
 
-        if (pharmacist != null) {
+
+        if (pharmaRepository.findByUsername(pharma.getUsername()) != null) {
             throw new ExceptionHandler("Pharma already exist");
-        } else {
-            pharmacist = pharmaRepository.save(pharma);
+        }
+        else if(pharmaRepository.findByEmail(pharma.getEmail())!=null){
+            throw new ExceptionHandler("Email already exist");
+        }
+        else if(pharmaRepository.findByBadgeNo(pharma.getBadgeNo())!=null){
+            throw new ExceptionHandler("Badge Number already exist");
+        }
+        else {
+             return pharmaRepository.save(pharma);
         }
         // TODO Auto-generated method stub
-        return pharmacist;
+
     }
 
     @Override
     public OSM createOsm(OSM osm) {
         // TODO Auto-generated method stub
-        OSM other = osmRepository.findByUsername(osm.getUsername());
 
-        if (other != null) {
+
+        if (osmRepository.findByUsername(osm.getUsername()) != null) {
             throw new ExceptionHandler("Other staff already exist");
-        } else {
-            other = osmRepository.save(osm);
+        }
+        else if(osmRepository.findByEmail(osm.getEmail())!=null){
+            throw new ExceptionHandler("Email already exist");
+        }
+        else if(osmRepository.findByBadgeNo(osm.getBadgeNo())!=null){
+            throw new ExceptionHandler("Badge Number already exist");
+        }
+
+
+        else {
+           return osmRepository.save(osm);
         }
         // TODO Auto-generated method stub
-        return other;
+
+    }
+
+
+    @Override
+    public Hse findByUsername(String username) {
+        // TODO Auto-generated method stub
+        return hseRepository.findByUsername(username);
+    }
+
+
+
+    @Override
+    public Hse findByEmail(String email) {
+        // TODO Auto-generated method stub
+        return hseRepository.findByEmail(email);
+    }
+
+    @Override
+    public Hse findByBadgeNo(String badge) {
+        // TODO Auto-generated method stub
+        return hseRepository.findByBadgeNo(badge);
     }
 
 }

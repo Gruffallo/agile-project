@@ -1,1 +1,1 @@
-INSERT INTO hse (name, email, username, password) VALUES ('Berchris', 'a00685456@ait.ie','admin', 'brneto');
+INSERT INTO hse (name, email, username, password,badge_no,active) VALUES ('Berchris', 'a00685456@ait.ie','admin', 'brneto','A001',true);

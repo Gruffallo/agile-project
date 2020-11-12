@@ -18,6 +18,24 @@ public class Hse {
     private String password;
     private String email;
     private String name;
+    private String badgeNo;
+    private boolean active;
+
+    public String getBadgeNo() {
+        return badgeNo;
+    }
+
+    public void setBadgeNo(String badgeNo) {
+        this.badgeNo = badgeNo;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public int getId() {
         return id;

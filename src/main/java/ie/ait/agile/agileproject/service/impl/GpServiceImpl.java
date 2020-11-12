@@ -15,9 +15,30 @@ public class GpServiceImpl implements GpService {
         this.gpRepository = gpRepository;
     }
 
-    public Gp details() {
-        return gpRepository
-                .findById(1)
-                .orElseThrow(() -> new ExceptionHandler("No admin has been created"));
+    public Gp details(String username) {
+        if(gpRepository.findByUsername(username)==null){
+            throw new ExceptionHandler("Gp does not exist");
+        }
+        else{
+            return gpRepository.findByUsername(username);
+        }
+
     }
+
+    @Override
+    public Gp findByUsername(String username) {
+        return gpRepository.findByUsername(username);
+    }
+
+    @Override
+    public Gp findByEmail(String email) {
+        return gpRepository.findByEmail(email);
+    }
+
+    @Override
+    public Gp findByBadgeNo(String badgeNo) {
+        return gpRepository.findByBadgeNo(badgeNo);
+    }
+
+
 }

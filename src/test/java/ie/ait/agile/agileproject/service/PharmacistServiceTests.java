@@ -28,18 +28,22 @@ class PharmacistServiceTests {
         /*
          * Test Number 1
          * Test Objective: Test password length less than 5 for login details
-         * Input:"Phar Object(1,"edlee14","aaaa")
-         * Expected Output = password less than 5
+         * Input:"Biggy (Username)"
+         * Expected Output = Throws ExceptionHandler
          */
     void pharmacistLogin01() throws ExceptionHandler {
         Pharmacist phar = new Pharmacist();
         phar.setId(1);
         phar.setUsername("edlee14");
-        phar.setPassword("aaaa");
+        phar.setPassword("aaaaaaa");
+        phar.setName("Manny");
+        phar.setEmail("Dan07@gmail.com");
+        phar.setActive(true);
+        phar.setBadgeNo("A00232");
 
 
-        given(pharmacistRepository.findById(1)).willReturn(Optional.of(phar));
-        thenThrownBy(pharmacistService::details).isExactlyInstanceOf(ExceptionHandler.class);
+        given(pharmacistRepository.findByUsername(phar.getUsername())).willReturn(phar);
+        thenThrownBy(() -> pharmacistService.details("Biggy")).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
 

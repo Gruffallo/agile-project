@@ -6,4 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GpRepository extends JpaRepository<Gp, Integer> {
     Gp findByUsername(String username);
+
+    Gp findByEmail(String email);
+    Gp findByBadgeNo(String badgeNo);
 }

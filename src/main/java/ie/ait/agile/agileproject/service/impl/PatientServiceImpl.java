@@ -16,10 +16,14 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient details() {
-        return patientRepository
-                .findById(1)
-                .orElseThrow(() -> new ExceptionHandler("No patient has been created"));
+    public Patient details(String username) {
+        if(patientRepository.findByUsername(username)==null){
+            throw new ExceptionHandler("Gp does not exist");
+        }
+        else{
+            return patientRepository.findByUsername(username);
+        }
     }
+
 
 }

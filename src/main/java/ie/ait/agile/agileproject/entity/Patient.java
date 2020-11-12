@@ -17,15 +17,23 @@ public class Patient {
 
     private String password;
 
-    @Column(name = "patient_name")
-    private String patientName;
 
-    @Column(name = "patient_email")
-    private String patientEmail;
+    private String name;
 
-    @Column(name = "emergency_id")
+
+    private String email;
+
     private Long emergencyId;
 
+    private boolean active;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public int getId() {
         return id;
@@ -51,12 +59,21 @@ public class Patient {
         this.password = password;
     }
 
-    public String getPatientName() {
-        return patientName;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Long getEmergencyId() {

@@ -15,14 +15,15 @@ public class OSM {
     private String username;
     private String password;
 
-    @Column(name = "osm_name")
-    private String osmName;
 
-    @Column(name = "osm_email")
-    private String osmEmail;
+    private String name;
 
-    @Column(name = "badge_no")
+
+    private String email;
+
     private String badgeNo;
+
+    private boolean active;
 
     public int getId() {
         return id;
@@ -48,12 +49,28 @@ public class OSM {
         this.password = password;
     }
 
-    public String getOsmName() {
-        return osmName;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setOsmName(String osmName) {
-        this.osmName = osmName;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getBadgeNo() {

@@ -6,7 +6,7 @@ import ie.ait.agile.agileproject.entity.OSM;
 import ie.ait.agile.agileproject.entity.Pharmacist;
 
 public interface HseService {
-    Hse hseDetails();
+    Hse hseDetails(String username);
 
     Hse createHse(Hse hse);
 
@@ -15,4 +15,11 @@ public interface HseService {
     Pharmacist createPharmacist(Pharmacist pharma);
 
     OSM createOsm(OSM osm);
+
+
+    Hse findByUsername(String username);
+    Hse findByEmail(String email);
+    Hse findByBadgeNo(String badge);
+
+
 }

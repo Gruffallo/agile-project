@@ -15,15 +15,20 @@ public class Pharmacist {
     private String username;
     private String password;
 
-    @Column(name = "pharmacist_name")
-    private String pharmacistName;
+    private String name;
 
-    @Column(name = "pharmacist_email")
-    private String pharmacistEmail;
+    private String email;
 
-    @Column(name = "badge_no")
     private String badgeNo;
+    private boolean active;
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public int getId() {
         return id;
@@ -49,12 +54,20 @@ public class Pharmacist {
         this.password = password;
     }
 
-    public String getPharmacistName() {
-        return pharmacistName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPharmacistName(String pharmacistName) {
-        this.pharmacistName = pharmacistName;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getBadgeNo() {
