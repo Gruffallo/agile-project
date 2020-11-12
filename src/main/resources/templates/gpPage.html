@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <link href="/css/style.css" rel="stylesheet"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
 
-<h1>Welcome to GP page <span th:value="${gpName}"></span></h1>
+<h1>Welcome to GP page</h1>
+
+<a></a>
+ <div class="logOutButton">
+        <a class="btn btn-primary" type="submit" th:href="@{/}">LOG OUT</a>
+    </div>
+
+
+    <!--  End of container-->
+</div>
+
+<footer>
+    <div class="container">
+        <p class="text=center mr-auto ml-auto">SCRUM TEAM C &copy2020.
+            All rights reserved</p>
+    </div>
+</footer>
+
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
 
 </body>
