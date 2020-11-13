@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -18,12 +19,14 @@ import ie.ait.agile.agileproject.repository.HseRepository;
 import ie.ait.agile.agileproject.repository.PatientRepository;
 import ie.ait.agile.agileproject.service.impl.HseServiceImpl;
 import ie.ait.agile.agileproject.service.impl.PatientServiceImpl;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+@SpringJUnitConfig(PatientServiceImpl.class)
 class PatientServiceTest {
 
 
     @Autowired
-    private PatientServiceImpl patientService;
+    private PatientService patientService;
 
     @MockBean
     private PatientRepository patientRepository;
@@ -41,9 +44,16 @@ class PatientServiceTest {
         patient.setId(1);
         patient.setUsername("Daniel");
         patient.setPassword("password");
+        patient.setName("Manny");
+        patient.setEmail("Dan0547@gmail.com");
+        patient.setActive(true);
+        patient.setEmergencyId((long) 12344);
 
-        when(patientRepository.findById(1))
-                .thenReturn(Optional.of(patient));
+        BDDMockito.given(patientRepository.findByUsername(BDDMockito.any(String.class)))
+                .willReturn(patient);
+
+
+        thenThrownBy(() -> patientService.details("Tarrn")).isExactlyInstanceOf(ExceptionHandler.class);
         
 
 

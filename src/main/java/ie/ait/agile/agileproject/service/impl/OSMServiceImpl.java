@@ -1,20 +1,15 @@
 package ie.ait.agile.agileproject.service.impl;
 
 import ie.ait.agile.agileproject.entity.OSM;
-import ie.ait.agile.agileproject.entity.Pharmacist;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
-import ie.ait.agile.agileproject.repository.GpRepository;
-import ie.ait.agile.agileproject.repository.HseRepository;
 import ie.ait.agile.agileproject.repository.OSMRepository;
-import ie.ait.agile.agileproject.repository.PharmacistRepository;
 import ie.ait.agile.agileproject.service.OSMService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OSMServiceImpl implements OSMService {
     private final OSMRepository osmRepository;
-    OSMServiceImpl(
-            OSMRepository osmRepository) {
+    OSMServiceImpl(OSMRepository osmRepository) {
 
         this.osmRepository = osmRepository;
     }
