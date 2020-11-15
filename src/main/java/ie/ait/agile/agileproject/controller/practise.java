@@ -3,7 +3,6 @@ package ie.ait.agile.agileproject.controller;
 import ie.ait.agile.agileproject.domain.Credentials;
 import ie.ait.agile.agileproject.domain.Login;
 import ie.ait.agile.agileproject.entity.*;
-import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,12 +22,12 @@ public class practise {
     private final PharmacistService pharmaService;
     private final OSMService osmService;
 
-    practise(HseService hseService, PatientService patientService, GpService gpService,PharmacistService pharmaService,OSMService osmService) {
+    practise(HseService hseService, PatientService patientService, GpService gpService, PharmacistService pharmaService, OSMService osmService) {
         this.hseService = hseService;
         this.patientService = patientService;
         this.gpService = gpService;
-        this.osmService=osmService;
-        this.pharmaService=pharmaService;
+        this.osmService = osmService;
+        this.pharmaService = pharmaService;
     }
 
 
@@ -126,9 +125,10 @@ public class practise {
             return "index";
         }
     }
+
     @PostMapping("/osmLogin")
     public String osmLogin(@Valid Login login, Model model) {
-       String loginUser = login.getUsername();
+        String loginUser = login.getUsername();
         String loginPwd = login.getPassword();
 
         OSM osm = osmService.details(loginUser);
@@ -190,7 +190,7 @@ public class practise {
 
 
             hseService.createHse(admin);
-            model.addAttribute("hseCreated",true);
+            model.addAttribute("hseCreated", true);
 
 
         }
@@ -212,8 +212,7 @@ public class practise {
         String badgeNo = credentials.getBadgeNo();
 
 
-
-        Gp gp= new Gp();
+        Gp gp = new Gp();
         gp.setActive(true);
         gp.setName(name);
         gp.setUsername(username);
@@ -230,7 +229,6 @@ public class practise {
 //        System.out.println(gp.isActive());
 
 
-
         if (gpService.findByUsername(username) != null) {
             model.addAttribute("gpUsernameExist", true);
 
@@ -244,18 +242,14 @@ public class practise {
             model.addAttribute("credentials", new Credentials());
 
 
-
-
-
             hseService.createGp(gp);
-            model.addAttribute("gpCreated",true);
+            model.addAttribute("gpCreated", true);
 
 
         }
 
 
         return "hsePage";
-
 
 
     }
@@ -271,15 +265,13 @@ public class practise {
         String badgeNo = credentials.getBadgeNo();
 
 
-        Pharmacist pharma= new Pharmacist();
+        Pharmacist pharma = new Pharmacist();
         pharma.setActive(true);
         pharma.setBadgeNo(badgeNo);
         pharma.setUsername(username);
         pharma.setPassword(password);
         pharma.setEmail(email);
         pharma.setBadgeNo(badgeNo);
-
-
 
 
         if (pharmaService.findByUsername(username) != null) {
@@ -294,13 +286,12 @@ public class practise {
         } else {
             hseService.createPharmacist(pharma);
             model.addAttribute("credentials", new Credentials());
-            model.addAttribute("pharmaCreated",true);
+            model.addAttribute("pharmaCreated", true);
 
         }
 
 
         return "hsePage";
-
 
 
     }
@@ -316,14 +307,13 @@ public class practise {
         String badgeNo = credentials.getBadgeNo();
 
 
-        OSM osm= new OSM();
-            osm.setActive(true);
-            osm.setBadgeNo(badgeNo);
-            osm.setEmail(email);
-            osm.setUsername(username);
-            osm.setPassword(password);
-            osm.setName(name);
-
+        OSM osm = new OSM();
+        osm.setActive(true);
+        osm.setBadgeNo(badgeNo);
+        osm.setEmail(email);
+        osm.setUsername(username);
+        osm.setPassword(password);
+        osm.setName(name);
 
 
         if (osmService.findByUsername(username) != null) {
@@ -338,7 +328,7 @@ public class practise {
         } else {
             hseService.createOsm(osm);
             model.addAttribute("credentials", new Credentials());
-            model.addAttribute("osmCreated",true);
+            model.addAttribute("osmCreated", true);
 
         }
 
@@ -346,10 +336,7 @@ public class practise {
         return "hsePage";
 
 
-
     }
-
-
 
 
 }

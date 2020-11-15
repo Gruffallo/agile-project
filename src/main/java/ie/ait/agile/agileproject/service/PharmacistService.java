@@ -8,6 +8,8 @@ public interface PharmacistService {
 
 
     Pharmacist findByUsername(String username);
+
     Pharmacist findByEmail(String email);
+
     Pharmacist findByBadgeNo(String badgeNo);
 }

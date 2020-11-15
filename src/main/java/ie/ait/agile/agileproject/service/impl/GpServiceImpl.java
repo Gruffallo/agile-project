@@ -16,10 +16,9 @@ public class GpServiceImpl implements GpService {
     }
 
     public Gp details(String username) {
-        if(gpRepository.findByUsername(username)==null){
+        if (gpRepository.findByUsername(username) == null) {
             throw new ExceptionHandler("Gp does not exist");
-        }
-        else{
+        } else {
             return gpRepository.findByUsername(username);
         }
 

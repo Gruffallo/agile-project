@@ -18,7 +18,9 @@ public interface HseService {
 
 
     Hse findByUsername(String username);
+
     Hse findByEmail(String email);
+
     Hse findByBadgeNo(String badge);
 
 

@@ -10,5 +10,6 @@ public interface GpService {
     Gp findByUsername(String username);
 
     Gp findByEmail(String email);
+
     Gp findByBadgeNo(String badgeNo);
 }

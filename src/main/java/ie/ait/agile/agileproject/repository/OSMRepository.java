@@ -7,5 +7,6 @@ public interface OSMRepository extends JpaRepository<OSM, Integer> {
     OSM findByUsername(String username);
 
     OSM findByEmail(String email);
+
     OSM findByBadgeNo(String badge);
 }

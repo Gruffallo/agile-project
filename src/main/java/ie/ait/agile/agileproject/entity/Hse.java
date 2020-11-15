@@ -9,7 +9,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 
 @Entity
-
 public class Hse {
     @Id
     @GeneratedValue(strategy = IDENTITY)

@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import java.util.Optional;
-
 import static org.assertj.core.api.BDDAssertions.thenThrownBy;
 import static org.mockito.BDDMockito.given;
 
@@ -23,14 +21,7 @@ class PharmacistServiceTests {
     @MockBean
     private PharmacistRepository pharmacistRepository;
 
-
     @Test
-        /*
-         * Test Number 1
-         * Test Objective: Test password length less than 5 for login details
-         * Input:"Biggy (Username)"
-         * Expected Output = Throws ExceptionHandler
-         */
     void pharmacistLogin01() throws ExceptionHandler {
         Pharmacist phar = new Pharmacist();
         phar.setId(1);
@@ -41,10 +32,8 @@ class PharmacistServiceTests {
         phar.setActive(true);
         phar.setBadgeNo("A00232");
 
-
         given(pharmacistRepository.findByUsername(phar.getUsername())).willReturn(phar);
+
         thenThrownBy(() -> pharmacistService.details("Biggy")).isExactlyInstanceOf(ExceptionHandler.class);
     }
-
-
 }

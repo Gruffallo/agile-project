@@ -7,17 +7,17 @@ import javax.validation.constraints.Size;
 public class Credentials {
 
     @NotNull
-    @Size(min = 5, max = 15,message
+    @Size(min = 5, max = 15, message
             = "Username should be between 5 to 15")
     private String username;
 
     @NotNull
-    @Size(min = 5, max = 15,message
+    @Size(min = 5, max = 15, message
             = "password should be between 5 to 15")
     private String password;
 
     @NotNull
-    @Size(min = 2, max = 17,message
+    @Size(min = 2, max = 17, message
             = "name should be between 2 to 17")
     private String name;
 
@@ -26,10 +26,8 @@ public class Credentials {
     private String email;
 
 
-
-
     @NotNull
-    @Size(min = 4, max = 7,message
+    @Size(min = 4, max = 7, message
             = "BadgeNo should be between 4 to 7")
     private String badgeNo;
 

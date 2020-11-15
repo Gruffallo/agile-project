@@ -33,10 +33,9 @@ public class HseServiceImpl implements HseService {
 
     @Override
     public Hse hseDetails(String username) {
-        if(hseRepository.findByUsername(username)==null){
+        if (hseRepository.findByUsername(username) == null) {
             throw new ExceptionHandler("Admin does not exist");
-        }
-        else{
+        } else {
             return hseRepository.findByUsername(username);
         }
     }
@@ -45,18 +44,13 @@ public class HseServiceImpl implements HseService {
     public Hse createHse(Hse hse) {
 
 
-
-        if ( hseRepository.findByUsername(hse.getUsername()) != null) {
+        if (hseRepository.findByUsername(hse.getUsername()) != null) {
             throw new ExceptionHandler("Admin Already exist");
-        }
-        else if(hseRepository.findByEmail(hse.getEmail())!=null){
+        } else if (hseRepository.findByEmail(hse.getEmail()) != null) {
             throw new ExceptionHandler("Email Already exist");
-        }
-
-        else if(hseRepository.findByBadgeNo(hse.getBadgeNo())!=null){
+        } else if (hseRepository.findByBadgeNo(hse.getBadgeNo()) != null) {
             throw new ExceptionHandler("Badge Number Already exist");
-        }
-        else {
+        } else {
             return hseRepository.save(hse);
         }
         // TODO Auto-generated method stub
@@ -70,16 +64,12 @@ public class HseServiceImpl implements HseService {
 
         if (gpRepository.findByUsername(gp.getUsername()) != null) {
             throw new ExceptionHandler("Gp already exist");
-        }
-        else if(gpRepository.findByEmail(gp.getEmail())!=null){
+        } else if (gpRepository.findByEmail(gp.getEmail()) != null) {
             throw new ExceptionHandler("Email already exist");
-        }
-        else if(gpRepository.findByBadgeNo(gp.getBadgeNo())!=null){
+        } else if (gpRepository.findByBadgeNo(gp.getBadgeNo()) != null) {
             throw new ExceptionHandler("Badge Number already exist");
-        }
-
-        else {
-             return gpRepository.save(gp);
+        } else {
+            return gpRepository.save(gp);
         }
         // TODO Auto-generated method stub
 
@@ -92,15 +82,12 @@ public class HseServiceImpl implements HseService {
 
         if (pharmaRepository.findByUsername(pharma.getUsername()) != null) {
             throw new ExceptionHandler("Pharma already exist");
-        }
-        else if(pharmaRepository.findByEmail(pharma.getEmail())!=null){
+        } else if (pharmaRepository.findByEmail(pharma.getEmail()) != null) {
             throw new ExceptionHandler("Email already exist");
-        }
-        else if(pharmaRepository.findByBadgeNo(pharma.getBadgeNo())!=null){
+        } else if (pharmaRepository.findByBadgeNo(pharma.getBadgeNo()) != null) {
             throw new ExceptionHandler("Badge Number already exist");
-        }
-        else {
-             return pharmaRepository.save(pharma);
+        } else {
+            return pharmaRepository.save(pharma);
         }
         // TODO Auto-generated method stub
 
@@ -113,17 +100,12 @@ public class HseServiceImpl implements HseService {
 
         if (osmRepository.findByUsername(osm.getUsername()) != null) {
             throw new ExceptionHandler("Other staff already exist");
-        }
-        else if(osmRepository.findByEmail(osm.getEmail())!=null){
+        } else if (osmRepository.findByEmail(osm.getEmail()) != null) {
             throw new ExceptionHandler("Email already exist");
-        }
-        else if(osmRepository.findByBadgeNo(osm.getBadgeNo())!=null){
+        } else if (osmRepository.findByBadgeNo(osm.getBadgeNo()) != null) {
             throw new ExceptionHandler("Badge Number already exist");
-        }
-
-
-        else {
-           return osmRepository.save(osm);
+        } else {
+            return osmRepository.save(osm);
         }
         // TODO Auto-generated method stub
 
@@ -135,7 +117,6 @@ public class HseServiceImpl implements HseService {
         // TODO Auto-generated method stub
         return hseRepository.findByUsername(username);
     }
-
 
 
     @Override

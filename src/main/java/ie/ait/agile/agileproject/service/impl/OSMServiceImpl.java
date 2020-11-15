@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OSMServiceImpl implements OSMService {
     private final OSMRepository osmRepository;
+
     OSMServiceImpl(OSMRepository osmRepository) {
 
         this.osmRepository = osmRepository;

@@ -17,10 +17,9 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient details(String username) {
-        if(patientRepository.findByUsername(username)==null){
+        if (patientRepository.findByUsername(username) == null) {
             throw new ExceptionHandler("Patient does not exist");
-        }
-        else{
+        } else {
             return patientRepository.findByUsername(username);
         }
     }

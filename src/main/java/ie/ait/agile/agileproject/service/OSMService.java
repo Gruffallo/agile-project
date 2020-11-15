@@ -6,7 +6,9 @@ public interface OSMService {
     OSM details(String username);
 
     OSM findByUsername(String Username);
+
     OSM findByEmail(String email);
+
     OSM findByBadgeNo(String badge);
 
 
