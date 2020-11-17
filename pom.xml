@@ -19,7 +19,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <testcontainers.version>1.15.0-rc2</testcontainers.version>
+        <testcontainers.version>1.15.0</testcontainers.version>
     </properties>
 
     <dependencies>
