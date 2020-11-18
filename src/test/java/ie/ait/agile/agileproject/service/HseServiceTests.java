@@ -1,12 +1,18 @@
 package ie.ait.agile.agileproject.service;
 
+import ie.ait.agile.agileproject.entity.Gp;
 import ie.ait.agile.agileproject.entity.Hse;
+import ie.ait.agile.agileproject.entity.OSM;
+import ie.ait.agile.agileproject.entity.Pharmacist;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.repository.GpRepository;
 import ie.ait.agile.agileproject.repository.HseRepository;
 import ie.ait.agile.agileproject.repository.OSMRepository;
 import ie.ait.agile.agileproject.repository.PharmacistRepository;
+import ie.ait.agile.agileproject.service.impl.GpServiceImpl;
 import ie.ait.agile.agileproject.service.impl.HseServiceImpl;
+import ie.ait.agile.agileproject.service.impl.OSMServiceImpl;
+import ie.ait.agile.agileproject.service.impl.PharmacistServiceImpl;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +29,7 @@ class HseServiceTests {
 
     @Autowired
     private HseServiceImpl hseService;
+
 
     @MockBean
     private HseRepository hseRepository;
@@ -78,6 +85,93 @@ class HseServiceTests {
         Hse result = hseService.createHse(hse);
 
         then(result).isEqualTo(hse);
+    }
+
+
+    @Test
+    void createGp01() {
+        // given
+        Gp gp = new Gp();
+        gp.setUsername("nameUnderTest");
+        given(gpRepository.findByUsername(anyString())).willReturn(gp);
+
+        // when
+        ThrowingCallable callable = () -> hseService.createGp(gp);
+
+        thenThrownBy(callable).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+
+    @Test
+    void createGp02() {
+        // given
+        Gp gp = new Gp();
+        given(gpRepository.findByUsername(anyString())).willReturn(null);
+        given(gpRepository.findByEmail(anyString())).willReturn(null);
+        given(gpRepository.findByBadgeNo(anyString())).willReturn(null);
+        given(gpRepository.save(gp)).willReturn(gp);
+
+        // when
+        Gp result = hseService.createGp(gp);
+
+        then(result).isEqualTo(gp);
+    }
+
+
+    @Test
+    void createOsm01() {
+        // given
+        OSM osm = new OSM();
+        osm.setUsername("nameUnderTest");
+        given(osmRepository.findByUsername(anyString())).willReturn(osm);
+
+        // when
+        ThrowingCallable callable = () -> hseService.createOsm(osm);
+
+        thenThrownBy(callable).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+
+    @Test
+    void createOsm02() {
+        // given
+        OSM osm = new OSM();
+        given(osmRepository.findByUsername(anyString())).willReturn(null);
+        given(osmRepository.findByEmail(anyString())).willReturn(null);
+        given(osmRepository.findByBadgeNo(anyString())).willReturn(null);
+        given(osmRepository.save(osm)).willReturn(osm);
+
+        // when
+        OSM result = hseService.createOsm(osm);
+
+        then(result).isEqualTo(osm);
+    }
+
+
+    @Test
+    void createPharmacist01() {
+        // given
+        Pharmacist pharmacist = new Pharmacist();
+        pharmacist.setUsername("nameUnderTest");
+        given(pharmacistRepository.findByUsername(anyString())).willReturn(pharmacist);
+
+        // when
+        ThrowingCallable callable = () -> hseService.createPharmacist(pharmacist);
+
+        thenThrownBy(callable).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+
+    @Test
+    void createPharmscist02() {
+        // given
+        Pharmacist pharmacist = new Pharmacist();
+        given(pharmacistRepository.findByUsername(anyString())).willReturn(null);
+        given(pharmacistRepository.findByEmail(anyString())).willReturn(null);
+        given(pharmacistRepository.findByBadgeNo(anyString())).willReturn(null);
+        given(pharmacistRepository.save(pharmacist)).willReturn(pharmacist);
+
+        // when
+        Pharmacist result = hseService.createPharmacist(pharmacist);
+
+        then(result).isEqualTo(pharmacist);
     }
 
 }

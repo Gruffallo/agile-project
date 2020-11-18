@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 
 @Controller
-public class practise {
+public class Practise {
 
     private final HseService hseService;
     private final PatientService patientService;
@@ -22,7 +22,7 @@ public class practise {
     private final PharmacistService pharmaService;
     private final OSMService osmService;
 
-    practise(HseService hseService, PatientService patientService, GpService gpService, PharmacistService pharmaService, OSMService osmService) {
+    Practise(HseService hseService, PatientService patientService, GpService gpService, PharmacistService pharmaService, OSMService osmService) {
         this.hseService = hseService;
         this.patientService = patientService;
         this.gpService = gpService;
