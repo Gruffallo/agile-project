@@ -1,32 +1,128 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-    <link href="/css/style.css" rel="stylesheet"/>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<head th:replace="common/header :: common-header"
+      xmlns:th="http://www.w3.org/1000/xhtml"/>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Home Page</title>
 </head>
 <body>
 
+<!--  Header and Navigation --->
+<header class="mb-sm-4">
+    <nav>
+        <div style="background-color:SkyBlue; height:15px"></div>
+        <div class="p-3" style="background-color:Blue height:30px">
+            <h1 class="h3">Scrum Team C</h1>
+        </div>
+        <div style="background-color:SkyBlue; height:15px"></div>
+    </nav>
+</header>
 
-<h1 style="text-align: center;">Welcome to Pharmacist page</h1>
-
-<a></a>
-<div class="logOutButton">
-    <a class="btn btn-primary" type="submit" th:href="@{/}" style="margin-top: 50px;">LOG OUT</a>
-</div>
-
-
-<!--  End of container-->
-</div>
-
-<footer>
+<div class="row mb-5">
     <div class="container">
-        <p class="text=center mr-auto ml-auto">SCRUM TEAM C &copy2020.
-            All rights reserved</p>
+        <div class="col-12">
+            <a class="btn btn-warning btn-lg" th:href="@{/}">Logout</a>
+        </div>
     </div>
-</footer>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="container">
+        <div class="col-sm-6 mb-5">
+            <div class="accordion" id="accordionExample">
+                <div class="card z-depth-0 bordered">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <span><i class="fa fa-fw fa-eye" aria-hidden="true"></i></span> View Patient Prescription
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Emergency ID</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Change Password Pharmacist =======================================================-->
+        <div class="col-sm-6 mb-5">
+            <div class="card z-depth-0 bordered">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <i class="fa fa-fw fa-pencil" aria-hidden="true"></i>Update Password
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form action="#" method="put">
+                            <div class="row">
+                                <div class="container">
+                                    <div class = "col-sm-6">
+                                        <div class="form-group">
+                                            <input type="password" name="oldPassword" class="form-control" placeholder="Old Password" required>
+                                        </div>
+                                    </div>
+                                    <div class = "col-sm-6">
+                                        <div class="form-group">
+                                            <input type="password" name="oldPassword" class="form-control" placeholder="New Password" required>
+                                        </div>
+                                    </div>
+                                    <div class = "col-sm-12">
+                                        <a class="btn btn-info"> <i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>Update Password</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
 
 <script
         src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

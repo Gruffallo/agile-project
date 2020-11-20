@@ -1,38 +1,216 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-    <link href="/css/style.css" rel="stylesheet"/>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<head th:replace="common/header :: common-header"
+      xmlns:th="http://www.w3.org/1000/xhtml"/>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Home Page</title>
 </head>
 <body>
 
+<!--  Header and Navigation --->
+<header class="mb-5">
+    <nav>
+        <div style="background-color:SkyBlue; height:15px"></div>
+        <div class="p-3" style="background-color:Blue height:30px">
+            <h1 class="h3">Scrum Team C</h1>
+        </div>
+        <div style="background-color:SkyBlue; height:15px"></div>
+    </nav>
+</header>
 
-<h1>Welcome to GP page</h1>
-
-<a></a>
-<div class="logOutButton">
-    <a class="btn btn-primary" type="submit" th:href="@{/}" style="margin-top: 50px;">LOG OUT</a>
-</div>
-
-
-<!--  End of container-->
-</div>
-
-<footer>
+<div class="row mb-5">
     <div class="container">
-        <p class="text=center mr-auto ml-auto">SCRUM TEAM C &copy2020.
-            All rights reserved</p>
+        <div class="col-12">
+            <a class="btn btn-warning btn-lg" th:href="@{/}">Logout</a>
+        </div>
     </div>
-</footer>
+</div>
 
-<script
-        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div class="row">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-sm-6 mb-5">
+
+                <div class="accordion" id="accordionExample">
+                    <div class="card z-depth-0 bordered">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <span><i class="fa fa-fw fa-plus" aria-hidden="true"></i></span> Create Patient
+                                </button>
+                            </h5>
+                        </div>
+
+                        <!-- This section create patient details ======================================-->
+
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form action="#" method="post">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="patientName" id="patientName" placeholder="Register Username">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="email" name="patientEmail" id="patientEmail" placeholder="Register Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="patientEmId" id="patientEmId" placeholder="Enter Emergency ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" name="patientPassword" id="patientPassword" placeholder="Enter Secure Password">
+                                    </div>
+                                    <a class="btn btn-primary"><span><i class="fa fa-fw fa-plus" aria-hidden="true"></i></span>Create Record</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- This section reads patient details ===========================================================-->
+            <div class="col-sm-6 mb-5">
+                <div class="accordion" id="accordionExample">
+                    <div class="card z-depth-0 bordered">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <span><i class="fa fa-fw fa-book" aria-hidden="true"></i></span> Read Patient Details
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form action="" method="put">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Emergency ID</th>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                            <td>
+                                                <a class="btn btn-primary"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>Update</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                            <td>
+                                                <a class="btn btn-primary"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>Update</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                            <td>
+                                                <a class="btn btn-primary"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>Update</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+        <!--- This section updates patient details ======================================================-->
+        <div class="row mb-4">
+            <div class="col-sm-6 mb-5">
+                <div class="accordion" id="accordionExample">
+                    <div class="card z-depth-0 bordered">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <span><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></span> Update Patient Record
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+
+                                <form action="#" method="put">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="patientName" id="patientName" placeholder="Register Username">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="email" name="patientEmail" id="patientEmail" placeholder="Register Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="patientEmId" id="patientEmId" placeholder="Enter Emergency ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="password" name="patientPassword" id="patientPassword" placeholder="Enter Secure Password">
+                                    </div>
+                                    <a class="btn btn-warning"><span><i class="fa fa-fw fa-plus" aria-hidden="true"></i></span>Update Record</a>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- This section simply writes prescription for patients ======================== -->
+
+            <div class="col-sm-6 mb-5">
+                <div class="accordion" id="accordionExample">
+                    <div class="card z-depth-0 bordered">
+                        <div class="card-header" id="headingFour">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                        data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <span><i class="fa fa-fw fa-plus" aria-hidden="true"></i></span> Create Prescription
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <form action="" method="post">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="patientName" placeholder="Enter Patient Name...">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="patientEmId" placeholder="Enter Patient Email...">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control rounded-0" id="prescription" name="prescription" rows="5"></textarea>
+                                        </div>
+                                    <a class="btn btn-success"><i class="fa fa-fw fa-plus-square-o" aria-hidden="true"></i>Create Prescription</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    </div>
+</div>
 
 
+<script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
