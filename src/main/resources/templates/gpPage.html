@@ -8,18 +8,97 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
+<div class="container">
 
 
-<h1>Welcome to GP page</h1>
+    <h1 style="text-align: center;">Welcome to GP page</h1>
 
-<a></a>
-<div class="logOutButton">
-    <a class="btn btn-primary" type="submit" th:href="@{/}" style="margin-top: 50px;">LOG OUT</a>
+
+    <div class="col-xs-7 col-xs-offset-3" style="margin-top: 60px;">
+        <div class="panel-group" id="accordion">
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#viewAdmin"> 1. View Patients </a>
+                    </h4>
+                </div>
+
+                <div id="viewAdmin" class="panel-collapse collapse">
+                    <div class="panel-body">This is the part where you view
+                        Patients
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#createPatient"> 2. Create Patients </a>
+                    </h4>
+                </div>
+
+                <div id="createPatient" class="panel-collapse collapse">
+                    <div class="panel-body">This is the part where you create
+                        Patients
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#createPrescription"> 3. Create Prescription </a>
+                    </h4>
+                </div>
+
+                <div id="createPrescription" class="panel-collapse collapse">
+                    <div class="panel-body">This is the part where you create
+                        Presc
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion"
+                           href="#createPrescription"> 4. Update password</a>
+                    </h4>
+                </div>
+
+                <div id="updatePassword" class="panel-collapse collapse">
+                    <div class="panel-body">This is the part where you create
+                        Presc
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+
+    <div class="logOutButton">
+        <a class="btn btn-primary" type="submit" th:href="@{/}" style="">LOG OUT</a>
+    </div>
+
+
+    <!--  End of container-->
 </div>
 
-
-<!--  End of container-->
-</div>
 
 <footer>
     <div class="container">

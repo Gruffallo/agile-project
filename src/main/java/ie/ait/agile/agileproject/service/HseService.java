@@ -1,9 +1,6 @@
 package ie.ait.agile.agileproject.service;
 
-import ie.ait.agile.agileproject.entity.Gp;
-import ie.ait.agile.agileproject.entity.Hse;
-import ie.ait.agile.agileproject.entity.OSM;
-import ie.ait.agile.agileproject.entity.Pharmacist;
+import ie.ait.agile.agileproject.entity.*;
 
 public interface HseService {
     Hse hseDetails(String username);
@@ -22,6 +19,20 @@ public interface HseService {
     Hse findByEmail(String email);
 
     Hse findByBadgeNo(String badge);
+
+
+    Hse deactivateHse(String badgeNo);
+
+    Gp deactivateGp(String badgeNo);
+
+    Patient deactivate(String badgeNo);
+
+    OSM deactivateOsm(String badgeNo);
+
+    Pharmacist deactivatePharma(String badgeNo);
+
+
+
 
 
 }

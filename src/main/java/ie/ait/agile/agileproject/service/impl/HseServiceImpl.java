@@ -1,9 +1,6 @@
 package ie.ait.agile.agileproject.service.impl;
 
-import ie.ait.agile.agileproject.entity.Gp;
-import ie.ait.agile.agileproject.entity.Hse;
-import ie.ait.agile.agileproject.entity.OSM;
-import ie.ait.agile.agileproject.entity.Pharmacist;
+import ie.ait.agile.agileproject.entity.*;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.repository.GpRepository;
 import ie.ait.agile.agileproject.repository.HseRepository;
@@ -129,6 +126,31 @@ public class HseServiceImpl implements HseService {
     public Hse findByBadgeNo(String badge) {
         // TODO Auto-generated method stub
         return hseRepository.findByBadgeNo(badge);
+    }
+
+    @Override
+    public Hse deactivateHse(String badgeNo) {
+        return null;
+    }
+
+    @Override
+    public Gp deactivateGp(String badgeNo) {
+        return null;
+    }
+
+    @Override
+    public Patient deactivate(String badgeNo) {
+        return null;
+    }
+
+    @Override
+    public OSM deactivateOsm(String badgeNo) {
+        return null;
+    }
+
+    @Override
+    public Pharmacist deactivatePharma(String badgeNo) {
+        return null;
     }
 
 }

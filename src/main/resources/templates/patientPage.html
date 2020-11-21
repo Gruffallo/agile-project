@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Home Page</title>
 </head>
 <body>
@@ -14,9 +15,7 @@
     <nav>
         <div style="background-color:SkyBlue; height:15px"></div>
         <div class="p-3" style="background-color:Blue height:30px">
-            <h1>
-                Scrum Team C
-            </h1>
+            <h1 class="h3">Scrum Team C</h1>
         </div>
         <div style="background-color:SkyBlue; height:15px"></div>
     </nav>
@@ -36,13 +35,10 @@
         <div style="Background-color:black;" class="mb-4">
             <h2 class="text-white p-2">Patient Information</h2></div>
         <section class="mb-4">
-            <h4 class="mb-3"><p>Name: <span th:text="${patient.name}"></span></p></h4>
-            <br>
-            <h4 class="mb-3"><p>Username: <span th:text="${patient.username}"></span></p></h4>
-            <br>
-            <h4 class="mb-3"><p>Email:</p></h4>
-            <br>
-            <h4 class="mb-3"><p>Emergency ID: </p></h4>
+            <p><i class="fa fa-fw fa-user" aria-hidden="true"></i>  Name: <b><span th:text="${patient.name}"></span></b></p>
+            <p><i class="fa fa-fw fa-user-circle" aria-hidden="true"></i>Username: <b><span th:text="${patient.username}"></span></b><br>
+            <p><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i>  Email: <b><span th:text="${patient.email}"></span></b></p>
+            <p><i class="fa fa-fw fa-ambulance" aria-hidden="true"></i>  Emergency ID: <b><span th:text="${patient.emergencyId}"></span></b></p>
         </section>
 
 
@@ -90,6 +86,42 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
                         View Pharmacist
+                    </div>
+                </div>
+            </div>
+            <div class="card z-depth-0 bordered">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Update Password
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="container">
+                                    <div class = "col-sm-6">
+                                        <div class="form-group">
+                                            <input type="password" name="oldPassword" class="form-control" placeholder="Old Password" required>
+                                        </div>
+                                    </div>
+                                    <div class = "col-sm-6">
+                                        <div class="form-group">
+                                            <input type="password" name="oldPassword" class="form-control" placeholder="New Password" required>
+                                        </div>
+                                    </div>
+                                    <div class = "col-sm-6">
+                                        <a href="#" class="btn btn-info col-3">Update Password</a>
+                                    </div>
+                                    <div class = "col-sm-6">
+                                        <span class="alert text-danger">Passwords do not match!!!!!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
