@@ -49,25 +49,28 @@
 
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
-                                <form action="#" method="post" th:action="@{/createPatient}">
+                                <form action="#" method="post" th:action="@{/createPatient}" th:object="${patientCredentials}">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="patientName" id="patientUsername" placeholder="Register Username">
+                                        <input class="form-control" type="text" th:field="*{username}" id="patientUsername" placeholder="Register Username">
+                                        <span th:if="${patientUsernameExist}" style="color: red; font-size: 1.5rem;" >This username already exist</span>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="email" name="patientEmail" id="patientEmail" placeholder="Register Email">
+                                        <input class="form-control" type="email"th:field="*{email}" id="patientEmail" placeholder="Register Email">
+                                        <span th:if="${patientEmailExist}" style="font-size: 1.5rem;color: red;">This email already exist</span>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="patientEmId" id="patientEmId" placeholder="Enter Emergency ID">
+                                        <input class="form-control" type="text" th:field="*{emergencyId}" id="patientEmergencyId" placeholder="Enter Emergency ID">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="patientPassword" id="patientPassword" placeholder="Enter Secure Password">
+                                        <input class="form-control" type="text" th:field="*{password}" id="patientPassword" placeholder="Enter Secure Password">
 
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="patientPassword" id="patientName" placeholder="Enter the patients name">
+                                        <input class="form-control" type="text" th:field="*{name}" id="patientName" placeholder="Enter the patients name">
 
                                     </div>
-                                    <a class="btn btn-primary"><span><i class="fa fa-fw fa-plus" aria-hidden="true"></i></span>Create Record</a>
+                                    <button class="btn btn-primary" type="submit"><span><i class="fa fa-fw fa-plus" aria-hidden="true"></i></span>Create Record</button>
+                                    <span th:if="${patientCreated}"style="color: green;font-size: 2rem;">Patient has been created </span>
                                 </form>
                             </div>
                         </div>

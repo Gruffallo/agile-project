@@ -2,6 +2,7 @@ package ie.ait.agile.agileproject.controller;
 
 import ie.ait.agile.agileproject.domain.Credentials;
 import ie.ait.agile.agileproject.domain.Login;
+import ie.ait.agile.agileproject.domain.PatientCredentials;
 import ie.ait.agile.agileproject.entity.*;
 import ie.ait.agile.agileproject.service.*;
 import org.springframework.stereotype.Controller;
@@ -73,6 +74,7 @@ public class Practise {
         if (gpUser.equals(loginUser) && gpPwd.equals(loginPwd)) {
             model.addAttribute("hseLoginComplete", true);
             model.addAttribute("login", login);
+            model.addAttribute("patientCredentials",new PatientCredentials());
             return "gpPage";
         } else {
             model.addAttribute("invalidGpDetails", true);
@@ -346,7 +348,7 @@ public class Practise {
 
         hseService.deactivateHse(credentials.getBadgeNo());
         model.addAttribute("deactivatedHse", true);
-        model.addAttribute("classDeactivateHse",true);
+        model.addAttribute("classDeactivateHse", true);
 
         return "hsePage";
 
@@ -357,7 +359,7 @@ public class Practise {
         hseService.deactivateGp(credentials.getBadgeNo());
         model.addAttribute("deactivatedGp", true);
         model.addAttribute("credentials", new Credentials());
-        model.addAttribute("classDeactivateGp",true);
+        model.addAttribute("classDeactivateGp", true);
         return "hsePage";
     }
 
@@ -365,7 +367,7 @@ public class Practise {
     public String deactivatePatient(@ModelAttribute("credentials") Credentials credentials, Model model) throws Exception {
         hseService.deactivatePatient(credentials.getUsername());
         model.addAttribute("deactivatedPatient", true);
-        model.addAttribute("classDeactivatePatient",true);
+        model.addAttribute("classDeactivatePatient", true);
         return "hsePage";
     }
 
@@ -373,7 +375,7 @@ public class Practise {
     public String deactivatePharma(@ModelAttribute("credentials") Credentials credentials, Model model) throws Exception {
         hseService.deactivatePharma(credentials.getBadgeNo());
         model.addAttribute("deactivatedPharma", true);
-        model.addAttribute("classDeactivatePharma",true);
+        model.addAttribute("classDeactivatePharma", true);
         return "hsePage";
     }
 
@@ -381,8 +383,31 @@ public class Practise {
     public String deactivateOsm(@ModelAttribute("credentials") Credentials credentials, Model model) throws Exception {
         hseService.deactivateOsm(credentials.getBadgeNo());
         model.addAttribute("deactivatedOsm", true);
-        model.addAttribute("classDeactivateOsm",true);
+        model.addAttribute("classDeactivateOsm", true);
         return "hsePage";
+    }
+
+    @PostMapping("/createPatient")
+    public String createPatient(@Valid PatientCredentials patientCredentials, Model model) throws Exception {
+        Patient patient = new Patient();
+        patient.setName(patientCredentials.getName());
+        patient.setUsername(patientCredentials.getUsername());
+        patient.setPassword(patientCredentials.getPassword());
+        patient.setEmail(patientCredentials.getEmail());
+        patient.setEmergencyId(patientCredentials.getEmergencyId());
+        patient.setActive(true);
+
+        if (patientService.findByUsername(patient.getUsername()) != null) {
+            model.addAttribute("patientUsernameExist", true);
+        } else if (patientService.findByEmail(patient.getEmail()) != null) {
+            model.addAttribute("patientEmailExist", true);
+        } else {
+            gpService.createPatient(patient);
+            model.addAttribute("patientCreated", true);
+            model.addAttribute("patientCredentials",new PatientCredentials());
+        }
+
+        return "gpPage";
     }
 
 

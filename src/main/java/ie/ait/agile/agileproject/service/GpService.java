@@ -14,5 +14,5 @@ public interface GpService {
 
     Gp findByBadgeNo(String badgeNo);
 
-    Patient CreatePatient(Patient patient);
+    Patient createPatient(Patient patient);
 }
