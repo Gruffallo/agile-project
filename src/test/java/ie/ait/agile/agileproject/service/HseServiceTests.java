@@ -1,14 +1,8 @@
 package ie.ait.agile.agileproject.service;
 
-import ie.ait.agile.agileproject.entity.Gp;
-import ie.ait.agile.agileproject.entity.Hse;
-import ie.ait.agile.agileproject.entity.OSM;
-import ie.ait.agile.agileproject.entity.Pharmacist;
+import ie.ait.agile.agileproject.entity.*;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
-import ie.ait.agile.agileproject.repository.GpRepository;
-import ie.ait.agile.agileproject.repository.HseRepository;
-import ie.ait.agile.agileproject.repository.OSMRepository;
-import ie.ait.agile.agileproject.repository.PharmacistRepository;
+import ie.ait.agile.agileproject.repository.*;
 import ie.ait.agile.agileproject.service.impl.GpServiceImpl;
 import ie.ait.agile.agileproject.service.impl.HseServiceImpl;
 import ie.ait.agile.agileproject.service.impl.OSMServiceImpl;
@@ -42,6 +36,9 @@ class HseServiceTests {
 
     @MockBean
     private OSMRepository osmRepository;
+
+    @MockBean
+    private PatientRepository patientRepository;
 
     @Test
     void hseLogin01() {
@@ -173,5 +170,91 @@ class HseServiceTests {
 
         then(result).isEqualTo(pharmacist);
     }
+
+
+    @Test
+    void deactivateHse() {
+
+
+        Hse hse= new Hse();
+        hse.setName("Daniel");
+        hse.setUsername("Danny01");
+        hse.setPassword("Password");
+        hse.setEmail("Ojeaburu@gmail.com");
+        hse.setActive(true);
+        hse.setBadgeNo("A0023");
+
+        given(hseRepository.findByBadgeNo(hse.getBadgeNo())).willReturn(hse);
+        thenThrownBy(() -> hseService.deactivateHse("A1343")).isExactlyInstanceOf(ExceptionHandler.class);
+
+
+    }
+
+    @Test
+    void deactivateGp() {
+
+        Gp gp = new Gp();
+        gp.setName("Daniel");
+        gp.setUsername("Dwanna");
+        gp.setPassword("password");
+        gp.setActive(true);
+        gp.setEmail("Ojeaburu@gmail.com");
+        gp.setBadgeNo("G234");
+
+
+        given(gpRepository.findByBadgeNo(gp.getBadgeNo())).willReturn(gp);
+        thenThrownBy(() -> hseService.deactivateGp("A1343")).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+
+    @Test
+    void deactivatePatient() {
+
+        Patient patient= new Patient();
+        patient.setName("Daniel");
+        patient.setActive(true);
+        patient.setEmergencyId((long) 12332);
+        patient.setEmail("Ojeaburu@gmail.com");
+        patient.setUsername("Danny");
+        patient.setPassword("password");
+
+
+
+        given(patientRepository.findByUsername(patient.getUsername())).willReturn(patient);
+        thenThrownBy(() -> hseService.deactivatePatient("Danni")).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+
+    @Test
+    void deactivatePharmacist() {
+        // given
+        Pharmacist pharmacist= new Pharmacist();
+        pharmacist.setName("Daniel");
+        pharmacist.setActive(true);
+        pharmacist.setUsername("Daniel04");
+        pharmacist.setPassword("password");
+        pharmacist.setBadgeNo("Ph123");
+        pharmacist.setEmail("Ojeaburu@gmail.com");
+
+
+        given(pharmacistRepository.findByBadgeNo(pharmacist.getBadgeNo())).willReturn(pharmacist);
+        thenThrownBy(() -> hseService.deactivatePharma("A1343")).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+
+    @Test
+    void deactivateOsm() {
+        // given
+       OSM osm = new OSM();
+       osm.setName("Daniel");
+       osm.setUsername("Daneil04");
+       osm.setPassword("password");
+       osm.setActive(true);
+       osm.setEmail("Ojeaburu@gmail.com");
+       osm.setBadgeNo("O1234");
+
+
+        given(osmRepository.findByBadgeNo(osm.getBadgeNo())).willReturn(osm);
+        thenThrownBy(() -> hseService.deactivateOsm("A1343")).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+
+
 
 }

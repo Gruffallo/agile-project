@@ -20,7 +20,13 @@ public class PharmacistServiceImpl implements PharmacistService {
         if (pharmacistRepository.findByUsername(username) == null) {
             throw new ExceptionHandler("Pharmacist does not exist");
         } else {
-            return pharmacistRepository.findByUsername(username);
+
+            Pharmacist pharmacist = pharmacistRepository.findByUsername(username);
+            if (pharmacist.isActive() == false) {
+                throw new ExceptionHandler("Pharmacist has been deactivated");
+            } else {
+                return pharmacistRepository.findByUsername(username);
+            }
         }
 
     }

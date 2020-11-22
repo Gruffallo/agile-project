@@ -22,7 +22,12 @@ public class OSMServiceImpl implements OSMService {
         if (osmRepository.findByUsername(username) == null) {
             throw new ExceptionHandler("Other staff member does not exist");
         } else {
-            return osmRepository.findByUsername(username);
+            OSM osm= osmRepository.findByUsername(username);
+            if(osm.isActive()==false){
+                throw new ExceptionHandler("Other staff member has been deactivated");
+            }
+            else{
+            return osmRepository.findByUsername(username);}
         }
 
 

@@ -20,7 +20,13 @@ public class PatientServiceImpl implements PatientService {
         if (patientRepository.findByUsername(username) == null) {
             throw new ExceptionHandler("Patient does not exist");
         } else {
-            return patientRepository.findByUsername(username);
+            Patient patient=patientRepository.findByUsername(username);
+
+            if(patient.isActive()==false){
+                throw new ExceptionHandler("Patient has been deactivated");
+            }
+            else {
+            return patientRepository.findByUsername(username);}
         }
     }
 

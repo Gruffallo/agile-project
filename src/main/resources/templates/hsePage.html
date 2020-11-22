@@ -186,16 +186,17 @@
                                 </h4>
                             </div>
 
-                            <div id="deactivateAdmin" class="panel-collapse collapse">
+                            <div id="deactivateAdmin" class="panel-collapse collapse"
+                                 th:classappend="${classDeactivateHse}? 'in active'">
                                 <div class="panel-body">
-                                    <form>
+                                    <form th:action="@{/deactivateHse}" method="post" action="#">
                                         <div class="form-group mb-2">
                                             <label for="deactivateBadge">Enter Badge number to deactivate
-                                                account:</label> <input
-                                                class="form-control"
-                                                type="text">
-                                            <!--                                        <span style="color: red;">-->
-                                            <!--                                              th:if="${hseUsernameExist}">Username Already Exist </span>-->
+                                                account:</label> <input th:value="${credentials.badgeNo}" name="badgeNo"
+                                                                        class="form-control"
+                                                                        type="text">
+                                            <!-- <span style="color: red;">-->
+                                            <!-- th:if="${hseUsernameExist}">Username Already Exist </span>-->
 
 
                                         </div>
@@ -203,6 +204,7 @@
                                         <button class="btn btn-primary" type="submit">
                                             <i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Deactivate
                                         </button>
+                                        <span style="color: green; font-size: 1.8rem; " th:if="${deactivatedHse}">Hse has been deactivated</span>
                                     </form>
 
                                 </div>
@@ -221,7 +223,7 @@
                 </div>
 
                 <div class="tab-pane fade " id="tab-2"
-                     th:classappend="${classActiveNewAccount}? 'in active'">
+                >
 
 
                     <!--   Gp Accordion-->
@@ -361,14 +363,15 @@
                                 </h4>
                             </div>
 
-                            <div id="deactivateGp" class="panel-collapse collapse">
+                            <div id="deactivateGp" class="panel-collapse collapse"
+                                 th:classappend="${classDeactivateGp}? 'in active'">
                                 <div class="panel-body">
-                                    <form>
+                                    <form th:action="@{/deactivateGp}" method="post">
                                         <div class="form-group mb-2">
                                             <label for="deactivateBadge">Enter Gp's Badge number to deactivate
                                                 account:</label> <input
                                                 class="form-control"
-                                                type="text">
+                                                type="text" th:value="${credentials.badgeNo}" name="badgeNo">
                                             <!--                                        <span style="color: red;">-->
                                             <!--                                              th:if="${hseUsernameExist}">Username Already Exist </span>-->
 
@@ -378,6 +381,7 @@
                                         <button class="btn btn-primary" type="submit">
                                             <i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Deactivate
                                         </button>
+                                        <span style="color: green; font-size: 1.8rem; " th:if="${deactivatedGp}">Gp has been deactivated</span>
                                     </form>
                                 </div>
                             </div>
@@ -532,15 +536,16 @@
                                 </h4>
                             </div>
 
-                            <div id="deactivatePharmacist" class="panel-collapse collapse">
+                            <div id="deactivatePharmacist" class="panel-collapse collapse"
+                                 th:classappend="${classDeactivatePharma}? 'in active'">
                                 <div class="panel-body">
 
-                                    <form>
+                                    <form method="post" th:action="@{/deactivatePharma}">
                                         <div class="form-group mb-2">
                                             <label for="deactivateBadge">Enter Pharmacist's Badge number to deactivate
                                                 account:</label> <input
                                                 class="form-control"
-                                                type="text">
+                                                type="text" th:value="${credentials.badgeNo}" name="badgeNo">
                                             <!--                                        <span style="color: red;">-->
                                             <!--                                              th:if="${hseUsernameExist}">Username Already Exist </span>-->
 
@@ -550,6 +555,8 @@
                                         <button class="btn btn-primary" type="submit">
                                             <i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Deactivate
                                         </button>
+                                        <span style="color: green; font-size: 1.8rem; " th:if="${deactivatedPharma}">Pharmacist has been deactivated</span>
+
                                     </form>
                                 </div>
                             </div>
@@ -565,8 +572,7 @@
 
                 </div>
 
-                <div class="tab-pane fade " id="tab-4"
-                     th:classappend="${classActiveNewAccount}? 'in active'">
+                <div class="tab-pane fade " id="tab-4">
 
                     <!-- 	 Patient Accordion-->
                     <div class="panel-group" id="accordion">
@@ -616,14 +622,14 @@
                                 </h4>
                             </div>
 
-                            <div id="deactivatePatient" class="panel-collapse collapse">
+                            <div id="deactivatePatient" class="panel-collapse collapse" th:classappend="${classDeactivatePatient}? 'in active'">
                                 <div class="panel-body">
-                                    <form>
+                                    <form th:action="@{/deactivatePatient}" method="post">
                                         <div class="form-group mb-2">
                                             <label for="deactivateBadge">Enter Patient's Username number to deactivate
                                                 account:</label> <input
                                                 class="form-control"
-                                                type="text">
+                                                type="text" th:value="${credentials.username}" name="username">
                                             <!--                                        <span style="color: red;">-->
                                             <!--                                              th:if="${hseUsernameExist}">Username Already Exist </span>-->
 
@@ -633,6 +639,7 @@
                                         <button class="btn btn-primary" type="submit">
                                             <i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Deactivate
                                         </button>
+                                        <span style="color: green; font-size: 1.8rem; " th:if="${deactivatedPatient}">Patient has been deactivated</span>
                                     </form>
                                 </div>
                             </div>
@@ -789,14 +796,14 @@
                                 </h4>
                             </div>
 
-                            <div id="deactivateOther" class="panel-collapse collapse">
+                            <div id="deactivateOther" class="panel-collapse collapse" th:classappend="${classDeactivateOsm}? 'in active'">
                                 <div class="panel-body">
-                                    <form>
+                                    <form th:action="@{/deactivateOsm}" method="post">
                                         <div class="form-group mb-2">
                                             <label for="deactivateBadge">Enter other staff member badge number to
                                                 deactivate account:</label> <input
                                                 class="form-control"
-                                                type="text">
+                                                type="text" th:value="${credentials.badgeNo}" name="badgeNo">
                                             <!--                                        <span style="color: red;">-->
                                             <!--                                              th:if="${hseUsernameExist}">Username Already Exist </span>-->
 
@@ -806,6 +813,7 @@
                                         <button class="btn btn-primary" type="submit">
                                             <i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Deactivate
                                         </button>
+                                        <span style="color: green; font-size: 1.8rem; " th:if="${deactivatedOsm}">Other staff member  has been deactivated</span>
                                     </form>
                                 </div>
                             </div>

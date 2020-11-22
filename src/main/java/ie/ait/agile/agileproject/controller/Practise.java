@@ -272,6 +272,7 @@ public class Practise {
         pharma.setPassword(password);
         pharma.setEmail(email);
         pharma.setBadgeNo(badgeNo);
+        pharma.setName(name);
 
 
         if (pharmaService.findByUsername(username) != null) {
@@ -336,6 +337,52 @@ public class Practise {
         return "hsePage";
 
 
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////
+    @PostMapping("/deactivateHse")
+    public String deactivateHse(@ModelAttribute("credentials") Credentials credentials, Model model) throws Exception {
+
+        hseService.deactivateHse(credentials.getBadgeNo());
+        model.addAttribute("deactivatedHse", true);
+        model.addAttribute("classDeactivateHse",true);
+
+        return "hsePage";
+
+    }
+
+    @PostMapping("/deactivateGp")
+    public String deactivateGp(@ModelAttribute("credentials") Credentials credentials, Model model) throws Exception {
+        hseService.deactivateGp(credentials.getBadgeNo());
+        model.addAttribute("deactivatedGp", true);
+        model.addAttribute("credentials", new Credentials());
+        model.addAttribute("classDeactivateGp",true);
+        return "hsePage";
+    }
+
+    @PostMapping("/deactivatePatient")
+    public String deactivatePatient(@ModelAttribute("credentials") Credentials credentials, Model model) throws Exception {
+        hseService.deactivatePatient(credentials.getUsername());
+        model.addAttribute("deactivatedPatient", true);
+        model.addAttribute("classDeactivatePatient",true);
+        return "hsePage";
+    }
+
+    @PostMapping("/deactivatePharma")
+    public String deactivatePharma(@ModelAttribute("credentials") Credentials credentials, Model model) throws Exception {
+        hseService.deactivatePharma(credentials.getBadgeNo());
+        model.addAttribute("deactivatedPharma", true);
+        model.addAttribute("classDeactivatePharma",true);
+        return "hsePage";
+    }
+
+    @PostMapping("/deactivateOsm")
+    public String deactivateOsm(@ModelAttribute("credentials") Credentials credentials, Model model) throws Exception {
+        hseService.deactivateOsm(credentials.getBadgeNo());
+        model.addAttribute("deactivatedOsm", true);
+        model.addAttribute("classDeactivateOsm",true);
+        return "hsePage";
     }
 
 

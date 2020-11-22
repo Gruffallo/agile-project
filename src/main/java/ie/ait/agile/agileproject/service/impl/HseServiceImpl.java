@@ -2,10 +2,7 @@ package ie.ait.agile.agileproject.service.impl;
 
 import ie.ait.agile.agileproject.entity.*;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
-import ie.ait.agile.agileproject.repository.GpRepository;
-import ie.ait.agile.agileproject.repository.HseRepository;
-import ie.ait.agile.agileproject.repository.OSMRepository;
-import ie.ait.agile.agileproject.repository.PharmacistRepository;
+import ie.ait.agile.agileproject.repository.*;
 import ie.ait.agile.agileproject.service.HseService;
 import org.springframework.stereotype.Service;
 
@@ -17,15 +14,17 @@ public class HseServiceImpl implements HseService {
     private final GpRepository gpRepository;
     private final PharmacistRepository pharmaRepository;
     private final OSMRepository osmRepository;
+    private final PatientRepository patientRepository;
 
     HseServiceImpl(
             HseRepository hseRepository, GpRepository gpRepository,
-            PharmacistRepository pharmacistRepository, OSMRepository osmRepository) {
+            PharmacistRepository pharmacistRepository, OSMRepository osmRepository,PatientRepository patientRepository) {
 
         this.hseRepository = hseRepository;
         this.gpRepository = gpRepository;
         this.pharmaRepository = pharmacistRepository;
         this.osmRepository = osmRepository;
+        this.patientRepository=patientRepository;
     }
 
     @Override
@@ -33,7 +32,14 @@ public class HseServiceImpl implements HseService {
         if (hseRepository.findByUsername(username) == null) {
             throw new ExceptionHandler("Admin does not exist");
         } else {
-            return hseRepository.findByUsername(username);
+
+            Hse hse=hseRepository.findByUsername(username);
+            if(hse.isActive()==false){
+                throw new ExceptionHandler("Admin has been deactivated");
+            }
+            else{
+                return hse;
+            }
         }
     }
 
@@ -130,27 +136,98 @@ public class HseServiceImpl implements HseService {
 
     @Override
     public Hse deactivateHse(String badgeNo) {
-        return null;
+
+        if(hseRepository.findByBadgeNo(badgeNo)==null){
+            throw new ExceptionHandler("Badge Number does not exist");
+        }
+        else{
+            Hse hse= hseRepository.findByBadgeNo(badgeNo);
+            if(hse.isActive()==false){
+                throw new ExceptionHandler("Hse has already been deactivated");
+
+            }
+            else{
+                hse.setActive(false);
+                return hseRepository.save(hse);
+            }
+
+
+        }
+
     }
 
     @Override
     public Gp deactivateGp(String badgeNo) {
-        return null;
+        if(gpRepository.findByBadgeNo(badgeNo)==null){
+            throw new ExceptionHandler("Badge Number does not exist");
+        }
+        else{
+
+            Gp gp= gpRepository.findByBadgeNo(badgeNo);
+            if(gp.isActive()==false){
+                throw new ExceptionHandler("Gp has already been deactivated");
+            }
+            else{
+                gp.setActive(false);
+                return gpRepository.save(gp);
+            }
+
+        }
     }
 
     @Override
-    public Patient deactivate(String badgeNo) {
-        return null;
+    public Patient deactivatePatient(String username) {
+        if(patientRepository.findByUsername(username)==null){
+            throw new ExceptionHandler("Username does not exist");
+        }
+        else{
+            Patient patient= patientRepository.findByUsername(username);
+
+            if(patient.isActive()==false){
+                throw new ExceptionHandler("Patient has already been deactivated");
+            }
+            else{
+                patient.setActive(false);
+               return  patientRepository.save(patient);
+            }
+
+        }
     }
 
     @Override
     public OSM deactivateOsm(String badgeNo) {
-        return null;
+        if(osmRepository.findByBadgeNo(badgeNo)==null){
+            throw new ExceptionHandler("Badge Number does not exist");
+        }
+        else{
+            OSM osm = osmRepository.findByBadgeNo(badgeNo);
+            if(osm.isActive()==false){
+                throw new ExceptionHandler("Osm has already been deactivated");
+            }
+            else{
+                osm.setActive(false);
+                return osmRepository.save(osm);
+            }
+
+        }
     }
 
     @Override
     public Pharmacist deactivatePharma(String badgeNo) {
-        return null;
+        if(pharmaRepository.findByBadgeNo(badgeNo)==null){
+            throw new ExceptionHandler("Badge Number does not exist");
+        }
+        else{
+            Pharmacist pharmacist=pharmaRepository.findByBadgeNo(badgeNo);
+
+            if(pharmacist.isActive()==false){
+                throw new ExceptionHandler("Pharmacist has already been deactivated");
+            }
+            else{
+                pharmacist.setActive(false);
+                return pharmaRepository.save(pharmacist);
+            }
+        }
     }
 
 }

@@ -25,7 +25,7 @@ public interface HseService {
 
     Gp deactivateGp(String badgeNo);
 
-    Patient deactivate(String badgeNo);
+    Patient deactivatePatient(String username);
 
     OSM deactivateOsm(String badgeNo);
 
