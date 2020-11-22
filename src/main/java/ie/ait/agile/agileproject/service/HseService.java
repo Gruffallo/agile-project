@@ -2,7 +2,10 @@ package ie.ait.agile.agileproject.service;
 
 import ie.ait.agile.agileproject.entity.*;
 
-public interface HseService {
+import java.util.List;
+
+public interface HseService extends BaseService<Hse> {
+
     Hse hseDetails(String username);
 
     Hse createHse(Hse hse);
@@ -13,13 +16,11 @@ public interface HseService {
 
     OSM createOsm(OSM osm);
 
-
     Hse findByUsername(String username);
 
     Hse findByEmail(String email);
 
     Hse findByBadgeNo(String badge);
-
 
     Hse deactivateHse(String badgeNo);
 
@@ -30,9 +31,4 @@ public interface HseService {
     OSM deactivateOsm(String badgeNo);
 
     Pharmacist deactivatePharma(String badgeNo);
-
-
-
-
-
 }

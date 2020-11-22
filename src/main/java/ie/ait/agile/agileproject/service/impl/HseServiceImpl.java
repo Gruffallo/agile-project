@@ -6,6 +6,8 @@ import ie.ait.agile.agileproject.repository.*;
 import ie.ait.agile.agileproject.service.HseService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 
 public class HseServiceImpl implements HseService {
@@ -112,6 +114,11 @@ public class HseServiceImpl implements HseService {
         }
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public List<Hse> findAll() {
+        return hseRepository.findAll();
     }
 
 

@@ -6,6 +6,8 @@ import ie.ait.agile.agileproject.repository.PatientRepository;
 import ie.ait.agile.agileproject.service.PatientService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PatientServiceImpl implements PatientService {
 
@@ -41,4 +43,8 @@ public class PatientServiceImpl implements PatientService {
     }
 
 
+    @Override
+    public List<Patient> findAll() {
+        return patientRepository.findAll();
+    }
 }

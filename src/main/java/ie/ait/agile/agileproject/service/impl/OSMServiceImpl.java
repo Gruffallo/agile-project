@@ -6,6 +6,8 @@ import ie.ait.agile.agileproject.repository.OSMRepository;
 import ie.ait.agile.agileproject.service.OSMService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OSMServiceImpl implements OSMService {
     private final OSMRepository osmRepository;
@@ -46,5 +48,10 @@ public class OSMServiceImpl implements OSMService {
     @Override
     public OSM findByBadgeNo(String badge) {
         return osmRepository.findByBadgeNo(badge);
+    }
+
+    @Override
+    public List<OSM> findAll() {
+        return osmRepository.findAll();
     }
 }
