@@ -8,6 +8,8 @@ import ie.ait.agile.agileproject.repository.PatientRepository;
 import ie.ait.agile.agileproject.service.GpService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GpServiceImpl implements GpService {
 
@@ -62,4 +64,8 @@ public class GpServiceImpl implements GpService {
     }
 
 
+    @Override
+    public List<Gp> findAll() {
+        return gpRepository.findAll();
+    }
 }

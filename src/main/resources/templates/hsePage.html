@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet"
@@ -62,8 +62,30 @@
                             </div>
 
                             <div id="viewAdmin" class="panel-collapse collapse">
-                                <div class="panel-body">This is the part where you view
-                                    admin
+                                <div class="panel-body" th:if="${hseUsers.empty}">
+                                    No HSE users available
+                                </div>
+                                <div class="panel-body" th:if="${!hseUsers.empty}">
+                                    <table style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th> Name </th>
+                                                <th> Username </th>
+                                                <th> e-mail </th>
+                                                <th> Badge No. </th>
+                                                <th> Active </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="hseUser : ${hseUsers}">
+                                                <td><span th:text="${hseUser.name}"> Name </span></td>
+                                                <td><span th:text="${hseUser.username}"> Username </span></td>
+                                                <td><span th:text="${hseUser.email}"> E-Mail </span></td>
+                                                <td><span th:text="${hseUser.badgeNo}"> Badge No. </span></td>
+                                                <td><span th:text="${hseUser.active}"> Active </span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 
@@ -170,7 +192,7 @@
                             </div>
 
                             <div id="updateAdmin" class="panel-collapse collapse">
-                                <div class="panel-body">This is the part where you view
+                                <div class="panel-body">This is the part where you update
                                     admin
                                 </div>
                             </div>
@@ -239,8 +261,30 @@
                             </div>
 
                             <div id="viewGp" class="panel-collapse collapse">
-                                <div class="panel-body">This is the part where you view
-                                    doctor
+                                <div class="panel-body" th:if="${gpUsers.empty}">
+                                    No doctors available
+                                </div>
+                                <div class="panel-body" th:if="${!gpUsers.empty}">
+                                    <table style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            <th> Name </th>
+                                            <th> Username </th>
+                                            <th> E-Mail </th>
+                                            <th> Badge No. </th>
+                                            <th> Active </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="gpUser : ${gpUsers}">
+                                            <td><span th:text="${gpUser.name}"> Name </span></td>
+                                            <td><span th:text="${gpUser.username}"> Username </span></td>
+                                            <td><span th:text="${gpUser.email}"> E-Mail </span></td>
+                                            <td><span th:text="${gpUser.badgeNo}"> Badge No. </span></td>
+                                            <td><span th:text="${gpUser.active}"> Active </span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 
@@ -411,8 +455,30 @@
                             </div>
 
                             <div id="viewPharmacist" class="panel-collapse collapse">
-                                <div class="panel-body">This is the part where you view
-                                    pharmacist
+                                <div class="panel-body" th:if="${pharmaUsers.empty}">
+                                    No pharmacist available
+                                </div>
+                                <div class="panel-body" th:if="${!pharmaUsers.empty}">
+                                    <table style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            <th> Name </th>
+                                            <th> Username </th>
+                                            <th> E-Mail </th>
+                                            <th> Badge No. </th>
+                                            <th> Active </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="pharmaUser : ${pharmaUsers}">
+                                            <td><span th:text="${pharmaUser.name}"> Name </span></td>
+                                            <td><span th:text="${pharmaUser.username}"> Username </span></td>
+                                            <td><span th:text="${pharmaUser.email}"> E-Mail </span></td>
+                                            <td><span th:text="${pharmaUser.badgeNo}"> Badge No. </span></td>
+                                            <td><span th:text="${pharmaUser.active}"> Active </span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 
@@ -587,8 +653,30 @@
                             </div>
 
                             <div id="viewPatient" class="panel-collapse collapse">
-                                <div class="panel-body">This is the part where you view
-                                    patient
+                                <div class="panel-body" th:if="${patientUsers.empty}">
+                                    No patient available
+                                </div>
+                                <div class="panel-body" th:if="${!patientUsers.empty}">
+                                    <table style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            <th> Name </th>
+                                            <th> Username </th>
+                                            <th> E-Mail </th>
+                                            <th> Emergency ID </th>
+                                            <th> Active </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="patientUser : ${patientUsers}">
+                                            <td><span th:text="${patientUser.name}"> Name </span></td>
+                                            <td><span th:text="${patientUser.username}"> Username </span></td>
+                                            <td><span th:text="${patientUser.email}"> E-Mail </span></td>
+                                            <td><span th:text="${patientUser.emergencyId}"> Emergency ID </span></td>
+                                            <td><span th:text="${patientUser.active}"> Active </span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 
@@ -672,8 +760,30 @@
                             </div>
 
                             <div id="viewOther" class="panel-collapse collapse">
-                                <div class="panel-body">This is the part where you view
-                                    other staff
+                                <div class="panel-body" th:if="${osmUsers.empty}">
+                                    No other staff member available
+                                </div>
+                                <div class="panel-body" th:if="${!osmUsers.empty}">
+                                    <table style="width:100%">
+                                        <thead>
+                                        <tr>
+                                            <th> Name </th>
+                                            <th> Username </th>
+                                            <th> E-Mail </th>
+                                            <th> Badge No. </th>
+                                            <th> Active </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="osmUser : ${osmUsers}">
+                                            <td><span th:text="${osmUser.name}"> Name </span></td>
+                                            <td><span th:text="${osmUser.username}"> Username </span></td>
+                                            <td><span th:text="${osmUser.email}"> E-Mail </span></td>
+                                            <td><span th:text="${osmUser.badgeNo}"> Badge No. </span></td>
+                                            <td><span th:text="${osmUser.active}"> Active </span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 
