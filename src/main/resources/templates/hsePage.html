@@ -194,7 +194,7 @@
                                             <label for="deactivateBadge">Enter Badge number to deactivate
                                                 account:</label> <input th:value="${credentials.badgeNo}" name="badgeNo"
                                                                         class="form-control"
-                                                                        type="text">
+                                                                        type="text" minlength="4" maxlength="7">
                                             <!-- <span style="color: red;">-->
                                             <!-- th:if="${hseUsernameExist}">Username Already Exist </span>-->
 
@@ -371,7 +371,7 @@
                                             <label for="deactivateBadge">Enter Gp's Badge number to deactivate
                                                 account:</label> <input
                                                 class="form-control"
-                                                type="text" th:value="${credentials.badgeNo}" name="badgeNo">
+                                                type="text" th:value="${credentials.badgeNo}" name="badgeNo" minlength="4" maxlength="7">
                                             <!--                                        <span style="color: red;">-->
                                             <!--                                              th:if="${hseUsernameExist}">Username Already Exist </span>-->
 
@@ -545,7 +545,7 @@
                                             <label for="deactivateBadge">Enter Pharmacist's Badge number to deactivate
                                                 account:</label> <input
                                                 class="form-control"
-                                                type="text" th:value="${credentials.badgeNo}" name="badgeNo">
+                                                type="text" th:value="${credentials.badgeNo}" name="badgeNo" minlength="4" maxlength="7">
                                             <!--                                        <span style="color: red;">-->
                                             <!--                                              th:if="${hseUsernameExist}">Username Already Exist </span>-->
 
@@ -629,7 +629,7 @@
                                             <label for="deactivateBadge">Enter Patient's Username number to deactivate
                                                 account:</label> <input
                                                 class="form-control"
-                                                type="text" th:value="${credentials.username}" name="username">
+                                                type="text" th:value="${credentials.username}" name="username" minlength="5" maxlength="15">
                                             <!--                                        <span style="color: red;">-->
                                             <!--                                              th:if="${hseUsernameExist}">Username Already Exist </span>-->
 
@@ -803,7 +803,7 @@
                                             <label for="deactivateBadge">Enter other staff member badge number to
                                                 deactivate account:</label> <input
                                                 class="form-control"
-                                                type="text" th:value="${credentials.badgeNo}" name="badgeNo">
+                                                type="text" th:value="${credentials.badgeNo}" name="badgeNo" minlength="4" maxlength="7">
                                             <!--                                        <span style="color: red;">-->
                                             <!--                                              th:if="${hseUsernameExist}">Username Already Exist </span>-->
 

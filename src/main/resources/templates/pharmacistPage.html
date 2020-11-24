@@ -40,7 +40,8 @@
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                     data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <span><i class="fa fa-fw fa-eye" aria-hidden="true"></i></span> View Patient Prescription
+                                <span><i class="fa fa-fw fa-eye" aria-hidden="true"></i></span> View Patient
+                                Prescription
                             </button>
                         </h5>
                     </div>
@@ -96,22 +97,38 @@
                 </div>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                     <div class="card-body">
-                        <form action="#" method="put">
+                        <form th:action="@{/updatePharmaPassword}" method="post">
                             <div class="row">
                                 <div class="container">
-                                    <div class = "col-sm-6">
+
+                                    <div class="col-sm-8">
                                         <div class="form-group">
-                                            <input type="password" name="oldPassword" class="form-control" placeholder="Old Password" required>
+                                            <label for="username">Enter your username to confirm it is you:</label>
+                                            <input type="text" class="form-control" placeholder="Username"
+                                                   required th:value="${username}" name="username" minlength="5" maxlength="15">
                                         </div>
                                     </div>
-                                    <div class = "col-sm-6">
+
+                                    <div class="col-sm-8">
                                         <div class="form-group">
-                                            <input type="password" name="oldPassword" class="form-control" placeholder="New Password" required>
+
+                                            <input type="text" class="form-control" placeholder="Old Password"
+                                                   required th:value="${oldPassword}" name="oldPassword" minlength="5" maxlength="15">
                                         </div>
                                     </div>
-                                    <div class = "col-sm-12">
-                                        <a class="btn btn-info"> <i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>Update Password</a>
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="New Password"
+                                                   required th:value="${newPassword}" minlength="5" maxlength="15" name="newPassword">
+                                        </div>
                                     </div>
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"
+                                                                        aria-hidden="true"></i>Update Password
+                                        </button>
+                                        <span th:if="${updatePharmaPasswordSuccess}" style="color: green;font-size: 1.5rem;">Update Successful</span>
+                                    </div>
+
                                 </div>
                             </div>
                         </form>

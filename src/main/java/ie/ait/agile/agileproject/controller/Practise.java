@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
 
 
 @Controller
@@ -74,7 +75,7 @@ public class Practise {
         if (gpUser.equals(loginUser) && gpPwd.equals(loginPwd)) {
             model.addAttribute("hseLoginComplete", true);
             model.addAttribute("login", login);
-            model.addAttribute("patientCredentials",new PatientCredentials());
+            model.addAttribute("patientCredentials", new PatientCredentials());
             return "gpPage";
         } else {
             model.addAttribute("invalidGpDetails", true);
@@ -121,6 +122,7 @@ public class Practise {
         if (pharmaUser.equals(loginUser) && pharmaPwd.equals(loginPwd)) {
             model.addAttribute("pharmaLoginComplete", true);
 //            model.addAttribute("login",  login);
+           // model.addAttribute("pharmacist", pharma);
             return "pharmacistPage";
         } else {
             model.addAttribute("invalidPharmaDetails", true);
@@ -357,6 +359,7 @@ public class Practise {
     @PostMapping("/deactivateGp")
     public String deactivateGp(@ModelAttribute("credentials") Credentials credentials, Model model) throws Exception {
         hseService.deactivateGp(credentials.getBadgeNo());
+
         model.addAttribute("deactivatedGp", true);
         model.addAttribute("credentials", new Credentials());
         model.addAttribute("classDeactivateGp", true);
@@ -404,10 +407,29 @@ public class Practise {
         } else {
             gpService.createPatient(patient);
             model.addAttribute("patientCreated", true);
-            model.addAttribute("patientCredentials",new PatientCredentials());
+            model.addAttribute("patientCredentials", new PatientCredentials());
         }
 
         return "gpPage";
+    }
+
+
+    @PostMapping("/updatePharmaPassword")
+    public String updatePharmaPassword(@ModelAttribute("oldPassword") String oldpassword, @ModelAttribute("newPassword")String newpassword, @ModelAttribute("username")String username,Model model) throws Exception {
+
+        Pharmacist pharma= pharmaService.findByUsername(username);
+        if(pharma==null){
+            model.addAttribute("updatePasswordUsernameNotExist",true);
+        }
+        else{
+            pharmaService.updatePassword(username,oldpassword,newpassword);
+            model.addAttribute("updatePharmaPasswordSuccess",true);
+            model.addAttribute("oldPassword","");
+            model.addAttribute("newPassword","");
+
+        }
+
+        return "pharmacistPage";
     }
 
 

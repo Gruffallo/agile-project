@@ -12,4 +12,6 @@ public interface PharmacistService {
     Pharmacist findByEmail(String email);
 
     Pharmacist findByBadgeNo(String badgeNo);
+
+    Pharmacist updatePassword(String username,String oldPassword,String newPassword);
 }

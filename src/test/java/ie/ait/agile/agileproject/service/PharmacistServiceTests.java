@@ -36,4 +36,53 @@ class PharmacistServiceTests {
 
         thenThrownBy(() -> pharmacistService.details("Biggy")).isExactlyInstanceOf(ExceptionHandler.class);
     }
+
+    @Test
+    void updatePharmacistPassword() throws ExceptionHandler {
+        Pharmacist phar = new Pharmacist();
+        phar.setId(1);
+        phar.setUsername("edlee14");
+        phar.setPassword("aaaaaaa");
+        phar.setName("Manny");
+        phar.setEmail("Dan07@gmail.com");
+        phar.setActive(true);
+        phar.setBadgeNo("A00232");
+
+        given(pharmacistRepository.findByUsername(phar.getUsername())).willReturn(phar);
+
+        thenThrownBy(() -> pharmacistService.updatePassword("Biggy","password","password1")).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+    @Test
+    void updatePharmacistPassword02() throws ExceptionHandler {
+        Pharmacist phar = new Pharmacist();
+        phar.setId(1);
+        phar.setUsername("edlee14");
+        phar.setPassword("aaaaaaa");
+        phar.setName("Manny");
+        phar.setEmail("Dan07@gmail.com");
+        phar.setActive(true);
+        phar.setBadgeNo("A00232");
+
+        given(pharmacistRepository.findByUsername(phar.getUsername())).willReturn(phar);
+
+        thenThrownBy(() -> pharmacistService.updatePassword("Biggy","password12","password1")).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+
+    @Test
+    void updatePharmacistPassword03() throws ExceptionHandler {
+        Pharmacist phar = new Pharmacist();
+        phar.setId(1);
+        phar.setUsername("edlee14");
+        phar.setPassword("password");
+        phar.setName("Manny");
+        phar.setEmail("Dan07@gmail.com");
+        phar.setActive(true);
+        phar.setBadgeNo("A00232");
+
+        given(pharmacistRepository.findByUsername(phar.getUsername())).willReturn(phar);
+
+        thenThrownBy(() -> pharmacistService.updatePassword("Biggy","password","password1")).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+
+
 }
