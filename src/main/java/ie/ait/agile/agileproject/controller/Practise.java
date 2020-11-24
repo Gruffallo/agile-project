@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -52,6 +54,7 @@ public class Practise {
         System.out.println(loginUser + " from HTML " + loginPwd);
         System.out.println(hseUser + " from DB " + hsePwd);
 
+
         if (hseUser.equals(loginUser) && hsePwd.equals(loginPwd)) {
             model.addAttribute("hseLoginComplete", true);
             model.addAttribute("credentials", credentials);
@@ -60,6 +63,7 @@ public class Practise {
             model.addAttribute("pharmaUsers", pharmaService.findAll());
             model.addAttribute("patientUsers", patientService.findAll());
             model.addAttribute("osmUsers", osmService.findAll());
+
             return "hsePage";
         } else {
             model.addAttribute("invalidDetails", true);
@@ -196,6 +200,11 @@ public class Practise {
             System.out.println(admin.getEmail());
             System.out.println(admin.getBadgeNo());
             System.out.println(admin.isActive());
+            model.addAttribute("hseUsers", hseService.findAll());
+            model.addAttribute("gpUsers", gpService.findAll());
+            model.addAttribute("pharmaUsers", pharmaService.findAll());
+            model.addAttribute("patientUsers", patientService.findAll());
+            model.addAttribute("osmUsers", osmService.findAll());
 
 
             hseService.createHse(admin);
@@ -228,6 +237,12 @@ public class Practise {
         gp.setPassword(password);
         gp.setBadgeNo(badgeNo);
         gp.setEmail(email);
+
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
 
 
 //        System.out.println(gp.getName());
@@ -283,6 +298,12 @@ public class Practise {
         pharma.setBadgeNo(badgeNo);
         pharma.setName(name);
 
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
+
 
         if (pharmaService.findByUsername(username) != null) {
             model.addAttribute("pharmaUsernameExist", true);
@@ -325,6 +346,12 @@ public class Practise {
         osm.setPassword(password);
         osm.setName(name);
 
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
+
 
         if (osmService.findByUsername(username) != null) {
             model.addAttribute("osmUsernameExist", true);
@@ -356,6 +383,11 @@ public class Practise {
         hseService.deactivateHse(credentials.getBadgeNo());
         model.addAttribute("deactivatedHse", true);
         model.addAttribute("classDeactivateHse", true);
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
 
         return "hsePage";
 
@@ -368,6 +400,11 @@ public class Practise {
         model.addAttribute("deactivatedGp", true);
         model.addAttribute("credentials", new Credentials());
         model.addAttribute("classDeactivateGp", true);
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
         return "hsePage";
     }
 
@@ -376,6 +413,11 @@ public class Practise {
         hseService.deactivatePatient(credentials.getUsername());
         model.addAttribute("deactivatedPatient", true);
         model.addAttribute("classDeactivatePatient", true);
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
         return "hsePage";
     }
 
@@ -384,6 +426,11 @@ public class Practise {
         hseService.deactivatePharma(credentials.getBadgeNo());
         model.addAttribute("deactivatedPharma", true);
         model.addAttribute("classDeactivatePharma", true);
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
         return "hsePage";
     }
 
@@ -392,6 +439,11 @@ public class Practise {
         hseService.deactivateOsm(credentials.getBadgeNo());
         model.addAttribute("deactivatedOsm", true);
         model.addAttribute("classDeactivateOsm", true);
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
         return "hsePage";
     }
 
@@ -422,9 +474,14 @@ public class Practise {
     @PostMapping("/updatePharmaPassword")
     public String updatePharmaPassword(@ModelAttribute("oldPassword") String oldpassword, @ModelAttribute("newPassword")String newpassword, @ModelAttribute("username")String username,Model model) throws Exception {
 
+
+        model.addAttribute("updatePharmaPassword",true);
+
         Pharmacist pharma= pharmaService.findByUsername(username);
         if(pharma==null){
             model.addAttribute("updatePasswordUsernameNotExist",true);
+
+
         }
         else{
             pharmaService.updatePassword(username,oldpassword,newpassword);

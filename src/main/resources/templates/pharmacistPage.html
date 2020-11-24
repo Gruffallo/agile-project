@@ -95,7 +95,7 @@
                         </button>
                     </h5>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample"th:classappend="${updatePharmaPassword}? 'in active'" >
                     <div class="card-body">
                         <form th:action="@{/updatePharmaPassword}" method="post">
                             <div class="row">
@@ -106,6 +106,7 @@
                                             <label for="username">Enter your username to confirm it is you:</label>
                                             <input type="text" class="form-control" placeholder="Username"
                                                    required th:value="${username}" name="username" minlength="5" maxlength="15">
+                                            <span th:if="${updatePasswordUsernameNotExist}" style="color: red; font-size: 1.4rem;">Username doesnt exit</span>
                                         </div>
                                     </div>
 

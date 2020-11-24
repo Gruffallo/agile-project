@@ -31,4 +31,5 @@ public interface HseService extends BaseService<Hse> {
     OSM deactivateOsm(String badgeNo);
 
     Pharmacist deactivatePharma(String badgeNo);
+
 }

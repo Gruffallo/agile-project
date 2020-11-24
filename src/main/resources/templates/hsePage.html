@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html >
 <head>
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet"
@@ -48,7 +48,7 @@
             <div class="tab-content" style="width: 100%;">
 
                 <div class="tab-pane fade in active" id="tab-1"
-                     th:classappend="${classActiveNewAccount}? 'in active'">
+                    >
 
                     <div class="panel-group" id="accordion">
 
@@ -62,10 +62,10 @@
                             </div>
 
                             <div id="viewAdmin" class="panel-collapse collapse">
-                                <div class="panel-body" th:if="${hseUsers.empty}">
+                                <div class="panel-body" th:if="${hseUsers.isEmpty()}">
                                     No HSE users available
                                 </div>
-                                <div class="panel-body" th:if="${!hseUsers.empty}">
+                                <div class="panel-body" th:if="${!hseUsers.isEmpty()}">
                                     <table style="width:100%">
                                         <thead>
                                             <tr>
@@ -261,10 +261,10 @@
                             </div>
 
                             <div id="viewGp" class="panel-collapse collapse">
-                                <div class="panel-body" th:if="${gpUsers.empty}">
+                                <div class="panel-body" th:if="${gpUsers.isEmpty()}">
                                     No doctors available
                                 </div>
-                                <div class="panel-body" th:if="${!gpUsers.empty}">
+                                <div class="panel-body" th:if="${!gpUsers.isEmpty()}">
                                     <table style="width:100%">
                                         <thead>
                                         <tr>
@@ -440,7 +440,7 @@
                 </div>
 
                 <div class="tab-pane fade " id="tab-3"
-                     th:classappend="${classActiveNewAccount}? 'in active'">
+                    >
 
                     <!-- 	 Pharmacist Accordion-->
                     <div class="panel-group" id="accordion">
@@ -455,10 +455,10 @@
                             </div>
 
                             <div id="viewPharmacist" class="panel-collapse collapse">
-                                <div class="panel-body" th:if="${pharmaUsers.empty}">
+                                <div class="panel-body" th:if="${pharmaUsers.isEmpty()}">
                                     No pharmacist available
                                 </div>
-                                <div class="panel-body" th:if="${!pharmaUsers.empty}">
+                                <div class="panel-body" th:if="${!pharmaUsers.isEmpty()}">
                                     <table style="width:100%">
                                         <thead>
                                         <tr>
@@ -653,10 +653,10 @@
                             </div>
 
                             <div id="viewPatient" class="panel-collapse collapse">
-                                <div class="panel-body" th:if="${patientUsers.empty}">
+                                <div class="panel-body" th:if="${patientUsers.isEmpty()}">
                                     No patient available
                                 </div>
-                                <div class="panel-body" th:if="${!patientUsers.empty}">
+                                <div class="panel-body" th:if="${!patientUsers.isEmpty()}">
                                     <table style="width:100%">
                                         <thead>
                                         <tr>
@@ -745,7 +745,7 @@
                 </div>
 
                 <div class="tab-pane fade " id="tab-5"
-                     th:classappend="${classActiveNewAccount}? 'in active'">
+                    >
 
                     <!-- 	 Patient Accordion-->
                     <div class="panel-group" id="accordion">
@@ -760,10 +760,10 @@
                             </div>
 
                             <div id="viewOther" class="panel-collapse collapse">
-                                <div class="panel-body" th:if="${osmUsers.empty}">
+                                <div class="panel-body" th:if="${osmUsers.isEmpty()}">
                                     No other staff member available
                                 </div>
-                                <div class="panel-body" th:if="${!osmUsers.empty}">
+                                <div class="panel-body" th:if="${!osmUsers.isEmpty()}">
                                     <table style="width:100%">
                                         <thead>
                                         <tr>

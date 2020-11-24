@@ -73,6 +73,6 @@ public class PharmacistServiceImpl implements PharmacistService {
 
     @Override
     public List<Pharmacist> findAll() {
-        return null;
+        return pharmacistRepository.findAll();
     }
 }
