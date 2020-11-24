@@ -55,6 +55,11 @@ public class Practise {
         if (hseUser.equals(loginUser) && hsePwd.equals(loginPwd)) {
             model.addAttribute("hseLoginComplete", true);
             model.addAttribute("credentials", credentials);
+            model.addAttribute("hseUsers", hseService.findAll());
+            model.addAttribute("gpUsers", gpService.findAll());
+            model.addAttribute("pharmaUsers", pharmaService.findAll());
+            model.addAttribute("patientUsers", patientService.findAll());
+            model.addAttribute("osmUsers", osmService.findAll());
             return "hsePage";
         } else {
             model.addAttribute("invalidDetails", true);

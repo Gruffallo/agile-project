@@ -6,6 +6,8 @@ import ie.ait.agile.agileproject.repository.PharmacistRepository;
 import ie.ait.agile.agileproject.service.PharmacistService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PharmacistServiceImpl implements PharmacistService {
 
@@ -67,5 +69,10 @@ public class PharmacistServiceImpl implements PharmacistService {
             }
         }
 
+    }
+
+    @Override
+    public List<Pharmacist> findAll() {
+        return null;
     }
 }
