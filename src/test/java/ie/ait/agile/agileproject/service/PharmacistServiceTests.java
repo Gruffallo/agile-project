@@ -69,7 +69,7 @@ class PharmacistServiceTests {
     }
 
     @Test
-    void updatePharmacistPassword03() throws ExceptionHandler {
+    void updatePharmacistPassword04() throws ExceptionHandler {
         Pharmacist phar = new Pharmacist();
         phar.setId(1);
         phar.setUsername("edlee14");
@@ -81,7 +81,7 @@ class PharmacistServiceTests {
 
         given(pharmacistRepository.findByUsername(phar.getUsername())).willReturn(phar);
 
-        thenThrownBy(() -> pharmacistService.updatePassword("Biggy","password","password1")).isExactlyInstanceOf(ExceptionHandler.class);
+        thenThrownBy(() -> pharmacistService.updatePassword("Biggy","password","password")).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
 
