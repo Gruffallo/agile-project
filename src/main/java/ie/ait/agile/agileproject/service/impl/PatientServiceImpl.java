@@ -57,7 +57,7 @@ public class PatientServiceImpl implements PatientService {
         } else {
             if (patient.getPassword().equals(oldPassword)) {
                 if (oldPassword != newPassword) {
-                	atient.setPassword(newPassword);
+                	patient.setPassword(newPassword);
                     return patientRepository.save(patient);
 
                 } else {

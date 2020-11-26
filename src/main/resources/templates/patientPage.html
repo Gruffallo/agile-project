@@ -98,7 +98,7 @@
                         </button>
                     </h5>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample" th:classappend="${updatePatientPassword}? 'in active'">
                     <div class="card-body">
                         <form th:action="@{/updatePatientPassword}" method="post">
                             <div class="row">

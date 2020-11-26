@@ -1,5 +1,6 @@
 package ie.ait.agile.agileproject.service;
 
+import ie.ait.agile.agileproject.entity.Patient;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.repository.PatientRepository;
 import ie.ait.agile.agileproject.service.impl.PatientServiceImpl;

@@ -507,6 +507,7 @@ public class Practise {
         }
         else{
             patientService.updatePassword(username,oldpassword,newpassword);
+            model.addAttribute("patient",patient);
             model.addAttribute("updatePatientPasswordSuccess",true);
             model.addAttribute("oldPassword","");
             model.addAttribute("newPassword","");
