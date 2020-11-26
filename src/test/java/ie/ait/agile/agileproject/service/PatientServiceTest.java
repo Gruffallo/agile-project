@@ -33,6 +33,52 @@ class PatientServiceTest {
 
         thenThrownBy(callable).isExactlyInstanceOf(ExceptionHandler.class);
     }
+    @Test
+    void updatePatientPassword() throws ExceptionHandler {
+        Patient patient = new Patient();
+        patient.setId(1);
+        patient.setUsername("edlee14");
+        patient.setPassword("aaaaaaa");
+        patient.setName("Manny");
+        patient.setEmail("Dan07@gmail.com");
+        patient.setActive(true);
+
+        given(patientRepository.findByUsername(patient.getUsername())).willReturn(patient);
+
+        thenThrownBy(() -> patientService.updatePassword("Biggy","password","password1")).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+    @Test
+    void updatePatientPassword02() throws ExceptionHandler {
+        Patient patient = new Patient();
+        patient.setId(1);
+        patient.setUsername("edlee14");
+        patient.setPassword("aaaaaaa");
+        patient.setName("Manny");
+        patient.setEmail("Dan07@gmail.com");
+        patient.setActive(true);
+
+        given(patientRepository.findByUsername(patient.getUsername())).willReturn(patient);
+
+        thenThrownBy(() -> patientService.updatePassword("Biggy","password12","password1")).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+
+    @Test
+    void updatePatientPassword04() throws ExceptionHandler {
+        Patient patient = new Patient();
+        patient.setId(1);
+        patient.setUsername("edlee14");
+        patient.setPassword("password");
+        patient.setName("Manny");
+        patient.setEmail("Dan07@gmail.com");
+        patient.setActive(true);
+
+        given(patientRepository.findByUsername(patient.getUsername())).willReturn(patient);
+
+        thenThrownBy(() -> patientService.updatePassword("Biggy","password","password")).isExactlyInstanceOf(ExceptionHandler.class);
+    }
+
+
+
 
 
 }

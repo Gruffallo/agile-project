@@ -501,7 +501,7 @@ public class Practise {
 
         Patient patient= patientService.findByUsername(username);
         if(patient==null){
-            model.addAttribute("updatePasswordUsernameNotExist",true);
+            model.addAttribute("updatePatientPasswordUsernameNotExist",true);
 
 
         }

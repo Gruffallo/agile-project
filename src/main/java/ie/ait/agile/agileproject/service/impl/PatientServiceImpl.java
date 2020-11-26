@@ -47,4 +47,27 @@ public class PatientServiceImpl implements PatientService {
     public List<Patient> findAll() {
         return patientRepository.findAll();
     }
+    @Override
+    public Patient updatePassword(String username, String oldPassword, String newPassword) {
+
+    	Patient patient = patientRepository.findByUsername(username);
+
+        if (patient == null||patient.isActive()==false) {
+            throw new ExceptionHandler("Patient doesnt exist");
+        } else {
+            if (patient.getPassword().equals(oldPassword)) {
+                if (oldPassword != newPassword) {
+                	atient.setPassword(newPassword);
+                    return patientRepository.save(patient);
+
+                } else {
+                    throw new ExceptionHandler("New password cannot be the same as old password");
+                }
+
+            } else {
+                throw new ExceptionHandler("Old password doesnt match ");
+            }
+        }
+
+    }
 }
