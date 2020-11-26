@@ -60,6 +60,7 @@ public class PharmacistServiceImpl implements PharmacistService {
                 if (oldPassword != newPassword) {
                     pharmacist.setPassword(newPassword);
                     return pharmacistRepository.save(pharmacist);
+
                 } else {
                     throw new ExceptionHandler("New password cannot be the same as old password");
                 }
