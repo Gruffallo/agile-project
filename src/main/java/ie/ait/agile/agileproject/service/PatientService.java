@@ -9,4 +9,6 @@ public interface PatientService extends BaseService<Patient> {
     Patient findByUsername(String username);
 
     Patient findByEmail(String email);
+    
+    Patient updatePassword(String username,String oldPassword,String newPassword);
 }

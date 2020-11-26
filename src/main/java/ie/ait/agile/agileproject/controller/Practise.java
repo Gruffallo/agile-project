@@ -493,6 +493,27 @@ public class Practise {
 
         return "pharmacistPage";
     }
+    @PostMapping("/updatePatientPassword")
+    public String updatePatientPassword(@ModelAttribute("oldPassword") String oldpassword, @ModelAttribute("newPassword")String newpassword, @ModelAttribute("username")String username,Model model) throws Exception {
 
+
+        model.addAttribute("updatePatientPassword",true);
+
+        Patient patient= patientService.findByUsername(username);
+        if(patient==null){
+            model.addAttribute("updatePasswordUsernameNotExist",true);
+
+
+        }
+        else{
+            patientService.updatePassword(username,oldpassword,newpassword);
+            model.addAttribute("updatePatientPasswordSuccess",true);
+            model.addAttribute("oldPassword","");
+            model.addAttribute("newPassword","");
+
+        }
+
+        return "patientPage";
+    }
 
 }
