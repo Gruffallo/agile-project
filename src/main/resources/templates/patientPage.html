@@ -98,40 +98,26 @@
                         </button>
                     </h5>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample" th:classappend="${updatePatientPassword}? 'in active'">
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                     <div class="card-body">
-                        <form th:action="@{/updatePatientPassword}" method="post">
+                        <form action="#" method="post">
                             <div class="row">
                                 <div class="container">
                                     <div class = "col-sm-6">
-
                                         <div class="form-group">
-                                             <label>Type your username so we can know its you</label>
-                                            <input type="text" class="form-control" placeholder="Username"
-                                                   required th:value="${username}" name="username" minlength="5" maxlength="15">
-                                            <span th:if="${updatePatientPasswordUsernameNotExist}" style="color: red; font-size: 1.4rem;">Username doesnt exit</span>
-                                        </div> 
-                                    </div>
-                                    <div class = "col-sm-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Old Password"
-                                                   required th:value="${oldPassword}" name="oldPassword" minlength="5" maxlength="15">
+                                            <input type="password" name="oldPassword" class="form-control" placeholder="Old Password" required>
                                         </div>
                                     </div>
                                     <div class = "col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="New Password"
-                                                   required th:value="${newPassword}" minlength="5" maxlength="15" name="newPassword">
+                                            <input type="password" name="oldPassword" class="form-control" placeholder="New Password" required>
                                         </div>
                                     </div>
                                     <div class = "col-sm-6">
-                                        <button class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"
-                                                                        aria-hidden="true"></i>Update Password
-                                        </button>
-                                        <span th:if="${updatePatientPasswordSuccess}" style="color: green;font-size: 1.5rem;">Update Successful</span>
+                                        <a href="#" class="btn btn-info col-3">Update Password</a>
                                     </div>
                                     <div class = "col-sm-6">
-                                    
+                                        <span class="alert text-danger">Passwords do not match!!!!!</span>
                                     </div>
                                 </div>
                             </div>
