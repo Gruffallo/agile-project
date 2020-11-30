@@ -2,6 +2,7 @@ package ie.ait.agile.agileproject.service.impl;
 
 import ie.ait.agile.agileproject.entity.Gp;
 import ie.ait.agile.agileproject.entity.Patient;
+import ie.ait.agile.agileproject.entity.Pharmacist;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.repository.GpRepository;
 import ie.ait.agile.agileproject.repository.PatientRepository;
@@ -61,6 +62,28 @@ public class GpServiceImpl implements GpService {
         }
 
 
+    }
+
+    @Override
+    public Gp updatePassword(String username, String oldPassword, String newPassword) {
+        Gp gp = gpRepository.findByUsername(username);
+
+        if (gp == null||gp.isActive()==false) {
+            throw new ExceptionHandler("Gp doesn't exist");
+        } else {
+            if (gp.getPassword().equals(oldPassword)) {
+                if (oldPassword != newPassword) {
+                    gp.setPassword(newPassword);
+                    return gpRepository.save(gp);
+
+                } else {
+                    throw new ExceptionHandler("New password cannot be the same as old password");
+                }
+
+            } else {
+                throw new ExceptionHandler("Old password doesn't match ");
+            }
+        }
     }
 
 

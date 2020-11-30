@@ -517,4 +517,28 @@ public class Practise {
         return "patientPage";
     }
 
+    @PostMapping("/updateGpPassword")
+    public String updateGpPassword(@ModelAttribute("oldPassword") String oldpassword, @ModelAttribute("newPassword")String newpassword, @ModelAttribute("username")String username,Model model) throws Exception {
+
+
+        model.addAttribute("updateGpPassword",true);
+
+        Gp gp= gpService.findByUsername(username);
+        if(gp==null){
+            model.addAttribute("updateGpPasswordUsernameNotExist",true);
+
+
+        }
+        else{
+            gpService.updatePassword(username,oldpassword,newpassword);
+            model.addAttribute("gp",gp);
+            model.addAttribute("updateGpPasswordSuccess",true);
+            model.addAttribute("oldPassword","");
+            model.addAttribute("newPassword","");
+            model.addAttribute("patientCredentials", new PatientCredentials());
+        }
+
+        return "gpPage";
+    }
+
 }

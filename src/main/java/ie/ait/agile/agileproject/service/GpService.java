@@ -3,6 +3,7 @@ package ie.ait.agile.agileproject.service;
 
 import ie.ait.agile.agileproject.entity.Gp;
 import ie.ait.agile.agileproject.entity.Patient;
+import ie.ait.agile.agileproject.entity.Pharmacist;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface GpService extends BaseService<Gp> {
     Gp findByBadgeNo(String badgeNo);
 
     Patient createPatient(Patient patient);
+
+    Gp updatePassword(String username, String oldPassword, String newPassword);
 }

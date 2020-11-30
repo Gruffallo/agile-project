@@ -226,22 +226,39 @@
                         </div>
                         <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                             <div class="card-body">
-                                <form action="" method="post">
+                                <form th:action="@{/updateGpPassword}" method="post">
                                     <div class="row">
                                         <div class="container">
-                                            <div class = "col-sm-6">
+
+                                            <div class="col-sm-8">
                                                 <div class="form-group">
-                                                    <input type="password" name="oldPassword" class="form-control" placeholder="Old Password" required>
+                                                    <label for="username">Enter your username to confirm it is you:</label>
+                                                    <input type="text" class="form-control" placeholder="Username"
+                                                           required th:value="${username}" name="username" minlength="5" maxlength="15">
+                                                    <span th:if="${updateGpPasswordUsernameNotExist}" style="color: red; font-size: 1.4rem;">Username doesnt exit</span>
                                                 </div>
                                             </div>
-                                            <div class = "col-sm-6">
+
+                                            <div class="col-sm-8">
                                                 <div class="form-group">
-                                                    <input type="password" name="newPassword" class="form-control" placeholder="New Password" required>
+
+                                                    <input type="text" class="form-control" placeholder="Old Password"
+                                                           required th:value="${oldPassword}" name="oldPassword" minlength="5" maxlength="15">
                                                 </div>
                                             </div>
-                                            <div class = "col-sm-6">
-                                                <a href="#" class="btn btn-info">Update Password</a>
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="New Password"
+                                                           required th:value="${newPassword}" minlength="5" maxlength="15" name="newPassword">
+                                                </div>
                                             </div>
+                                            <div class="col-sm-12">
+                                                <button class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"
+                                                                                aria-hidden="true"></i>Update Password
+                                                </button>
+                                                <span th:if="${updateGpPasswordSuccess}" style="color: green;font-size: 1.5rem;">Update Successful</span>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </form>
