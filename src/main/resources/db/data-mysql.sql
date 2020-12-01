@@ -5,7 +5,7 @@ INSERT INTO gp (name, email, username, password, badge_no, active)
 VALUES ('Daniel', 'a00678543@ait.ie', 'dff11', 'dan435', 'G001', true);
 
 INSERT INTO osm (name, email, username, password, badge_no, active)
-VALUES ('Aaron', 'a00987654@ait.ie', 'aadff11', 'arn435', 'S001', true);
+VALUES ('Aaron', 'a00987654@ait.ie', 'osm-user', 'osm-pwd', 'S001', true);
 
 INSERT INTO patient (name, email, username, password, emergency_id, active)
 VALUES ('John', 'a00342156@ait.ie', 'jhh11', 'jhn435', 5437, true);

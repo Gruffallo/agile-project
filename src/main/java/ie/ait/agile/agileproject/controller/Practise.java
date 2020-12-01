@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
@@ -154,6 +151,7 @@ public class Practise {
         if (osmUser.equals(loginUser) && osmPwd.equals(loginPwd)) {
             model.addAttribute("osmLoginComplete", true);
             model.addAttribute("login", login);
+            model.addAttribute("patientUsers", patientService.findAll());
             return "osmPage";
         } else {
             model.addAttribute("invalidOsmDetails", true);
