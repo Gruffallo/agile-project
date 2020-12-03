@@ -237,4 +237,90 @@ public class HseServiceImpl implements HseService {
         }
     }
 
+    @Override
+    public Hse hseUpdateUser(String username, String name, String email) {
+
+        Hse hse= hseRepository.findByUsername(username);
+        if(hse==null||hse.isActive()==false){
+            throw new ExceptionHandler("Admin doesnt exist");
+        }
+        else if(hse.getEmail().toLowerCase().equals(email.toLowerCase())||hseRepository.findByEmail(email)!=null){
+            throw new ExceptionHandler("Email already exist");
+        }
+        else{
+            hse.setName(name);
+            hse.setEmail(email);
+            hseRepository.save(hse);
+        }
+        return hse;
+    }
+
+    @Override
+    public Gp gpUpdateUser(String username, String name, String email) {
+        Gp gp= gpRepository.findByUsername(username);
+        if(gp==null||!gp.isActive()){
+            throw new ExceptionHandler("Gp doesnt exist");
+        }
+        else if(gp.getEmail().toLowerCase().equals(email.toLowerCase())||gpRepository.findByEmail(email)!=null){
+            throw new ExceptionHandler("Email already exist");
+        }
+        else{
+            gp.setName(name);
+            gp.setEmail(email);
+            gpRepository.save(gp);
+        }
+        return gp;
+    }
+
+    @Override
+    public Pharmacist pharmaUpdateUser(String username, String name, String email) {
+        Pharmacist pharmacist= pharmaRepository.findByUsername(username);
+        if(pharmacist==null||!pharmacist.isActive()){
+            throw new ExceptionHandler("Pharmacist doesnt exist");
+        }
+        else if(pharmacist.getEmail().toLowerCase().equals(email.toLowerCase())||pharmaRepository.findByEmail(email)!=null){
+            throw new ExceptionHandler("Email already exist");
+        }
+        else{
+            pharmacist.setName(name);
+            pharmacist.setEmail(email);
+            pharmaRepository.save(pharmacist);
+        }
+        return pharmacist;
+    }
+
+    @Override
+    public OSM osmUpdateUser(String username, String name, String email) {
+        OSM osm= osmRepository.findByUsername(username);
+        if(osm==null||osm.isActive()==false){
+            throw new ExceptionHandler("OSM doesnt exist");
+        }
+        else if(osm.getEmail().toLowerCase().equals(email.toLowerCase())||osmRepository.findByEmail(email)!=null){
+            throw new ExceptionHandler("Email already exist");
+        }
+        else{
+            osm.setName(name);
+            osm.setEmail(email);
+            osmRepository.save(osm);
+        }
+        return osm;
+    }
+
+    @Override
+    public Patient patientUpdateUser(String username, String name, String email) {
+        Patient patient= patientRepository.findByUsername(username);
+        if(patient==null||patient.isActive()==false){
+            throw new ExceptionHandler("Patient doesnt exist");
+        }
+        else if(patient.getEmail().toLowerCase().equals(email.toLowerCase())||patientRepository.findByEmail(email)!=null){
+            throw new ExceptionHandler("Email already exist");
+        }
+        else{
+            patient.setName(name);
+            patient.setEmail(email);
+            patientRepository.save(patient);
+        }
+        return patient;
+    }
+
 }

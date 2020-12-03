@@ -256,5 +256,185 @@ class HseServiceTests {
     }
 
 
+    @Test
+    void hseUpdateUser01() {
+
+
+        Hse hse= new Hse();
+        hse.setName("Daniel");
+        hse.setUsername("Danny01");
+        hse.setPassword("Password");
+        hse.setEmail("Ojeaburu@gmail.com");
+        hse.setActive(true);
+        hse.setBadgeNo("A0023");
+
+        given(hseRepository.findByUsername(hse.getUsername())).willReturn(hse);
+        thenThrownBy(() -> hseService.hseUpdateUser("Dwanna","Ayo","Ayodeji@gmail.com")).isExactlyInstanceOf(ExceptionHandler.class);
+
+
+    }
+
+    @Test
+    void hseUpdateUser02() {
+
+
+        Hse hse= new Hse();
+        hse.setName("Daniel");
+        hse.setUsername("Danny01");
+        hse.setPassword("Password");
+        hse.setEmail("Ojeaburu@gmail.com");
+        hse.setActive(true);
+        hse.setBadgeNo("A0023");
+
+        given(hseRepository.findByUsername(hse.getUsername())).willReturn(hse);
+        thenThrownBy(() -> hseService.hseUpdateUser("Danny01","Ayo","Ojeaburu@gmail.com")).isExactlyInstanceOf(ExceptionHandler.class);
+
+
+    }
+
+    @Test
+    void gpUpdateUser01() {
+
+
+        Gp gp= new Gp();
+        gp.setName("Daniel");
+        gp.setUsername("Danny01");
+        gp.setPassword("Password");
+        gp.setEmail("Ojeaburu@gmail.com");
+        gp.setActive(true);
+        gp.setBadgeNo("A0023");
+
+        given(gpRepository.findByUsername(gp.getUsername())).willReturn(gp);
+        thenThrownBy(() -> hseService.gpUpdateUser("Dwanna","Ayo","Ayodeji@gmail.com")).isExactlyInstanceOf(ExceptionHandler.class);
+
+
+    }
+
+    @Test
+    void gpUpdateUser02() {
+
+
+        Gp gp= new Gp();
+        gp.setName("Daniel");
+        gp.setUsername("Danny01");
+        gp.setPassword("Password");
+        gp.setEmail("Ojeaburu@gmail.com");
+        gp.setActive(true);
+        gp.setBadgeNo("A0023");
+
+        given(gpRepository.findByUsername(gp.getUsername())).willReturn(gp);
+        thenThrownBy(() -> hseService.gpUpdateUser("Danny01","Ayo","Ojeaburu@gmail.com")).isExactlyInstanceOf(ExceptionHandler.class);
+
+
+    }
+
+    @Test
+    void pharmacistUpdateUser01() {
+
+
+        Pharmacist pharma= new Pharmacist();
+        pharma.setName("Daniel");
+        pharma.setUsername("Danny01");
+        pharma.setPassword("Password");
+        pharma.setEmail("Ojeaburu@gmail.com");
+        pharma.setActive(true);
+        pharma.setBadgeNo("A0023");
+
+        given(pharmacistRepository.findByUsername(pharma.getUsername())).willReturn(pharma);
+        thenThrownBy(() -> hseService.pharmaUpdateUser("Dwanna","Ayo","Ayodeji@gmail.com")).isExactlyInstanceOf(ExceptionHandler.class);
+
+
+    }
+
+    @Test
+    void pharmacistUpdateUser02() {
+
+
+        Pharmacist pharma= new Pharmacist();
+        pharma.setName("Daniel");
+        pharma.setUsername("Danny01");
+        pharma.setPassword("Password");
+        pharma.setEmail("Ojeaburu@gmail.com");
+        pharma.setActive(true);
+        pharma.setBadgeNo("A0023");
+
+        given(pharmacistRepository.findByUsername(pharma.getUsername())).willReturn(pharma);
+        thenThrownBy(() -> hseService.pharmaUpdateUser("Danny01","Ayo","Ojeaburu@gmail.com")).isExactlyInstanceOf(ExceptionHandler.class);
+
+
+    }
+    @Test
+    void patientUpdateUser01() {
+
+
+        Patient patient= new Patient();
+        patient.setName("Daniel");
+        patient.setUsername("Danny01");
+        patient.setPassword("Password");
+        patient.setEmail("Ojeaburu@gmail.com");
+        patient.setActive(true);
+        
+
+        given(patientRepository.findByUsername(patient.getUsername())).willReturn(patient);
+        thenThrownBy(() -> hseService.patientUpdateUser("Dwanna","Ayo","Ayodeji@gmail.com")).isExactlyInstanceOf(ExceptionHandler.class);
+
+
+    }
+
+    @Test
+    void patientUpdateUser02() {
+
+
+        Patient patient= new Patient();
+        patient.setName("Daniel");
+        patient.setUsername("Danny01");
+        patient.setPassword("Password");
+        patient.setEmail("Ojeaburu@gmail.com");
+        patient.setActive(true);
+        
+
+        given(patientRepository.findByUsername(patient.getUsername())).willReturn(patient);
+        thenThrownBy(() -> hseService.patientUpdateUser("Danny01","Ayo","Ojeaburu@gmail.com")).isExactlyInstanceOf(ExceptionHandler.class);
+
+
+    }
+
+    @Test
+    void osmUpdateUser01() {
+
+
+        OSM osm= new OSM();
+        osm.setName("Daniel");
+        osm.setUsername("Danny01");
+        osm.setPassword("Password");
+        osm.setEmail("Ojeaburu@gmail.com");
+        osm.setActive(true);
+        osm.setBadgeNo("A0023");
+
+        given(osmRepository.findByUsername(osm.getUsername())).willReturn(osm);
+        thenThrownBy(() -> hseService.osmUpdateUser("Dwanna","Ayo","Ayodeji@gmail.com")).isExactlyInstanceOf(ExceptionHandler.class);
+
+
+    }
+
+    @Test
+    void osmUpdateUser02() {
+
+
+        OSM osm= new OSM();
+        osm.setName("Daniel");
+        osm.setUsername("Danny01");
+        osm.setPassword("Password");
+        osm.setEmail("Ojeaburu@gmail.com");
+        osm.setActive(true);
+        osm.setBadgeNo("A0023");
+
+        given(osmRepository.findByUsername(osm.getUsername())).willReturn(osm);
+        thenThrownBy(() -> hseService.osmUpdateUser("Danny01","Ayo","Ojeaburu@gmail.com")).isExactlyInstanceOf(ExceptionHandler.class);
+
+
+    }
+
+
 
 }

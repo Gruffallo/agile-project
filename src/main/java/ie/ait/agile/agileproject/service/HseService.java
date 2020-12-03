@@ -32,4 +32,12 @@ public interface HseService extends BaseService<Hse> {
 
     Pharmacist deactivatePharma(String badgeNo);
 
+    Hse hseUpdateUser(String username,String name,String email);
+    Gp gpUpdateUser(String username,String name,String email);
+    Pharmacist pharmaUpdateUser(String username,String name,String email);
+    OSM osmUpdateUser(String username,String name,String email);
+    Patient patientUpdateUser(String username,String name,String email);
+
+
+
 }

@@ -4,6 +4,7 @@ import ie.ait.agile.agileproject.domain.Credentials;
 import ie.ait.agile.agileproject.domain.Login;
 import ie.ait.agile.agileproject.domain.PatientCredentials;
 import ie.ait.agile.agileproject.entity.*;
+import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -538,5 +539,165 @@ public class Practise {
 
         return "gpPage";
     }
+
+
+
+    @PostMapping("/hseUpdateUser")
+    public String hseUpdateUser(@ModelAttribute("hseUsername") String username, @ModelAttribute("hseName")String name, @ModelAttribute("hseEmail")String email,Model model) throws Exception {
+
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
+        model.addAttribute("credentials",new Credentials());
+        model.addAttribute("hseUpdateUser",true);
+
+
+       Hse hse= hseService.findByUsername(username);
+        if(hse==null||!hse.isActive()){
+            model.addAttribute("hseUpdateUserUsernameNotExist",true);
+
+
+        }
+        else if(hse.getEmail().toLowerCase().equals(email.toLowerCase())||hseService.findByEmail(email)!=null){
+            model.addAttribute("hseUpdateUserEmailExist",true);        }
+        else{
+            hseService.hseUpdateUser(username,name,email);
+
+            model.addAttribute("hseEmail","");
+            model.addAttribute("hseName","");
+            model.addAttribute("hseUpdateUserSuccess",true);
+
+        }
+
+        return "hsePage";
+    }
+    @PostMapping("/gpUpdateUser")
+    public String gpUpdateUser(@ModelAttribute("gpUsername") String username, @ModelAttribute("gpName")String name, @ModelAttribute("gpEmail")String email,Model model) throws Exception {
+
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
+        model.addAttribute("credentials",new Credentials());
+        model.addAttribute("gpUpdateUser",true);
+
+
+        Gp gp= gpService.findByUsername(username);
+        if(gp==null||!gp.isActive()){
+            model.addAttribute("gpUpdateUserUsernameNotExist",true);
+
+
+        }
+        else if(gp.getEmail().toLowerCase().equals(email.toLowerCase())||gpService.findByEmail(email)!=null){
+            model.addAttribute("gpUpdateUserEmailExist",true);        }
+        else{
+            hseService.gpUpdateUser(username,name,email);
+
+            model.addAttribute("gpEmail","");
+            model.addAttribute("gpName","");
+            model.addAttribute("gpUpdateUserSuccess",true);
+
+        }
+
+        return "hsePage";
+    }
+    
+    @PostMapping("/pharmaUpdateUser")
+    public String pharmaUpdateUser(@ModelAttribute("pharmaUsername") String username, @ModelAttribute("pharmaName")String name, @ModelAttribute("pharmaEmail")String email,Model model) throws Exception {
+
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
+        model.addAttribute("credentials",new Credentials());
+        model.addAttribute("pharmaUpdateUser",true);
+
+
+        Pharmacist pharma= pharmaService.findByUsername(username);
+        if(pharma==null||!pharma.isActive()){
+            model.addAttribute("pharmaUpdateUserUsernameNotExist",true);
+
+
+        }
+        else if(pharma.getEmail().toLowerCase().equals(email.toLowerCase())||pharmaService.findByEmail(email)!=null){
+            model.addAttribute("pharmaUpdateUserEmailExist",true);        }
+        else{
+            hseService.pharmaUpdateUser(username,name,email);
+
+            model.addAttribute("pharmaEmail","");
+            model.addAttribute("pharmaName","");
+            model.addAttribute("pharmaUpdateUserSuccess",true);
+
+        }
+
+        return "hsePage";
+    }
+    @PostMapping("/patientUpdateUser")
+    public String patientUpdateUser(@ModelAttribute("patientUsername") String username, @ModelAttribute("patientName")String name, @ModelAttribute("patientEmail")String email,Model model) throws Exception {
+
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
+        model.addAttribute("credentials",new Credentials());
+        model.addAttribute("patientUpdateUser",true);
+
+
+        Patient patient= patientService.findByUsername(username);
+        if(patient==null||!patient.isActive()){
+            model.addAttribute("patientUpdateUserUsernameNotExist",true);
+
+
+        }
+        else if(patient.getEmail().toLowerCase().equals(email.toLowerCase())||patientService.findByEmail(email)!=null){
+            model.addAttribute("patientUpdateUserEmailExist",true);        }
+        else{
+            hseService.patientUpdateUser(username,name,email);
+
+            model.addAttribute("patientEmail","");
+            model.addAttribute("patientName","");
+            model.addAttribute("patientUpdateUserSuccess",true);
+
+        }
+
+        return "hsePage";
+    }
+    @PostMapping("/osmUpdateUser")
+    public String osmUpdateUser(@ModelAttribute("osmUsername") String username, @ModelAttribute("osmName")String name, @ModelAttribute("osmEmail")String email,Model model) throws Exception {
+
+        model.addAttribute("hseUsers", hseService.findAll());
+        model.addAttribute("gpUsers", gpService.findAll());
+        model.addAttribute("pharmaUsers", pharmaService.findAll());
+        model.addAttribute("patientUsers", patientService.findAll());
+        model.addAttribute("osmUsers", osmService.findAll());
+        model.addAttribute("credentials",new Credentials());
+        model.addAttribute("osmUpdateUser",true);
+
+
+        OSM osm= osmService.findByUsername(username);
+        if(osm==null||!osm.isActive()){
+            model.addAttribute("osmUpdateUserUsernameNotExist",true);
+
+
+        }
+        else if(osm.getEmail().toLowerCase().equals(email.toLowerCase())||osmService.findByEmail(email)!=null){
+            model.addAttribute("osmUpdateUserEmailExist",true);        }
+        else{
+            hseService.osmUpdateUser(username,name,email);
+
+            model.addAttribute("osmEmail","");
+            model.addAttribute("osmName","");
+            model.addAttribute("osmUpdateUserSuccess",true);
+
+        }
+
+        return "hsePage";
+    }
+
 
 }
