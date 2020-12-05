@@ -1,9 +1,7 @@
 package ie.ait.agile.agileproject.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -19,6 +17,8 @@ public class Hse {
     private String name;
     private String badgeNo;
     private boolean active;
+
+
 
     public String getBadgeNo() {
         return badgeNo;

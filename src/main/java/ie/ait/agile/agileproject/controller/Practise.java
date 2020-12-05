@@ -61,6 +61,7 @@ public class Practise {
             model.addAttribute("pharmaUsers", pharmaService.findAll());
             model.addAttribute("patientUsers", patientService.findAll());
             model.addAttribute("osmUsers", osmService.findAll());
+            model.addAttribute("searchHse",false);
 
             return "hsePage";
         } else {
@@ -447,7 +448,7 @@ public class Practise {
     }
 
     @PostMapping("/createPatient")
-    public String createPatient(@Valid PatientCredentials patientCredentials, Model model) throws Exception {
+    public String createPatient(@Valid PatientCredentials patientCredentials, Model model,@ModelAttribute("gpUsername")String username) throws Exception {
         Patient patient = new Patient();
         patient.setName(patientCredentials.getName());
         patient.setUsername(patientCredentials.getUsername());
@@ -456,12 +457,17 @@ public class Practise {
         patient.setEmergencyId(patientCredentials.getEmergencyId());
         patient.setActive(true);
 
+        Gp gp= gpService.findByUsername(username);
+
         if (patientService.findByUsername(patient.getUsername()) != null) {
             model.addAttribute("patientUsernameExist", true);
         } else if (patientService.findByEmail(patient.getEmail()) != null) {
             model.addAttribute("patientEmailExist", true);
+        }
+        else if (gp == null||gp.isActive()==false) {
+            model.addAttribute("gpCreatePatientNotExist", true);
         } else {
-            gpService.createPatient(patient);
+            gpService.createPatient(patient,gp);
             model.addAttribute("patientCreated", true);
             model.addAttribute("patientCredentials", new PatientCredentials());
         }
@@ -698,6 +704,9 @@ public class Practise {
 
         return "hsePage";
     }
+
+
+
 
 
 }

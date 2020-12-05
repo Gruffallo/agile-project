@@ -1,8 +1,6 @@
 package ie.ait.agile.agileproject.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -25,6 +23,17 @@ public class Patient {
     private Long emergencyId;
 
     private boolean active;
+
+    @OneToOne(cascade=CascadeType.ALL)
+    private Gp gp;
+
+    public Gp getGp() {
+        return gp;
+    }
+
+    public void setGp(Gp gp) {
+        this.gp = gp;
+    }
 
     public boolean isActive() {
         return active;

@@ -17,7 +17,7 @@ public interface GpService extends BaseService<Gp> {
 
     Gp findByBadgeNo(String badgeNo);
 
-    Patient createPatient(Patient patient);
+    Patient createPatient(Patient patient,Gp gp);
 
     Gp updatePassword(String username, String oldPassword, String newPassword);
 }

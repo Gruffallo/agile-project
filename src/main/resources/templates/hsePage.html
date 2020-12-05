@@ -4,6 +4,7 @@
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{https://cdn.datatables.net/v/ju/dt-1.10.20/datatables.min.css}"/>
 </head>
 <body>
 <!--  Header and Navigation --->
@@ -65,7 +66,8 @@
                                     No HSE users available
                                 </div>
                                 <div class="panel-body" th:if="${!hseUsers.isEmpty()}">
-                                    <table style="width:100%">
+                                    <table id="hseListTable" class="table table-bordered table-hover table-striped"
+                                           style="width:100%">
                                         <thead>
                                         <tr>
                                             <th> Name</th>
@@ -76,7 +78,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="hseUser : ${hseUsers}">
+                                        <tr data-th-each="hseUser : ${hseUsers}">
                                             <td><span th:text="${hseUser.name}"> Name </span></td>
                                             <td><span th:text="${hseUser.username}"> Username </span></td>
                                             <td><span th:text="${hseUser.email}"> E-Mail </span></td>
@@ -190,7 +192,8 @@
                                 </h4>
                             </div>
 
-                            <div id="updateAdmin" class="panel-collapse collapse" th:classappend="${hseUpdateUser}? 'in active'">
+                            <div id="updateAdmin" class="panel-collapse collapse"
+                                 th:classappend="${hseUpdateUser}? 'in active'">
                                 <div class="panel-body">
 
 
@@ -201,25 +204,25 @@
                                             </label> <input th:value="${hseUsername}" name="hseUsername"
                                                             class="form-control"
                                                             type="text" minlength="5" maxlength="15">
-                                            <span th:if="${hseUpdateUserUsernameNotExist}" style="color: red;font-size: 1.6rem;">Username doesnt exist</span>
+                                            <span th:if="${hseUpdateUserUsernameNotExist}"
+                                                  style="color: red;font-size: 1.6rem;">Username doesnt exist</span>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="hseEmail">Enter  User's new Email address
+                                            <label for="hseEmail">Enter User's new Email address
                                             </label> <input th:value="${hseEmail}" name="hseEmail"
                                                             class="form-control"
-                                                            type="email" minlength="10" >
-                                            <span th:if="${hseUpdateUserEmailExist}" style="color: red;font-size: 1.6rem;">Email already exist</span>
+                                                            type="email" minlength="10">
+                                            <span th:if="${hseUpdateUserEmailExist}"
+                                                  style="color: red;font-size: 1.6rem;">Email already exist</span>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="hseEmail">Enter  User's new  Name
+                                            <label for="hseEmail">Enter User's new Name
                                             </label> <input th:value="${hseName}" name="hseName"
                                                             class="form-control"
-                                                            type="text" minlength="2" maxlength="17" >
+                                                            type="text" minlength="2" maxlength="17">
 
                                         </div>
 
-
-                                     
 
                                         <button class="btn btn-primary" type="submit">
                                             <i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Update
@@ -268,6 +271,8 @@
                         </div>
 
 
+
+
                     </div>
 
 
@@ -297,7 +302,7 @@
                                     No doctors available
                                 </div>
                                 <div class="panel-body" th:if="${!gpUsers.isEmpty()}">
-                                    <table style="width:100%">
+                                    <table style="width:100%" id="gpListTable" class="table table-bordered table-hover table-striped">
                                         <thead>
                                         <tr>
                                             <th> Name</th>
@@ -422,7 +427,8 @@
                                 </h4>
                             </div>
 
-                            <div id="updateGp" class="panel-collapse collapse" th:classappend="${gpUpdateUser}? 'in active'">
+                            <div id="updateGp" class="panel-collapse collapse"
+                                 th:classappend="${gpUpdateUser}? 'in active'">
                                 <div class="panel-body">
                                     <form th:action="@{/gpUpdateUser}" method="post" action="#">
                                         <p>Enter the user's details</p>
@@ -431,24 +437,24 @@
                                             </label> <input th:value="${gpUsername}" name="gpUsername"
                                                             class="form-control"
                                                             type="text" minlength="5" maxlength="15">
-                                            <span th:if="${gpUpdateUserUsernameNotExist}" style="color: red;font-size: 1.6rem;">Username doesnt exist</span>
+                                            <span th:if="${gpUpdateUserUsernameNotExist}"
+                                                  style="color: red;font-size: 1.6rem;">Username doesnt exist</span>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="gpEmail">Enter  User's new Email address
+                                            <label for="gpEmail">Enter User's new Email address
                                             </label> <input th:value="${gpEmail}" name="gpEmail"
                                                             class="form-control"
-                                                            type="email" minlength="10" >
-                                            <span th:if="${gpUpdateUserEmailExist}" style="color: red;font-size: 1.6rem;">Email already exist</span>
+                                                            type="email" minlength="10">
+                                            <span th:if="${gpUpdateUserEmailExist}"
+                                                  style="color: red;font-size: 1.6rem;">Email already exist</span>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="gpEmail">Enter  User's new  Name
+                                            <label for="gpEmail">Enter User's new Name
                                             </label> <input th:value="${gpName}" name="gpName"
                                                             class="form-control"
-                                                            type="text" minlength="2" maxlength="17" >
+                                                            type="text" minlength="2" maxlength="17">
 
                                         </div>
-
-
 
 
                                         <button class="btn btn-primary" type="submit">
@@ -498,6 +504,8 @@
                         </div>
 
 
+
+
                     </div>
 
 
@@ -523,7 +531,7 @@
                                     No pharmacist available
                                 </div>
                                 <div class="panel-body" th:if="${!pharmaUsers.isEmpty()}">
-                                    <table style="width:100%">
+                                    <table style="width:100%" id="pharmaListTable" class="table table-bordered table-hover table-striped">
                                         <thead>
                                         <tr>
                                             <th> Name</th>
@@ -657,30 +665,31 @@
                                             </label> <input th:value="${pharmaUsername}" name="pharmaUsername"
                                                             class="form-control"
                                                             type="text" minlength="5" maxlength="15">
-                                            <span th:if="${pharmaUpdateUserUsernameNotExist}" style="color: red;font-size: 1.6rem;">Username doesnt exist</span>
+                                            <span th:if="${pharmaUpdateUserUsernameNotExist}"
+                                                  style="color: red;font-size: 1.6rem;">Username doesnt exist</span>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="pharmaEmail">Enter  User's new Email address
+                                            <label for="pharmaEmail">Enter User's new Email address
                                             </label> <input th:value="${pharmaEmail}" name="pharmaEmail"
                                                             class="form-control"
-                                                            type="email" minlength="10" >
-                                            <span th:if="${pharmaUpdateUserEmailExist}" style="color: red;font-size: 1.6rem;">Email already exist</span>
+                                                            type="email" minlength="10">
+                                            <span th:if="${pharmaUpdateUserEmailExist}"
+                                                  style="color: red;font-size: 1.6rem;">Email already exist</span>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="pharmaEmail">Enter  User's new  Name
+                                            <label for="pharmaEmail">Enter User's new Name
                                             </label> <input th:value="${pharmaName}" name="pharmaName"
                                                             class="form-control"
-                                                            type="text" minlength="2" maxlength="17" >
+                                                            type="text" minlength="2" maxlength="17">
 
                                         </div>
-
-
 
 
                                         <button class="btn btn-primary" type="submit">
                                             <i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Update
                                         </button>
-                                        <span style="color: green; font-size: 1.8rem; " th:if="${pharmaUpdateUserSuccess}">Update Successful</span>
+                                        <span style="color: green; font-size: 1.8rem; "
+                                              th:if="${pharmaUpdateUserSuccess}">Update Successful</span>
                                     </form>
                                 </div>
                             </div>
@@ -727,6 +736,8 @@
                         </div>
 
 
+
+
                     </div>
 
 
@@ -753,7 +764,7 @@
                                     No patient available
                                 </div>
                                 <div class="panel-body" th:if="${!patientUsers.isEmpty()}">
-                                    <table style="width:100%">
+                                    <table style="width:100%" id="patientListTable" class="table table-bordered table-hover table-striped">
                                         <thead>
                                         <tr>
                                             <th> Name</th>
@@ -797,30 +808,31 @@
                                             </label> <input th:value="${patientUsername}" name="patientUsername"
                                                             class="form-control"
                                                             type="text" minlength="5" maxlength="15">
-                                            <span th:if="${patientUpdateUserUsernameNotExist}" style="color: red;font-size: 1.8rem;">Username doesnt exist</span>
+                                            <span th:if="${patientUpdateUserUsernameNotExist}"
+                                                  style="color: red;font-size: 1.8rem;">Username doesnt exist</span>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="patientEmail">Enter  User's new Email address
+                                            <label for="patientEmail">Enter User's new Email address
                                             </label> <input th:value="${patientEmail}" name="patientEmail"
                                                             class="form-control"
-                                                            type="email" minlength="10" >
-                                            <span th:if="${patientUpdateUserEmailExist}" style="color: red;font-size: 1.8rem;">Email already exist</span>
+                                                            type="email" minlength="10">
+                                            <span th:if="${patientUpdateUserEmailExist}"
+                                                  style="color: red;font-size: 1.8rem;">Email already exist</span>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="patientEmail">Enter  User's new  Name
+                                            <label for="patientEmail">Enter User's new Name
                                             </label> <input th:value="${patientName}" name="patientName"
                                                             class="form-control"
-                                                            type="text" minlength="2" maxlength="17" >
+                                                            type="text" minlength="2" maxlength="17">
 
                                         </div>
-
-
 
 
                                         <button class="btn btn-primary" type="submit">
                                             <i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>Update
                                         </button>
-                                        <span style="color: green; font-size: 1.8rem; " th:if="${patientUpdateUserSuccess}">Update Successful</span>
+                                        <span style="color: green; font-size: 1.8rem; "
+                                              th:if="${patientUpdateUserSuccess}">Update Successful</span>
                                     </form>
                                 </div>
                             </div>
@@ -865,6 +877,8 @@
                         </div>
 
 
+
+
                     </div>
 
 
@@ -893,7 +907,7 @@
                                     No other staff member available
                                 </div>
                                 <div class="panel-body" th:if="${!osmUsers.isEmpty()}">
-                                    <table style="width:100%">
+                                    <table style="width:100%" id="osmListTable" class="table table-bordered table-hover table-striped">
                                         <thead>
                                         <tr>
                                             <th> Name</th>
@@ -1026,24 +1040,24 @@
                                             </label> <input th:value="${osmUsername}" name="osmUsername"
                                                             class="form-control"
                                                             type="text" minlength="5" maxlength="15">
-                                            <span th:if="${osmUpdateUserUsernameNotExist}" style="color: red;font-size: 1.6rem;">Username doesnt exist</span>
+                                            <span th:if="${osmUpdateUserUsernameNotExist}"
+                                                  style="color: red;font-size: 1.6rem;">Username doesnt exist</span>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="osmEmail">Enter  User's new Email address
+                                            <label for="osmEmail">Enter User's new Email address
                                             </label> <input th:value="${osmEmail}" name="osmEmail"
                                                             class="form-control"
-                                                            type="email" minlength="10" >
-                                            <span th:if="${osmUpdateUserEmailExist}" style="color: red;font-size: 1.6rem;">Email already exist</span>
+                                                            type="email" minlength="10">
+                                            <span th:if="${osmUpdateUserEmailExist}"
+                                                  style="color: red;font-size: 1.6rem;">Email already exist</span>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="osmEmail">Enter  User's new  Name
+                                            <label for="osmEmail">Enter User's new Name
                                             </label> <input th:value="${osmName}" name="osmName"
                                                             class="form-control"
-                                                            type="text" minlength="2" maxlength="17" >
+                                                            type="text" minlength="2" maxlength="17">
 
                                         </div>
-
-
 
 
                                         <button class="btn btn-primary" type="submit">
@@ -1094,6 +1108,8 @@
                         </div>
 
 
+
+
                     </div>
 
 
@@ -1130,6 +1146,8 @@
         src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{https://cdn.datatables.net/v/ju/dt-1.10.20/datatables.min.js}"></script>
+<script th:src="@{/js/scripts.js}"></script>
 
 </body>
 </html>

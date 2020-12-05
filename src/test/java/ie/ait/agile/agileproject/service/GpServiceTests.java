@@ -28,6 +28,7 @@ class GpServiceTests {
 
     @MockBean
     private PatientRepository patientRepository;
+
     @Test
     void gpLogin01() throws ExceptionHandler {
         Gp gp = new Gp();
@@ -45,46 +46,59 @@ class GpServiceTests {
     }
 
     @Test
-    void createPatient01() throws ExceptionHandler{
-        Patient patient= new Patient();
+    void createPatient01() throws ExceptionHandler {
+        Patient patient = new Patient();
         patient.setActive(true);
         patient.setUsername("Danny01");
         patient.setPassword("password");
         patient.setEmergencyId((long) 1234);
         patient.setEmail("ojeaburu@gmail.com");
+        Gp gp = new Gp();
+        gp.setUsername("Danny01");
+        gp.setPassword("password");
+
 
         given(patientRepository.findByUsername(anyString())).willReturn(patient);
 
         // when
-        ThrowableAssert.ThrowingCallable callable = () -> gpService.createPatient(patient);
+        ThrowableAssert.ThrowingCallable callable = () -> gpService.createPatient(patient,gp);
 
         thenThrownBy(callable).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
     @Test
-    void createPatient02() throws ExceptionHandler{
-        Patient patient= new Patient();
+    void createPatient02() throws ExceptionHandler {
+        Patient patient = new Patient();
 
         patient.setEmail("ojeaburu@gmail.com");
+
+        Gp gp = new Gp();
+        gp.setUsername("Danny01");
+        gp.setPassword("password");
 
         given(patientRepository.findByEmail(anyString())).willReturn(patient);
 
         // when
-        ThrowableAssert.ThrowingCallable callable = () -> gpService.createPatient(patient);
+        ThrowableAssert.ThrowingCallable callable = () -> gpService.createPatient(patient,gp);
 
         thenThrownBy(callable).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
     @Test
-    void createPatient03() throws ExceptionHandler{
-        Patient patient= new Patient();
+    void createPatient03() throws ExceptionHandler {
+        Patient patient = new Patient();
+        Gp gp = new Gp();
+        gp.setUsername("Danny01");
+        gp.setPassword("password");
 
         given(patientRepository.findByUsername(anyString())).willReturn(null);
         given(patientRepository.findByEmail(anyString())).willReturn(null);
         given(patientRepository.save(patient)).willReturn(patient);
+        given(gpRepository.findByUsername(anyString())).willReturn(gp);
+
 
         // when
-        Patient result = gpService.createPatient(patient);
+        Patient result = gpService.createPatient(patient,gp);
 
         then(result).isEqualTo(patient);
     }
@@ -103,11 +117,12 @@ class GpServiceTests {
 
         given(gpRepository.findByUsername(gp.getUsername())).willReturn(gp);
 
-        thenThrownBy(() -> gpService.updatePassword("Biggy","password","password1")).isExactlyInstanceOf(ExceptionHandler.class);
+        thenThrownBy(() -> gpService.updatePassword("Biggy", "password", "password1")).isExactlyInstanceOf(ExceptionHandler.class);
     }
+
     @Test
     void updateGpPassword02() throws ExceptionHandler {
-       Gp gp = new Gp();
+        Gp gp = new Gp();
         gp.setId(1);
         gp.setUsername("edlee14");
         gp.setPassword("aaaaaaa");
@@ -118,7 +133,7 @@ class GpServiceTests {
 
         given(gpRepository.findByUsername(gp.getUsername())).willReturn(gp);
 
-        thenThrownBy(() -> gpService.updatePassword("Biggy","password12","password1")).isExactlyInstanceOf(ExceptionHandler.class);
+        thenThrownBy(() -> gpService.updatePassword("Biggy", "password12", "password1")).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
     @Test
@@ -134,7 +149,7 @@ class GpServiceTests {
 
         given(gpRepository.findByUsername(gp.getUsername())).willReturn(gp);
 
-        thenThrownBy(() -> gpService.updatePassword("Biggy","password","password")).isExactlyInstanceOf(ExceptionHandler.class);
+        thenThrownBy(() -> gpService.updatePassword("Biggy", "password", "password")).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
 

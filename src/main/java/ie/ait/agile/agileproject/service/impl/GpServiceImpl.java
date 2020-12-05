@@ -52,12 +52,17 @@ public class GpServiceImpl implements GpService {
     }
 
     @Override
-    public Patient createPatient(Patient patient) {
+    public Patient createPatient(Patient patient,Gp gp) {
         if (patientRepository.findByUsername(patient.getUsername()) != null) {
             throw new ExceptionHandler("Patient Username Already exist");
         } else if (patientRepository.findByEmail(patient.getEmail()) != null) {
             throw new ExceptionHandler("Patient Email Already exist");
-        } else {
+        }
+        else if(gpRepository.findByUsername(gp.getUsername())==null) {
+            throw new ExceptionHandler("Gp with this username doesnt exist");
+        }else
+         {
+             patient.setGp(gp);
             return patientRepository.save(patient);
         }
 
