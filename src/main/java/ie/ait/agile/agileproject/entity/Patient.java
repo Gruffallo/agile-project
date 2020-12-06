@@ -2,6 +2,8 @@ package ie.ait.agile.agileproject.entity;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -26,6 +28,9 @@ public class Patient {
 
     @OneToOne(cascade=CascadeType.ALL)
     private Gp gp;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
+    private List<Prescription> prescriptionList;
 
     public Gp getGp() {
         return gp;
@@ -92,5 +97,11 @@ public class Patient {
         this.emergencyId = emergencyId;
     }
 
+    public List<Prescription> getPrescriptionList() {
+        return prescriptionList;
+    }
 
+    public void setPrescriptionList(List<Prescription> prescriptionList) {
+        this.prescriptionList = prescriptionList;
+    }
 }

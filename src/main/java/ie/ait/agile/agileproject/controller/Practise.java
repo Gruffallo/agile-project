@@ -6,13 +6,19 @@ import ie.ait.agile.agileproject.domain.PatientCredentials;
 import ie.ait.agile.agileproject.entity.*;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.service.*;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @Controller
@@ -448,7 +454,7 @@ public class Practise {
     }
 
     @PostMapping("/createPatient")
-    public String createPatient(@Valid PatientCredentials patientCredentials, Model model,@ModelAttribute("gpUsername")String username) throws Exception {
+    public String createPatient(@Valid PatientCredentials patientCredentials, Model model) throws Exception {
         Patient patient = new Patient();
         patient.setName(patientCredentials.getName());
         patient.setUsername(patientCredentials.getUsername());
@@ -457,7 +463,9 @@ public class Practise {
         patient.setEmergencyId(patientCredentials.getEmergencyId());
         patient.setActive(true);
 
-        Gp gp= gpService.findByUsername(username);
+
+
+        Gp gp= gpService.findByUsername(patientCredentials.getGpUsername());
 
         if (patientService.findByUsername(patient.getUsername()) != null) {
             model.addAttribute("patientUsernameExist", true);
@@ -703,6 +711,39 @@ public class Practise {
         }
 
         return "hsePage";
+    }
+
+
+    @PostMapping("/createPrescription")
+    public String createPrescription(@ModelAttribute("patientUsername") String patientUsername, @ModelAttribute("pDate") String pDate, @ModelAttribute("prescriptionDescription")String description, Model model) throws Exception {
+
+
+            //System.out.println(pDate);
+        Date date1=new SimpleDateFormat("yyyy/MM/dd").parse(pDate.replaceAll("-","/"));
+
+
+        model.addAttribute("createPrescription", true);
+
+        model.addAttribute("patientCredentials", new PatientCredentials());
+        Patient patient= patientService.findByUsername(patientUsername);
+
+
+
+        if(patient==null){
+            model.addAttribute("patientNotExistCreatePrescription",true);
+
+
+        }
+        else{
+
+            patientService.createPrescription(patient,description,date1);
+            model.addAttribute("prescriptionDescription","");
+            model.addAttribute("createPrescriptionSuccess",true);
+
+
+        }
+
+        return "gpPage";
     }
 
 

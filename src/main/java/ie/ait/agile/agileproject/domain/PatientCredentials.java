@@ -28,7 +28,19 @@ public class PatientCredentials {
     private long emergencyId;
 
 
+    @NotNull
+    @Size(min = 5, max = 15, message
+            = "Username should be between 5 to 15")
+    private String gpUsername;
 
+
+    public String getGpUsername() {
+        return gpUsername;
+    }
+
+    public void setGpUsername(String gpUsername) {
+        this.gpUsername = gpUsername;
+    }
 
     public String getUsername() {
         return username;

@@ -47,34 +47,46 @@
 
                         <!-- This section create patient details ======================================-->
 
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                             data-parent="#accordionExample">
                             <div class="card-body">
-                                <form action="#" method="post" th:action="@{/createPatient}" th:object="${patientCredentials}">
+                                <form action="#" method="post" th:action="@{/createPatient}"
+                                      th:object="${patientCredentials}">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" th:field="*{username}" id="patientUsername" placeholder="Register Username">
-                                        <span th:if="${patientUsernameExist}" style="color: red; font-size: 1.5rem;" >This username already exist</span>
+                                        <input class="form-control" type="text" th:field="*{username}"
+                                               id="patientUsername" placeholder="Register Username">
+                                        <span th:if="${patientUsernameExist}" style="color: red; font-size: 1.5rem;">This username already exist</span>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="email"th:field="*{email}" id="patientEmail" placeholder="Register Email">
+                                        <input class="form-control" type="email" th:field="*{email}" id="patientEmail"
+                                               placeholder="Register Email">
                                         <span th:if="${patientEmailExist}" style="font-size: 1.5rem;color: red;">This email already exist</span>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" th:field="*{emergencyId}" id="patientEmergencyId" placeholder="Enter Emergency ID">
+                                        <input class="form-control" type="text" th:field="*{emergencyId}"
+                                               id="patientEmergencyId" placeholder="Enter Emergency ID">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" th:field="*{password}" id="patientPassword" placeholder="Enter Secure Password">
+                                        <input class="form-control" type="text" th:field="*{password}"
+                                               id="patientPassword" placeholder="Enter Secure Password">
 
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" th:field="*{name}" id="patientName" placeholder="Enter the patients name">
+                                        <input class="form-control" type="text" th:field="*{name}" id="patientName"
+                                               placeholder="Enter the patients name">
 
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" th:value="${gpUsername}" placeholder="Enter the GP's username" minlength="5" maxlength="15">
+                                        <input class="form-control" type="text" th:field="*{gpUsername}"
+                                               placeholder="Enter the GP's username" minlength="5" maxlength="15">
+                                        <span th:if="${gpCreatePatientNotExist}" style="color: red; font-size: 1.6rem;">It looks like there is no Gp with that username</span>
 
                                     </div>
-                                    <button class="btn btn-primary" type="submit"><span><i class="fa fa-fw fa-plus" aria-hidden="true"></i></span>Create Record</button>
-                                    <span th:if="${patientCreated}"style="color: green;font-size: 2rem;">Patient has been created </span>
+                                    <button class="btn btn-primary" type="submit"><span><i class="fa fa-fw fa-plus"
+                                                                                           aria-hidden="true"></i></span>Create
+                                        Record
+                                    </button>
+                                    <span th:if="${patientCreated}" style="color: green;font-size: 2rem;">Patient has been created </span>
                                 </form>
                             </div>
                         </div>
@@ -90,11 +102,13 @@
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                         data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    <span><i class="fa fa-fw fa-book" aria-hidden="true"></i></span> Read Patient Details
+                                    <span><i class="fa fa-fw fa-book" aria-hidden="true"></i></span> Read Patient
+                                    Details
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                             data-parent="#accordionExample">
                             <div class="card-body">
                                 <form action="" method="put">
                                     <table class="table table-striped">
@@ -114,7 +128,8 @@
                                             <td>Otto</td>
                                             <td>@mdo</td>
                                             <td>
-                                                <a class="btn btn-primary"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>Update</a>
+                                                <a class="btn btn-primary"><i class="fa fa-fw fa-pencil-square-o"
+                                                                              aria-hidden="true"></i>Update</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -123,7 +138,8 @@
                                             <td>Thornton</td>
                                             <td>@fat</td>
                                             <td>
-                                                <a class="btn btn-primary"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>Update</a>
+                                                <a class="btn btn-primary"><i class="fa fa-fw fa-pencil-square-o"
+                                                                              aria-hidden="true"></i>Update</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -132,18 +148,19 @@
                                             <td>the Bird</td>
                                             <td>@twitter</td>
                                             <td>
-                                                <a class="btn btn-primary"><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i>Update</a>
+                                                <a class="btn btn-primary"><i class="fa fa-fw fa-pencil-square-o"
+                                                                              aria-hidden="true"></i>Update</a>
                                             </td>
                                         </tr>
                                         </tbody>
                                     </table>
-                            </form>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
         <!--- This section updates patient details ======================================================-->
         <div class="row mb-4">
             <div class="col-sm-6 mb-5">
@@ -152,28 +169,36 @@
                         <div class="card-header" id="headingThree">
                             <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                        data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    <span><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></span> Update Patient Record
+                                        data-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                    <span><i class="fa fa-fw fa-pencil-square-o" aria-hidden="true"></i></span> Update
+                                    Patient Record
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                             data-parent="#accordionExample">
                             <div class="card-body">
 
                                 <form action="#" method="put">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="patientName" id="patientName" placeholder="Register Username">
+                                        <input class="form-control" type="text" name="patientName" id="patientName"
+                                               placeholder="Register Username">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="email" name="patientEmail" id="patientEmail" placeholder="Register Email">
+                                        <input class="form-control" type="email" name="patientEmail" id="patientEmail"
+                                               placeholder="Register Email">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="patientEmId" id="patientEmId" placeholder="Enter Emergency ID">
+                                        <input class="form-control" type="text" name="patientEmId" id="patientEmId"
+                                               placeholder="Enter Emergency ID">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="password" name="patientPassword" id="patientPassword" placeholder="Enter Secure Password">
+                                        <input class="form-control" type="password" name="patientPassword"
+                                               id="patientPassword" placeholder="Enter Secure Password">
                                     </div>
-                                    <a class="btn btn-warning"><span><i class="fa fa-fw fa-plus" aria-hidden="true"></i></span>Update Record</a>
+                                    <a class="btn btn-warning"><span><i class="fa fa-fw fa-plus" aria-hidden="true"></i></span>Update
+                                        Record</a>
                                 </form>
 
                             </div>
@@ -195,19 +220,29 @@
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                             data-parent="#accordionExample" th:classappend="${createPrescription}? 'in active'">
                             <div class="card-body">
-                                <form action="" method="post">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="patientName" placeholder="Enter Patient Name...">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" name="patientEmId" placeholder="Enter Patient Email...">
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea class="form-control rounded-0" id="prescription" name="prescription" rows="5"></textarea>
-                                        </div>
-                                    <a class="btn btn-success"><i class="fa fa-fw fa-plus-square-o" aria-hidden="true"></i>Create Prescription</a>
+                                <form th:action="@{/createPrescription}" method="post">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="patientUsername"
+                                               placeholder="Enter Patient's Username" th:value="${patientUsername}" required minlength="5" maxlength="15">
+                                        <span th:if="${patientNotExistCreatePrescription}" style="color: red; font-size: 1.6rem;"> It seems patient with this  doesnt exist</span>
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="timePrescribe">Date of prescription:</label>
+                                    <input type="date"
+                                            name="pDate" th:value="${pDate}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <textarea class="form-control rounded-0" id="prescription" name="prescriptionDescription"th:value="${prescriptionDescription}"
+                                                  rows="5" required maxlength="1000"></textarea>
+                                    </div>
+                                    <button class="btn btn-success"><i class="fa fa-fw fa-plus-square-o"
+                                                                       aria-hidden="true"></i>Create Prescription
+                                    </button>
+                                    <span th:if="${createPrescriptionSuccess}" style="color: green; font-size: 1.6rem;"> Prescription added</span>
                                 </form>
                             </div>
                         </div>
@@ -228,7 +263,8 @@
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                             data-parent="#accordionExample">
                             <div class="card-body">
                                 <form th:action="@{/updateGpPassword}" method="post">
                                     <div class="row">
@@ -236,10 +272,13 @@
 
                                             <div class="col-sm-8">
                                                 <div class="form-group">
-                                                    <label for="username">Enter your username to confirm it is you:</label>
+                                                    <label for="username">Enter your username to confirm it is
+                                                        you:</label>
                                                     <input type="text" class="form-control" placeholder="Username"
-                                                           required th:value="${username}" name="username" minlength="5" maxlength="15">
-                                                    <span th:if="${updateGpPasswordUsernameNotExist}" style="color: red; font-size: 1.4rem;">Username doesnt exit</span>
+                                                           required th:value="${username}" name="username" minlength="5"
+                                                           maxlength="15">
+                                                    <span th:if="${updateGpPasswordUsernameNotExist}"
+                                                          style="color: red; font-size: 1.4rem;">Username doesnt exit</span>
                                                 </div>
                                             </div>
 
@@ -247,20 +286,23 @@
                                                 <div class="form-group">
 
                                                     <input type="text" class="form-control" placeholder="Old Password"
-                                                           required th:value="${oldPassword}" name="oldPassword" minlength="5" maxlength="15">
+                                                           required th:value="${oldPassword}" name="oldPassword"
+                                                           minlength="5" maxlength="15">
                                                 </div>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" placeholder="New Password"
-                                                           required th:value="${newPassword}" minlength="5" maxlength="15" name="newPassword">
+                                                           required th:value="${newPassword}" minlength="5"
+                                                           maxlength="15" name="newPassword">
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
                                                 <button class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"
                                                                                 aria-hidden="true"></i>Update Password
                                                 </button>
-                                                <span th:if="${updateGpPasswordSuccess}" style="color: green;font-size: 1.5rem;">Update Successful</span>
+                                                <span th:if="${updateGpPasswordSuccess}"
+                                                      style="color: green;font-size: 1.5rem;">Update Successful</span>
                                             </div>
 
                                         </div>
@@ -273,9 +315,7 @@
             </div>
 
 
-
-
-    </div>
+        </div>
 
     </div>
 </div>

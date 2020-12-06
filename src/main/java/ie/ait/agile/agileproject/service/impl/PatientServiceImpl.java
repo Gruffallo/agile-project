@@ -1,20 +1,25 @@
 package ie.ait.agile.agileproject.service.impl;
 
 import ie.ait.agile.agileproject.entity.Patient;
+import ie.ait.agile.agileproject.entity.Prescription;
 import ie.ait.agile.agileproject.exception.ExceptionHandler;
 import ie.ait.agile.agileproject.repository.PatientRepository;
+import ie.ait.agile.agileproject.repository.PrescriptionRepository;
 import ie.ait.agile.agileproject.service.PatientService;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class PatientServiceImpl implements PatientService {
 
     private final PatientRepository patientRepository;
+    private final PrescriptionRepository prescriptionRepository;
 
-    PatientServiceImpl(PatientRepository patientRepository) {
+    PatientServiceImpl(PatientRepository patientRepository,PrescriptionRepository prescriptionRepository) {
         this.patientRepository = patientRepository;
+        this.prescriptionRepository=prescriptionRepository;
     }
 
     @Override
@@ -68,6 +73,27 @@ public class PatientServiceImpl implements PatientService {
                 throw new ExceptionHandler("Old password doesnt match ");
             }
         }
+
+    }
+
+    @Override
+    public Prescription createPrescription(Patient patient, String description, Date date) {
+        if(patientRepository.findByUsername(patient.getUsername())==null){
+            throw new ExceptionHandler("patient doesnt exist");
+        }
+        else{
+            Prescription prescription= new Prescription();
+            prescription.setDescription(description.trim());
+            prescription.setPatient(patient);
+            prescription.setDate(date);
+
+            prescriptionRepository.save(prescription);
+            return prescription;
+
+        }
+
+
+
 
     }
 }

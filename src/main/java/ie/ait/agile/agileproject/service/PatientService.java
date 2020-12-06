@@ -1,6 +1,9 @@
 package ie.ait.agile.agileproject.service;
 
 import ie.ait.agile.agileproject.entity.Patient;
+import ie.ait.agile.agileproject.entity.Prescription;
+
+import java.util.Date;
 
 public interface PatientService extends BaseService<Patient> {
 
@@ -11,4 +14,5 @@ public interface PatientService extends BaseService<Patient> {
     Patient findByEmail(String email);
     
     Patient updatePassword(String username,String oldPassword,String newPassword);
+    Prescription createPrescription(Patient patient, String description, Date date);
 }
