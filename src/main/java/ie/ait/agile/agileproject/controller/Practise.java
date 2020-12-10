@@ -125,7 +125,7 @@ public class Practise {
     public String pharmacistLogin(@Valid Login login, Model model) {
         String loginUser = login.getUsername();
         String loginPwd = login.getPassword();
-
+        model.addAttribute("patientUsers", patientService.findAll());
         Pharmacist pharma = pharmaService.details(loginUser);
         String pharmaUser = pharma.getUsername();
         String pharmaPwd = pharma.getPassword();
@@ -490,7 +490,7 @@ public class Practise {
 
 
         model.addAttribute("updatePharmaPassword",true);
-
+        model.addAttribute("patientUsers", patientService.findAll());
         Pharmacist pharma= pharmaService.findByUsername(username);
         if(pharma==null){
             model.addAttribute("updatePasswordUsernameNotExist",true);
