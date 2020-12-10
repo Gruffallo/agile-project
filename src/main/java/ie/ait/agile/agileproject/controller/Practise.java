@@ -81,7 +81,7 @@ public class Practise {
     public String gpLogin(@Valid Login login, Model model) {
         String loginUser = login.getUsername();
         String loginPwd = login.getPassword();
-
+        model.addAttribute("patientUsers", patientService.findAll());
         Gp gp = gpService.details(loginUser);
         String gpUser = gp.getUsername();
         String gpPwd = gp.getPassword();
@@ -463,6 +463,7 @@ public class Practise {
         patient.setEmergencyId(patientCredentials.getEmergencyId());
         patient.setActive(true);
 
+        model.addAttribute("patientUsers", patientService.findAll());
 
 
         Gp gp= gpService.findByUsername(patientCredentials.getGpUsername());
@@ -535,6 +536,7 @@ public class Practise {
 
 
         model.addAttribute("updateGpPassword",true);
+        model.addAttribute("patientUsers", patientService.findAll());
 
         Gp gp= gpService.findByUsername(username);
         if(gp==null){
@@ -721,7 +723,7 @@ public class Practise {
             //System.out.println(pDate);
         Date date1=new SimpleDateFormat("yyyy/MM/dd").parse(pDate.replaceAll("-","/"));
 
-
+        model.addAttribute("patientUsers", patientService.findAll());
         model.addAttribute("createPrescription", true);
 
         model.addAttribute("patientCredentials", new PatientCredentials());
