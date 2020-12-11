@@ -113,6 +113,14 @@ class PatientServiceTest {
         thenThrownBy(callable).isExactlyInstanceOf(ExceptionHandler.class);
     }
 
+    @Test
+    void getPrescription() throws ExceptionHandler {​​​​​​​​
+        given(patientRepository.findByUsername(any(String.class))).willReturn(null);
+    // when
+    ThrowingCallable callable = () -> patientService.findAllPrescription("Tarn");
+    thenThrownBy(callable).isExactlyInstanceOf(ExceptionHandler.class);
+    }​​​​​​​​
+
 
 
 
