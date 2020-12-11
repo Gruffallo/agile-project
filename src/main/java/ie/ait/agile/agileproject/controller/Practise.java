@@ -747,6 +747,27 @@ public class Practise {
 
         return "gpPage";
     }
+    
+    
+    @PostMapping("/getPrescription")
+    public String getPrescription(@ModelAttribute("patientUsername") String username,  Model model) throws Exception {
+        Patient patient= patientService.findByUsername(username);
+//        model.addAttribute("patient", patient);
+        if(patient==null){
+            model.addAttribute("getPatientNotExist",true);
+            return "patientPage";
+        }
+        else{
+            List<Prescription> pre= patientService.findAllPrescription(username);
+            for(Prescription pres:pre){
+                System.out.println(pres.getPatient().getName());
+                System.out.println(pres.getDate());
+                System.out.println(pres.getDescription());
+            }
+            model.addAttribute("allPrescriptions",pre);
+            return "prescriptionPage";
+        }
+    }
 
 
 

@@ -7,4 +7,5 @@ import java.util.Date;
 
 public interface PrescriptionRepository extends JpaRepository<Prescription,Integer> {
     Prescription findByDate(Date date);
+    List<Prescription> findAllByPatient(Patient patient);
 }

@@ -55,7 +55,18 @@
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                      data-parent="#accordionExample">
                     <div class="card-body">
-                        View Prescription
+ 						<div class = "col-sm-6">
+                            <form th:action="@{/getPrescription}" method="post">
+                            <div class="form-group">
+                                <label> Enter your username:</label>
+<!--                                <input type="hidden" th:value="${patient.name}" name="patientUsername">-->
+                                <input type="text" th:value="${patientUsername}" name="patientUsername" class="form-control" placeholder="Enter your username to view prescription" required minlength="5" maxlength="15">
+                                <button class="btn btn-primary" type="submit">
+                                    <i aria-hidden="true" class="fa fa-fw fa-sign-in"></i>View</button>
+                                <span th:if="${getPatientNotExist}" style="color: red;font-size: 1.6rem;">Patient doenst exist</span>
+                            </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -15,4 +15,5 @@ public interface PatientService extends BaseService<Patient> {
     
     Patient updatePassword(String username,String oldPassword,String newPassword);
     Prescription createPrescription(Patient patient, String description, Date date);
+    List<Prescription> findAllPrescription(String username);
 }

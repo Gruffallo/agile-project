@@ -96,4 +96,17 @@ public class PatientServiceImpl implements PatientService {
 
 
     }
+    
+    @Override
+    public List<Prescription> findAllPrescription(String username) {
+        Patient patient= patientRepository.findByUsername(username);
+        if(patient==null){
+            throw new ExceptionHandler("Patient doesnt exist");
+        }
+        else{
+            List<Prescription> pre=prescriptionRepository.findAllByPatient(patient);
+            return pre;
+        }
+
+    }
 }
